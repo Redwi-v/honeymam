@@ -1,0 +1,78 @@
+@import './apx.scss';
+@import './tailwind.scss';
+@import './variables.scss';
+@import './text.scss';
+
+/* СБРОС СТАНДАРТНЫХ СТИЛЕЙ */
+*,
+::after,
+::before {
+ 
+  outline: 0 !important;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent !important;
+
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+body,
+html {
+ 
+  cursor: default;
+  min-width: 100%;
+  min-height: 100%;
+  user-select: none;
+  font-display: swap;
+  overflow-x: hidden;
+  -o-user-select: none;
+  -ms-user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  scroll-behavior: smooth;
+  text-rendering: optimizeSpeed;
+
+}
+ 
+body,
+textarea,
+input,
+span,
+div,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+ 
+   margin: 0;
+   padding: 0;
+ 
+}
+ 
+button,
+input,
+select,
+textarea { font-family: inherit; }
+ 
+textarea { resize: vertical; }
+ 
+a,
+a:hover,
+a:visited {
+ 
+  text-decoration: none;
+  color: inherit !important;
+  font-family: inherit !important;
+
+}
+
+button {
+  cursor: pointer;
+}
