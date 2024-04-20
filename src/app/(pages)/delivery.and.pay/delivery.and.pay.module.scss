@@ -1,0 +1,92 @@
+@import '@/app/_styles/apx.scss';
+@import '@/app/_styles/breakpoints.scss';
+
+
+.delivery_and_pay {
+
+  .zone {
+    justify-content: space-between;
+  }
+
+  .toggle {
+
+    display: flex;
+    padding: $apx-4;
+    gap: $apx-4;
+    background: var(--color-beige);
+    border-radius: $apx-100;
+
+    span {
+
+      display: block;
+      padding: $apx-8 $apx-37;
+      font-size: $apx-16;
+
+    }
+
+    span.active {
+
+      background: var(--color-yellow);
+      border-radius: $apx-100;
+      color: var(--color-white);
+
+      
+    }
+
+  }
+
+  .address svg,
+  .time svg {
+    width: $apx-24;
+    height: $apx-24;
+  }
+
+
+  .map {
+
+    width: 100%;
+    height: $apx-486;
+    border-radius: $apx-26;
+    overflow: hidden;
+
+  }
+
+  .text {
+
+    text-align: left;
+    margin-top: $apx-40;
+    font-size: $apx-20;
+
+    max-width: $apx-796;
+
+  }
+
+  .pay_methods {
+
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    gap: $apx-40;
+    margin-top: $apx-24;
+
+    margin-bottom: $apx-100;
+
+  }
+
+  .pay_method {
+
+    border-radius: $apx-24;
+    background: var(--color-beige);
+    width: 100%;
+    padding: $apx-32 $apx-24;
+
+    p {margin-top: $apx-16 !important;}
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+
+  }
+
+}
