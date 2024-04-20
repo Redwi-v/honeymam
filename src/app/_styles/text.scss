@@ -1,0 +1,51 @@
+@import './apx.scss';
+
+.h1 {
+
+  font-family: var(--font-garamondCondensed);
+  font-weight: 400;
+  font-size: $apx-72;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--color-black);
+
+}
+
+.h2 {
+
+  font-family: var(--font-myweekend);
+  font-weight: 400;
+  font-size: $apx-40;
+  text-transform: uppercase;
+  color: #37363f;
+
+}
+
+
+.p {
+
+  font-family: var(--font-garamondCondensed);
+  font-weight: 400;
+  font-size: $apx-24;
+  text-align: center;
+  color: #37363f;
+
+}
+
+
+@media (max-width: $media-laptop) {
+  
+  .h1 { font-size: $apx-l-42; }
+  .h2 { font-size: $apx-l-24; }
+  .p { font-size: $apx-l-18; }
+  
+}
+
+@media (max-width: $media-mobile) {
+  
+  .h1 { font-size: $apx-m-28; }
+  .h2 { font-size: $apx-m-18; }
+  .p { font-size: $apx-m-18; }
+  
+}
+

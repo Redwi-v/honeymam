@@ -1,0 +1,70 @@
+@import '@/app/_styles/apx.scss';
+@import '@/app/_styles/breakpoints.scss';
+
+.bread_crumbs {
+
+  .link {
+    font-size: $apx-16;
+  }
+
+  .link:not(:last-child) {
+
+    color: var(--color-green) !important;
+
+  }
+
+  .arrow {
+
+    width: $apx-14;
+    height: $apx-14;
+    margin: $apx-1 $apx-7 0 $apx-2;
+
+  }
+
+}
+
+
+@media (max-width: $media-laptop) {
+
+
+  .bread_crumbs {
+
+    .link {
+      font-size: $apx-l-16;
+    }
+
+    .arrow {
+
+      width: $apx-l-14;
+      height: $apx-l-14;
+
+      margin: $apx-l-1 $apx-l-7 0 $apx-l-2;
+
+    }
+
+  }
+
+}
+
+
+@media (max-width: $media-mobile) {
+
+
+  .bread_crumbs {
+
+    .link {
+      font-size: $apx-m-14;
+    }
+
+    .arrow {
+
+      width: $apx-m-14;
+      height: $apx-m-14;
+
+      margin: $apx-m-2 $apx-m-3 0 $apx-m-2;
+
+    }
+
+  }
+
+}

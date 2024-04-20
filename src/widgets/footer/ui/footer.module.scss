@@ -1,0 +1,193 @@
+@import '@/app/_styles/apx.scss';
+@import '@/app/_styles/breakpoints.scss';
+
+.footer {
+
+  height: $apx-344 !important;
+  position: relative;
+
+  background: var(--color-green);
+  color: var(--color-white) !important;
+  padding: $apx-60 0;
+
+  .content {
+
+    width: $apx-1121;
+    padding-right: 0;
+
+  }
+
+  p, a {
+
+    color: inherit;
+    text-align: left !important;
+    font-size: $apx-20;
+
+  }
+
+  .top {
+
+    justify-content: space-between;
+
+  }
+
+  .info {
+
+    gap: $apx-40;
+
+    div {
+      min-width: $apx-170;
+    }
+
+  }
+
+  .transparent { opacity: .7; }
+
+  .hands {
+
+    width: $apx-280;
+    height: $apx-314 !important;
+    right: 0;
+    bottom: 0;
+    left: auto;
+    position: absolute;
+
+  }
+
+  .logo {
+
+    min-width: $apx-381 !important;
+    height: $apx-139 !important;
+    display: block;
+
+    path { fill: var(--color-white); }
+
+  }
+
+  .bottom {
+
+    margin-top: $apx-63;
+    justify-content: space-between;
+    justify-content: flex-start;
+    gap: $apx-483;
+
+    p {
+
+      text-align: left !important;
+      text-align: left;
+
+    }
+  }
+
+}
+
+@media (max-width: $media-laptop) {
+  
+  .footer {
+
+    height: $apx-l-304 !important;
+  
+    padding: $apx-l-50 0;
+  
+    .content {width: auto;}
+  
+    p, a {
+  
+      font-size: $apx-l-18;
+  
+    }
+
+    .top {
+
+      justify-content: flex-start;
+      gap: $apx-l-80;
+
+    }
+  
+    .info {
+  
+      gap: $apx-l-21;
+  
+      div { min-width: $apx-l-235; }
+  
+    }
+  
+    .hands { display: none; }
+  
+    .logo {
+  
+      min-width: $apx-l-176 !important;
+      height: $apx-l-65 !important;
+  
+    }
+  
+    .bottom {
+  
+      margin-top: $apx-l-63;
+      gap: $apx-l-120;
+
+    }
+  
+  }
+  
+
+}
+
+
+@media (max-width: $media-mobile) {
+  
+  .footer {
+
+    height: $apx-m-350 !important;
+    padding: $apx-m-40 0 !important;
+    padding-right: none;
+  
+    p, a {
+  
+      font-size: $apx-m-16;
+  
+    }
+
+    .container {
+
+      padding: $apx-m-10 0 !important;
+
+    }
+
+    .top {
+
+      flex-direction: column;
+
+    }
+  
+    .info {
+  
+      gap: $apx-m-41;
+
+      div { min-width: $apx-m-124; }
+  
+    }
+  
+    .hands { display: none; }
+  
+    .logo {
+  
+      min-width: $apx-m-170 !important;
+      height: $apx-m-62 !important;
+      margin: 0 auto;
+  
+    }
+  
+    .bottom {
+  
+      margin-top: $apx-m-40;
+      gap: $apx-m-8;
+
+      flex-direction: column;
+
+    }
+  
+  }
+  
+
+}

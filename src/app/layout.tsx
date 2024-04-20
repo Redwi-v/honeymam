@@ -1,8 +1,63 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import localFont from "next/font/local";
 import "./_styles/globals.scss";
 
-const inter = Inter({ subsets: ["latin"] });
+const Kosko = localFont( {
+
+  src: [
+
+    {
+
+      path: './_fonts/KoskoBold-Bold.woff2',
+      weight: '700',
+
+    },
+
+    {
+
+      path: './_fonts/KoskoRegular-Regular.woff2',
+      weight: '400',
+
+    },
+
+  ],
+
+  variable: '--font-kosko'
+
+} );
+
+const myWeekend = localFont( {
+
+  src: [
+
+    {
+
+      path: './_fonts/MV-WEEKEND.otf',
+      weight: '400',
+
+    },
+
+  ],
+
+  variable: '--font-myweekend'
+
+} );
+const garamondCondensed = localFont( {
+
+  src: [
+
+    {
+
+      path: './_fonts/Garamond_Condensed_Regular.ttf',
+      weight: '400',
+
+    },
+
+  ],
+
+  variable: '--font-garamondCondensed'
+
+} );
 
 export const metadata: Metadata = {
 
@@ -15,9 +70,13 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
 
   return (
 
-    <html lang="ru">
+    <html lang="ru" className={ `${ Kosko.variable } ${ myWeekend.variable } ${ garamondCondensed.variable } font-sans ` }>
 
-      <body className={inter.className}>{children}</body>
+      <body>
+
+        { children }
+
+      </body>
 
     </html>
 

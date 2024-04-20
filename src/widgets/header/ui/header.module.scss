@@ -1,0 +1,229 @@
+@import '@/app/_styles/apx.scss';
+@import '@/app/_styles/breakpoints.scss';
+
+.header {
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: var(--color-white);
+
+  padding-top: $apx-10;
+  height: $apx-150;
+
+  z-index: 100;
+
+  .mobile_menu {
+
+    display: none;
+
+  }
+
+  .logo {
+
+    position: relative;
+    display: block;
+
+    width: $apx-148;
+    height: $apx-54;
+
+  }
+
+  .navigation {
+
+    display: flex;
+    gap: $apx-32;
+    margin-left: $apx-54;
+
+  }
+
+  .controls {
+    margin-left: auto;
+  }
+
+  .navigation_item a {
+
+    color: var(--color-green) !important;
+    font-family: var(--font-garamondCondensed) !important;
+
+  }
+
+
+}
+
+.header.header_small {
+
+  height: $apx-91;
+
+}
+
+.control_with_icon {
+
+  gap: $apx-4;
+
+  .icon {
+
+    width: $apx-26;
+    height: $apx-26;
+
+  }
+
+  p {
+
+    color: var(--color-green);
+
+  }
+
+}
+
+@media (max-width: $media-laptop) {
+
+  .control_with_icon.adaptive_text {
+
+    p {
+      display: none;
+    }
+
+  }
+
+  .control_with_icon {
+
+    gap: $apx-l-8;
+
+    .icon {
+
+      width: $apx-l-24;
+      height: $apx-l-24;
+
+    }
+
+  }
+
+  .header.header_small {
+
+    height: $apx-l-65;
+
+  }
+
+  .header {
+
+    height: $apx-l-120;
+
+    .logo {
+
+      width: $apx-l-136;
+      height: $apx-l-50;
+
+    }
+
+    .navigation {
+
+      gap: $apx-l-16;
+      margin-left: $apx-l-48;
+
+    }
+
+  }
+
+}
+
+@media (max-width: 550px) {
+
+  .header.header_small {
+
+    height: $apx-m-70;
+
+  }
+
+  .header {
+
+    height: $apx-l-160;
+
+    .logo {
+
+      width: $apx-l-126;
+      height: $apx-l-50;
+
+    }
+
+  }
+
+}
+
+@media (max-width: $media-mobile) {
+
+  .mobile_hide {
+    display: none;
+  }
+
+  .mobile_menu {
+
+    display: block !important;
+    width: $apx-m-36;
+    height: $apx-m-36;
+    background: none;
+    padding: 0;
+    border: none;
+
+    svg {
+
+      width: 100%;
+      height: 100%;
+
+    }
+
+  }
+
+  .control_with_icon.adaptive_text {
+
+    p {
+      display: none;
+    }
+
+  }
+
+  .controls {
+    gap: $apx-m-16;
+  }
+
+  .control_with_icon {
+
+    .icon {
+
+      width: $apx-m-22;
+      height: $apx-m-22;
+
+    }
+
+  }
+
+  .header.header_small {
+
+    height: $apx-m-74;
+
+  }
+
+  .header {
+
+    height: $apx-m-114;
+
+    .logo {
+
+      width: $apx-m-113;
+      height: $apx-m-42;
+      margin-right: -$apx-m-26 !important;
+      display: block;
+      margin: 0 auto;
+
+    }
+
+    .navigation {
+
+      display: none;
+
+    }
+
+  }
+
+}

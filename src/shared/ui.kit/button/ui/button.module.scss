@@ -1,0 +1,19 @@
+@import '@/app/_styles/breakpoints.scss';
+@import '@/app/_styles/apx.scss';
+
+
+.button {
+
+  padding: $apx-12 $apx-40;
+  border-radius: $apx-81;
+
+  font-family: var(--font-myweekend);
+  font-weight: 400;
+  font-size: $apx-16;
+  line-height: 120%;
+  color: var(--color-white);
+
+  border: none;
+  background: var(--color-green);
+
+}
