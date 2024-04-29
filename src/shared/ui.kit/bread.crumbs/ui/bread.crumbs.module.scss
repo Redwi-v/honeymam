@@ -3,6 +3,10 @@
 
 .bread_crumbs {
 
+
+  padding-top: $apx-24;
+
+
   .link {
     font-size: $apx-16;
   }
@@ -29,6 +33,9 @@
 
   .bread_crumbs {
 
+  padding-top: $apx-l-24;
+
+
     .link {
       font-size: $apx-l-16;
     }
@@ -51,6 +58,8 @@
 
 
   .bread_crumbs {
+
+    padding-top: $apx-m-16;
 
     .link {
       font-size: $apx-m-14;

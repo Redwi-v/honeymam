@@ -1,0 +1,139 @@
+@import '@/app/_styles/apx.scss';
+@import '@/app/_styles/breakpoints.scss';
+
+.tabs {
+
+  display: flex;
+  justify-content: center;
+  gap: $apx-24;
+
+  margin-top: $apx-32;
+
+
+  li { position: relative; }
+
+  a {
+
+    padding: $apx-10;
+
+  }
+
+  li:nth-child( 1 ) a {
+    color: var(--color-green) !important;
+  }
+
+  li.stars svg {
+
+    position: absolute;
+    top: -$apx-4;
+    left: -$apx-1;
+    z-index: -1;
+
+
+    width: $apx-20;
+    height: $apx-20;
+
+  }
+
+  li.hearts svg {
+
+    position: absolute;
+    top: -$apx-5;
+    right: -$apx-3;
+    z-index: -1;
+
+
+    width: $apx-22;
+    height: $apx-27;
+
+  }
+
+}
+
+.tabs.listType {
+
+  li {
+    width: fit-content;
+  }
+
+  li:nth-child( 1 ) a {
+    color: var(--color-black) !important;
+  }
+
+}
+
+@media (max-width: $media-laptop) {
+
+  .tabs {
+
+    gap: $apx-l-12;
+    margin-top: $apx-l-24;
+  
+    a { padding: $apx-l-4 $apx-l-6 }
+
+    li.stars svg {
+  
+      position: absolute;
+      top: -$apx-l-4;
+      left: -$apx-l-1;
+  
+  
+      width: $apx-l-12;
+      height: $apx-l-12;
+  
+    }
+  
+    li.hearts svg {
+  
+      position: absolute;
+      top: -$apx-l-3;
+      right: -$apx-l-3;
+      z-index: -1;
+  
+  
+      width: $apx-l-13;
+      height: $apx-l-16;
+  
+    }
+  
+  }
+
+}
+
+@media (max-width: $media-mobile) {
+
+  .tabs {
+
+    gap: $apx-m-5;
+    margin-top: $apx-m-16;
+  
+    a { padding: $apx-m-4 $apx-m-6 }
+
+    li.stars svg {
+  
+      position: absolute;
+      top: -$apx-m-4;
+      left: -$apx-m-1;
+  
+  
+      width: $apx-m-12 !important;
+      height: $apx-m-12 !important;
+  
+    }
+  
+    li.hearts svg {
+  
+      position: absolute;
+      top: -$apx-m-4;
+      right: 0;
+      z-index: -1;
+  
+  
+      width: $apx-m-13 !important;
+      height: $apx-m-16 !important;
+  
+    }
+  
+  }
+
+}

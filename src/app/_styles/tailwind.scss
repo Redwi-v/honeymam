@@ -5,6 +5,10 @@
 .justify-center { justify-content: center; }
 .items-center { align-items: center; }
 
+.mobile {
+  display: none;
+}
+
 .gap-24 { gap: $apx-24; }
 .gap-16 { gap: $apx-16; }
 .gap-3 { gap: $apx-3; }
@@ -39,5 +43,11 @@
   .gap-m-12 { gap: $apx-m-12; }
   .gap-m-16 { gap: $apx-m-16; }
 
+
+  .pt-m-8 { padding-top: $apx-m-8 !important; }
+  
+  .mobile {
+    display: block;
+  }
   
 }

@@ -1,10 +1,10 @@
 'use client'
 import Image from "next/image";
-import { FC, ReactElement, useEffect } from "react";
+import { FC, ReactElement, useEffect, useState } from "react";
 
 import s from './header.module.scss'
 import Link from "next/link";
-import { BreadCrumbs, ICrumbItem, P } from "@/shared/ui.kit";
+import { BreadCrumbs, H2, ICrumbItem, P } from "@/shared/ui.kit";
 import { cssIf } from "@/shared/scripts";
 
 import { FooterHandsImage } from "@/app/_images/footer.hands";
@@ -13,6 +13,8 @@ import { CartImage } from "@/app/_images/cart";
 import { HeartImage } from "@/app/_images/heart";
 import { LoginImage } from "@/app/_images/login";
 import { MenuImage } from "@/app/_images/menu";
+import { TextCategories } from "@/entities/text.categories";
+import { MenuClosedImage } from "@/app/_images/menu.closed";
 
 interface HeaderProps {
 
@@ -57,6 +59,7 @@ export const Header: FC<HeaderProps> = ( { breadCrumpsList } ) => {
 
   // render navigation list
   const navigationList: ReactElement[] = []
+  const [ menuIsOpen, setMenuIsOpen ] = useState( false )
 
   for ( const [ key, value ] of Object.entries( navigationParams ) )
   {
@@ -77,10 +80,12 @@ export const Header: FC<HeaderProps> = ( { breadCrumpsList } ) => {
 
     <header className={ `${ s.header } ${ cssIf( !breadCrumpsList, s.header_small ) } ` }>
 
+      { menuIsOpen && <MobileMenu /> }
+
       <div className={ `${ s.main } container flex items-center` }>
 
-        <button className={ s.mobile_menu }>
-          <MenuImage />
+        <button className={ s.mobile_menu_button } onClick={ () => setMenuIsOpen( prev => !prev ) }>
+          { menuIsOpen ? <MenuClosedImage /> : <MenuImage /> }
         </button>
 
         <LogoImage className={ s.logo } />
@@ -137,6 +142,52 @@ const ControlWithIcon: FC<IControlsWithIcon> = ( props ) => {
 
     </Link>
 
+  )
+
+}
+
+const MobileMenu = () => {
+
+  return (
+    <div className={ s.mobile_menu }>
+
+      <div className={ `${ s.mobile_menu_content } container` }>
+
+        <a href="/catalog" className="h2">Каталог</a>
+        <TextCategories listType className={ s.categories } />
+
+        <a href="/catalog" className="h2">Доставка и оплата</a>
+        <a href="/catalog" className="h2">О нас</a>
+        <a href="/catalog" className="h2">Контакты</a>
+
+        <div className={ s.controls }>
+
+          <a className={ `h2` } href='/'>
+            <CartImage />
+            Корзина
+          </a>
+          <a className={ `h2` } href='/'>
+            <HeartImage />
+            Избранное
+          </a>
+          <a className={ `h2` } href='/'>
+            <LoginImage />
+            Войти
+          </a>
+
+        </div>
+
+        <div className={ s.contacts }>
+
+          <a href="tel:+79189999999">+7 (918) 999-99-99</a>
+          <a className="pt-m-8" href="mailto:honeymom@gmail.com">honeymom@gmail.com</a>
+          <P className="pt-m-8">с 10:00 до 21:00</P>
+
+        </div>
+
+      </div>
+
+    </div>
   )
 
 }

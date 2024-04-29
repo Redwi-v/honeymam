@@ -1,0 +1,156 @@
+@import '@/app/_styles/apx.scss';
+@import '@/app/_styles/breakpoints.scss';
+
+.counter {
+
+  display: flex;
+  align-items: center;
+  gap: $apx-16;
+  flex-wrap: nowrap;
+
+  button {
+
+    display: flex;
+
+    width: $apx-46;
+    height: $apx-46;
+
+    border-radius: 50%;
+
+    justify-content: center;
+    align-items: center;
+
+    border: $apx-2 solid var(--color-green);
+    background: none;
+
+  }
+
+  button:first-child {
+    display: none;
+  }
+
+  .count {
+
+    display: none;
+    font-size: $apx-24;
+    font-family: var(--font-myweekend);
+    color: var(--color-green);
+
+  }
+
+  svg {
+    width: $apx-16;
+    height: $apx-16;
+  }
+
+}
+
+.counter.active {
+
+  button:first-child {
+    display: flex;
+  }
+
+  .count {
+    display: inline-block;
+  }
+
+  button:last-child {
+
+    background: var(--color-green);
+
+    svg path {
+
+      stroke: var(--color-white);
+
+    }
+
+  }
+
+}
+
+
+
+@media (max-width: $media-laptop) {
+
+  .counter {
+
+    gap: $apx-l-12;
+
+    button {
+
+      width: $apx-l-30;
+      height: $apx-l-30;
+
+      border: $apx-l-2 solid var(--color-green);
+
+      svg {
+        width: $apx-l-14;
+        height: $apx-l-14;
+      }
+
+    }
+
+    .count {
+
+      font-size: $apx-l-18;
+
+    }
+
+  }
+
+  .counter.active {
+
+    button:first-child {
+      display: flex;
+    }
+
+    .count {
+      display: inline-block;
+    }
+
+    button:last-child {
+
+      background: var(--color-green);
+
+      svg path {
+
+        stroke: var(--color-white);
+
+      }
+
+    }
+
+  }
+
+}
+
+@media (max-width: $media-mobile) {
+
+  .counter {
+
+    gap: $apx-m-8;
+
+    button {
+
+      width: $apx-m-23;
+      height: $apx-m-23;
+
+      border: $apx-m-1 solid var(--color-green);
+
+      svg {
+        width: $apx-m-13;
+        height: $apx-m-13;
+      }
+
+    }
+
+    .count {
+
+      font-size: $apx-m-14;
+
+    }
+
+  }
+
+}

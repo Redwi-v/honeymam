@@ -11,18 +11,6 @@ export const metadata: Metadata = {
 
 };
 
-const breadCrumbsList: ICrumbItem[] = [
-
-  {
-    href: '/',
-    title: 'Главная',
-  },
-  {
-    href: '/catalog',
-    title: 'Каталог',
-  },
-
-]
 
 
 export default function RootLayout( { children }: Readonly<{ children: React.ReactNode }> ) {
@@ -32,9 +20,7 @@ export default function RootLayout( { children }: Readonly<{ children: React.Rea
     <section className="carcass with_bread_crumbs">
 
 
-      <Header breadCrumpsList={ breadCrumbsList } />
       <main className="main">{ children }</main>
-      <Footer />
 
 
     </section>

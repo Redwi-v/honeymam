@@ -1,0 +1,259 @@
+@import '@/app/_styles/apx.scss';
+@import '@/app/_styles/breakpoints.scss';
+
+.categories {
+
+  display: flex;
+  gap: $apx-16;
+  width: 100%;
+  margin-top: $apx-20;
+
+
+  li {width: 100%;}
+
+  a {
+
+    position: relative;
+
+    height: $apx-194 !important;
+    display: block;
+    width: 100%;
+    background: #EA8597;
+    border-radius: $apx-20;
+
+    padding: $apx-18 $apx-16;
+
+    color: var(--color-white);
+    
+
+  }
+
+  li:nth-child(1) a {
+
+    background: #FBE7EA !important;
+
+    svg {
+
+      width: $apx-120;
+      height: $apx-91;
+      position: absolute;
+
+      right: $apx-16;
+      bottom: $apx-18;
+
+      transform: rotate(3deg);
+
+    }
+
+  }
+
+  li:nth-child(2) a {
+    
+    background: #E2DACF !important;
+
+    svg {
+
+      width: $apx-122;
+      height: $apx-98;
+      position: absolute;
+
+      right: $apx-16;
+      bottom: $apx-18;
+
+    }
+
+  }
+
+  li:nth-child(3) a {
+    
+    background: #FCEECD !important;
+
+    svg {
+      
+      width: $apx-122;
+      height: $apx-103;
+      position: absolute;
+
+      transform: rotate(21.18deg);
+
+      right: $apx-5;
+      bottom: $apx-1;
+    }
+    
+  }
+
+  li:nth-child(4) a {
+    
+    background: #DDE6D3 !important;
+
+    svg {
+
+      width: $apx-151;
+      height: $apx-75;
+      position: absolute;
+
+      right: $apx-7;
+      bottom: $apx-9;
+
+    }
+
+  }
+
+}
+
+
+
+@media (max-width: $media-laptop) {
+
+  .categories {
+
+    gap: $apx-l-16;
+    margin-top: $apx-l-16;
+
+    a {
+
+      height: $apx-l-116 !important;
+      border-radius: $apx-l-20;
+
+      padding: $apx-l-18 $apx-l-16;
+
+    }
+
+    li:nth-child(1) a svg{
+
+      width: $apx-l-70;
+      height: $apx-l-55;
+      position: absolute;
+
+      right: $apx-l-12;
+      bottom: $apx-l-12;
+
+      transform: rotate(3deg);
+
+
+    }
+
+    li:nth-child(2) a svg {
+
+      width: $apx-l-70;
+      height: $apx-l-56;
+
+      right: $apx-l-17;
+      bottom: $apx-l-11;
+
+    }
+
+    li:nth-child(3) a svg{
+
+      
+      width: $apx-l-90;
+      height: $apx-l-75;
+
+      transform: rotate(10.18deg);
+
+      right: 0;
+      bottom: $apx-l-3;
+      
+    }
+
+    li:nth-child(4) a svg {
+
+      width: $apx-l-90;
+      height: $apx-l-64;
+
+      right: $apx-l-6;
+      bottom: $apx-l-6;
+
+
+    }
+
+  }
+
+}
+
+@media (max-width: $media-mobile) {
+
+  .categories.grid {
+  
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  
+  }
+
+  .categories {
+
+    gap: $apx-m-16;
+    margin-top: $apx-m-16;
+
+    a {
+
+      height: $apx-m-86 !important;
+      border-radius: $apx-m-16;
+
+      padding: $apx-m-16 $apx-m-12;
+
+    }
+
+    li:nth-child(1) a svg{
+
+      width: $apx-m-55;
+      height: $apx-m-45;
+      position: absolute;
+
+      right: $apx-m-12;
+      bottom: $apx-m-12;
+
+      transform: rotate(3deg);
+
+
+    }
+
+    li:nth-child(2) a svg {
+
+      width: $apx-m-58;
+      height: $apx-m-58;
+
+      right: $apx-m-5;
+      bottom: $apx-m-1;
+
+    }
+
+    li:nth-child(3) a svg{
+
+      
+      width: $apx-m-80;
+      height: $apx-m-65;
+
+      transform: rotate(10.18deg);
+
+      right: 0;
+      bottom: $apx-l-3;
+      
+    }
+
+    li:nth-child(4) a svg {
+
+      width: $apx-m-65;
+      height: $apx-m-48;
+
+      right: $apx-m-2;
+      bottom: $apx-m-2;
+
+
+    }
+
+  }
+
+  .list {
+    display: flex;
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 0 10px;
+
+    li {
+      min-width: $apx-m-220;
+    }
+  }
+
+}
