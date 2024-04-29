@@ -19,8 +19,19 @@ import { Map, Placemark, YMaps } from '@pbe/react-yandex-maps';
 import { BannerCategories } from "@/entities/banner.categories";
 import axios from "axios";
 import { TextCategories } from "@/entities/text.categories";
+import { useEffect } from "react";
 
 export default function Home() {
+
+  useEffect(() => {
+
+    axios.get('http://31.129.109.54/rest/products', {
+      headers: {
+        "Http-App-ID": "537dd91c-4729-4f26-8e6e-20c49b9d6551",
+      }
+    })
+
+  }, [])
 
   return (
 
