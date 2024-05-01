@@ -4,7 +4,7 @@
 .bread_crumbs {
 
 
-  padding-top: $apx-24;
+  padding-top: $apx-50;
 
 
   .link {
@@ -33,7 +33,7 @@
 
   .bread_crumbs {
 
-  padding-top: $apx-l-24;
+  padding-top: calc($apx-l-24 + $apx-l-4);
 
 
     .link {

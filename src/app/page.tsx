@@ -19,19 +19,26 @@ import { Map, Placemark, YMaps } from '@pbe/react-yandex-maps';
 import { BannerCategories } from "@/entities/banner.categories";
 import axios from "axios";
 import { TextCategories } from "@/entities/text.categories";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { LongArrowImageFrame2 } from "./_images/long.arrow.frame2";
+import { LongArrowImageFrame3 } from "./_images/long.arrow.frame3";
+import { Animate } from "@/shared/ui.kit/animate";
 
 export default function Home() {
 
-  useEffect(() => {
+  useEffect( () => {
 
-    axios.get('http://31.129.109.54/rest/products', {
+    axios.get( 'http://31.129.109.54/rest/products', {
       headers: {
         "Http-App-ID": "537dd91c-4729-4f26-8e6e-20c49b9d6551",
+        withCredentials: true,
       }
-    })
+    } )
 
-  }, [])
+  }, [] )
+
+  const [ firstArrowActive, setFirstArrowActive ] = useState( false )
+  const [ secondArrowActive, setSecondArrowActive ] = useState( false )
 
   return (
 
@@ -43,12 +50,12 @@ export default function Home() {
 
         <div className={ s.banner }>
 
-          <Image fill src={ '/images/home_banner.jpg' } alt="home banner" />
+          <Image fill src={ '/images/home_banner.svg' } alt="home banner" />
           <Image fill src={ '/images/home_banner_mobile.svg' } alt="home banner" />
 
         </div>
 
-        <BannerCategories isGrid/>
+        <BannerCategories isGrid />
 
         <div className={ s.catalog }>
 
@@ -108,7 +115,7 @@ export default function Home() {
                 </button>
 
                 <div className={ s.type }>
-                  <Image src={ '/images/testData/hit.png' } alt="action" fill />
+                  <Image src={ '/images/testData/hit.svg' } alt="action" fill />
                 </div>
 
               </div>
@@ -300,7 +307,7 @@ export default function Home() {
                 </button>
 
                 <div className={ s.type }>
-                  <Image src={ '/images/testData/action.png' } alt="action" fill />
+                  <Image src={ '/images/testData/action.svg' } alt="action" fill />
                 </div>
 
               </div>
@@ -415,13 +422,27 @@ export default function Home() {
 
         </div>
 
-        <Link className={ s.all_link } href={ '/' }>
+        <Link onMouseLeave={ () => setFirstArrowActive( false ) } onMouseEnter={ () => setFirstArrowActive( true ) } className={ s.all_link } href={ '/' }>
           <span className="h2">Смотреть все десерты</span>
-          <LongArrowImage />
+
+          <Animate
+
+            className={ s.icon }
+            wrapperClass={ `${ s.more_link_icon } flex items-center` }
+            isActive={ firstArrowActive }
+            frames={ [
+
+              <LongArrowImage key={ 1 } />,
+              <LongArrowImageFrame2 key={ 2 } />,
+              <LongArrowImageFrame3 key={ 3 } />,
+
+            ] }
+
+          />
         </Link>
 
         <div className={ s.contacts_banner }>
-          <Image className={ s.desk_banner } fill src={ '/images/home_contacts.jpg' } alt="home contacts" />
+          <Image className={ s.desk_banner } fill src={ '/images/home_contacts.svg' } alt="home contacts" />
           <Image className={ s.mobile_banner } fill src={ '/images/home_contacts_mobile.svg' } alt="home contacts" />
 
           <div className={ s.text } >
@@ -440,13 +461,13 @@ export default function Home() {
 
       <div className={ s.about }>
 
-        <Image className={ s.bg } fill src={ '/images/about_banner.jpg' } alt="about" />
+        <Image className={ s.bg } fill src={ '/images/about_banner.svg' } alt="about" />
         <Image className={ s.bg_mobile } fill src={ '/images/about_banner_mobile.svg' } alt="about" />
 
         <H1 className={ s.title }>
           <DiscolorImage className={ s.discolor } />
           <WaveUnderlining className={ s.wave_underlining } />
-          Стремимся <br className="mobile"/> к безупречности во всем, что делаем, и никогда не останавливаемся на достигнутом
+          Стремимся <br className="mobile" /> к безупречности во всем, что делаем, и никогда не останавливаемся на достигнутом
         </H1>
 
         <P className={ s.subtitle }>
@@ -455,9 +476,24 @@ export default function Home() {
           Времена меняются, но с HONEYMAM можно окунуться в атмосферу теплых воспоминаний и отведать те самые десерты из детства
         </P>
 
-        <Link className={ s.more_link } href={ '/' }>
+        <Link onMouseLeave={ () => setSecondArrowActive( false ) } onMouseEnter={ () => setSecondArrowActive( true ) } className={ s.more_link } href={ '/' }>
           <span className="h2">Подробнее</span>
-          <LongArrowImage />
+
+          <Animate
+
+            className={ s.icon }
+            wrapperClass={ `${ s.more_link_icon } flex items-center` }
+            isActive={ secondArrowActive }
+            frames={ [
+
+              <LongArrowImage key={ 1 } />,
+              <LongArrowImageFrame2 key={ 2 } />,
+              <LongArrowImageFrame3 key={ 3 } />,
+
+            ] }
+
+          />
+
         </Link>
 
       </div>
@@ -472,10 +508,28 @@ export default function Home() {
             <span className={ s.name }>Адрес</span>
             <P className={ s.address }>Москва, 3-я улица Строителей,  25 <br /> с 10:00 до 21:00</P>
 
-            <Link className={ s.link } href={ '/' }>
+
+            <Link onMouseLeave={ () => setSecondArrowActive( false ) } onMouseEnter={ () => setSecondArrowActive( true ) } className={ `${ s.link }` } href={ '/' }>
               <span className="h2">Подробнее</span>
-              <LongArrowImage />
+
+              <Animate
+
+                className={ s.icon }
+                wrapperClass={ `${ s.more_link_icon } flex items-center` }
+                isActive={ secondArrowActive }
+                frames={ [
+
+                  <LongArrowImage key={ 1 } />,
+                  <LongArrowImageFrame2 key={ 2 } />,
+                  <LongArrowImageFrame3 key={ 3 } />,
+
+                ] }
+
+              />
+
             </Link>
+
+
           </div>
 
           <YMaps >

@@ -8,6 +8,7 @@
   gap: $apx-24;
 
   margin-top: $apx-32;
+  padding: $apx-10 0;
 
 
   li { position: relative; }
@@ -68,6 +69,7 @@
 
     gap: $apx-l-12;
     margin-top: $apx-l-24;
+    padding: $apx-l-4 0;
   
     a { padding: $apx-l-4 $apx-l-6 }
 
@@ -106,7 +108,9 @@
 
     gap: $apx-m-5;
     margin-top: $apx-m-16;
+    padding: $apx-m-4 0;
   
+
     a { padding: $apx-m-4 $apx-m-6 }
 
     li.stars svg {

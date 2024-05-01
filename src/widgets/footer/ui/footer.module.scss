@@ -21,7 +21,7 @@
 
     color: inherit;
     text-align: left !important;
-    font-size: $apx-20;
+    font-size: $apx-24;
 
   }
 
@@ -69,7 +69,8 @@
     margin-top: $apx-63;
     justify-content: space-between;
     justify-content: flex-start;
-    gap: $apx-483;
+    gap: $apx-413;
+    white-space: nowrap;
 
     p {
 

@@ -61,7 +61,7 @@ const CatalogPage: NextPage<CatalogPageProps> = props => {
                 </button>
 
                 <div className={ s.type }>
-                  <Image src={ '/images/testData/action.png' } alt="action" fill />
+                  <Image src={ '/images/testData/action.svg' } alt="action" fill />
                 </div>
 
               </div>
@@ -305,7 +305,7 @@ const CatalogPage: NextPage<CatalogPageProps> = props => {
                 </button>
 
                 <div className={ s.type }>
-                  <Image src={ '/images/testData/action.png' } alt="action" fill />
+                  <Image src={ '/images/testData/action.svg' } alt="action" fill />
                 </div>
 
               </div>
@@ -349,7 +349,7 @@ const CatalogPage: NextPage<CatalogPageProps> = props => {
                 </button>
 
                 <div className={ s.type }>
-                  <Image src={ '/images/testData/action.png' } alt="action" fill />
+                  <Image src={ '/images/testData/action.svg' } alt="action" fill />
                 </div>
 
               </div>

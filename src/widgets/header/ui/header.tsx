@@ -1,13 +1,11 @@
 'use client'
-import Image from "next/image";
-import { FC, ReactElement, useEffect, useState } from "react";
+import { FC, ReactElement, useState } from "react";
 
-import s from './header.module.scss'
+import s from './header.module.scss';
 import Link from "next/link";
-import { BreadCrumbs, H2, ICrumbItem, P } from "@/shared/ui.kit";
+import { BreadCrumbs, ICrumbItem, P } from "@/shared/ui.kit";
 import { cssIf } from "@/shared/scripts";
 
-import { FooterHandsImage } from "@/app/_images/footer.hands";
 import { LogoImage } from "@/app/_images/logo";
 import { CartImage } from "@/app/_images/cart";
 import { HeartImage } from "@/app/_images/heart";
@@ -15,6 +13,9 @@ import { LoginImage } from "@/app/_images/login";
 import { MenuImage } from "@/app/_images/menu";
 import { TextCategories } from "@/entities/text.categories";
 import { MenuClosedImage } from "@/app/_images/menu.closed";
+import { Animate } from "@/shared/ui.kit/animate";
+import { HeartImageFrame2 } from "@/app/_images/heart.frame2";
+import { LoginImageFrame2 } from "@/app/_images/login.frame2";
 
 interface HeaderProps {
 
@@ -94,9 +95,57 @@ export const Header: FC<HeaderProps> = ( { breadCrumpsList } ) => {
 
         <ul className={ `${ s.controls } flex gap-24 gap-l-16` }>
 
-          <ControlWithIcon adaptiveText href="/" Icon={ CartImage } text="Корзина" />
-          <ControlWithIcon className={ s.mobile_hide } adaptiveText href="/" Icon={ HeartImage } text="Избранное" />
-          <ControlWithIcon adaptiveTextMobile href="/" Icon={ LoginImage } text="Войти" />
+          <ControlWithIcon
+
+            adaptiveText href="/"
+            Icon={ <CartImage className={ s.icon } /> }
+            text="Корзина"
+
+          />
+
+
+          <Animate
+
+            className={ ` ${ s.icon }` }
+            wrapperClass={ `${ s.control_with_icon } flex items-center` }
+            frames={ [
+
+              <HeartImage key={ 1 } />,
+              <HeartImageFrame2 key={ 2 } />,
+
+            ] }
+
+          >
+
+            <ControlWithIcon
+
+              className={ `${ s.mobile_hide }` }
+              adaptiveText
+              href="/"
+              text="Избранное"
+
+            />
+
+          </Animate>
+
+
+
+          <Animate
+
+            className={s.icon }
+            wrapperClass={ `${ s.control_with_icon } flex items-center` }
+            frames={ [
+
+              <LoginImage key={ 1 } />,
+              <LoginImageFrame2 key={ 2 } />,
+
+            ] }
+
+          >
+
+            <ControlWithIcon adaptiveTextMobile href="/"  text="Войти" />
+
+          </Animate>
 
         </ul>
 
@@ -112,7 +161,7 @@ export const Header: FC<HeaderProps> = ( { breadCrumpsList } ) => {
 
 interface IControlsWithIcon {
 
-  Icon: FC<{ className: string }>,
+  Icon?: ReactElement,
   text: string,
   count?: string | number,
   href: string
@@ -136,7 +185,7 @@ const ControlWithIcon: FC<IControlsWithIcon> = ( props ) => {
 
     >
 
-      <Icon className={ s.icon } />
+      { Icon }
 
       <P className={ `${ s.control_text } ${ cssIf( adaptiveTextMobile, s.mobile_hide ) }` } >{ text }</P>
 

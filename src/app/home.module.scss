@@ -33,6 +33,7 @@
 
     display: flex;
     justify-content: center;
+    align-items: center;
     margin-top: $apx-76;
     gap: $apx-16;
 
@@ -40,7 +41,7 @@
       color: var(--color-green);
     }
 
-    svg {
+    .icon {
 
       width: $apx-87;
       height: $apx-33;
@@ -265,16 +266,22 @@
     display: flex;
     gap: $apx-12;
     justify-content: center;
+    align-items: center;
     margin-top: $apx-52;
 
     span {
       color: var(--color-green);
     }
 
-    svg {
+    .more_link_icon {
 
       width: $apx-87;
       height: $apx-33;
+
+      svg, div {
+        width: 100%;
+        height: 100%;
+      }
 
     }
 
@@ -449,7 +456,7 @@
       color: var(--color-green);
     }
 
-    svg {
+    .icon {
 
       width: $apx-87;
       height: $apx-33;
@@ -532,7 +539,7 @@
       margin-top: $apx-l-30;
       align-items: center;
   
-      svg {
+      .icon {
   
         width: $apx-l-45;
         height: $apx-l-17;
@@ -654,15 +661,19 @@
   
       gap: $apx-l-12;
       margin-top: $apx-l-30;
-  
-      svg {
-  
-        width: $apx-l-45;
-        height: $apx-l-17;
-  
-      }
+      display: flex;
+
+      
+    }
+
+    .more_link_icon {
+
+      width: $apx-l-45;
+      height: $apx-l-17;
+      right: 0;
   
     }
+
   
     .title {
   
@@ -730,7 +741,7 @@
       margin-top: $apx-l-35;
       gap: $apx-l-18;
 
-      svg {
+      .icon {
 
         width: $apx-l-45;
         height: $apx-l-17;
@@ -851,7 +862,7 @@
       margin-top: $apx-l-30;
       align-items: center;
   
-      svg {
+      .icon {
   
         width: $apx-m-33;
         height: $apx-m-13;
@@ -889,8 +900,10 @@
   
       gap: $apx-m-12;
       margin-top: $apx-m-30;
+      align-items: center;
+
   
-      svg {
+      .more_link_icon {
   
         width: $apx-m-33;
         height: $apx-m-13;
@@ -1077,7 +1090,7 @@
       margin-top: $apx-m-24;
       gap: $apx-m-12;
 
-      svg {
+      .icon {
 
         width: $apx-m-33;
         height: $apx-m-13;

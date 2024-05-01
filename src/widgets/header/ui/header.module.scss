@@ -9,6 +9,12 @@
   right: 0;
   background: var(--color-white);
 
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+
   padding-top: $apx-10;
   height: $apx-150;
 
@@ -28,6 +34,10 @@
     width: $apx-148;
     height: $apx-54;
 
+  }
+
+  .main {
+    width: 100%;
   }
 
   .navigation {
@@ -55,6 +65,14 @@
 .header.header_small {
 
   height: $apx-91;
+  align-items: center;
+
+}
+
+.icon {
+
+  width: $apx-26;
+  height: $apx-26;
 
 }
 
@@ -62,12 +80,6 @@
 
   gap: $apx-4;
 
-  .icon {
-
-    width: $apx-26;
-    height: $apx-26;
-
-  }
 
   p {
 

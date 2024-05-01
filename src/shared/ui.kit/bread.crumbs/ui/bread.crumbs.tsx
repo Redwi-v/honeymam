@@ -15,7 +15,7 @@ export const BreadCrumbs: FC<IBreadCrumbsProps> = ( { list } ) => {
 
   return (
 
-    <section className={ `${ s.bread_crumbs } flex container mt-24 mt-l-24` }>
+    <section className={ `${ s.bread_crumbs } flex container` }>
 
       { list.map( ( params, index ) => (
 
