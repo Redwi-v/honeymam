@@ -89,7 +89,9 @@ export const Header: FC<HeaderProps> = ( { breadCrumpsList } ) => {
           { menuIsOpen ? <MenuClosedImage /> : <MenuImage /> }
         </button>
 
-        <LogoImage className={ s.logo } />
+        <Link href={'/'}>
+          <LogoImage className={ s.logo } />
+        </Link>
 
         <ul className={ s.navigation }>{ navigationList }</ul>
 
