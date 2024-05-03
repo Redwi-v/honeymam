@@ -28,7 +28,7 @@ export default function Home() {
 
   useEffect( () => {
 
-    axios.get( 'http://31.129.109.54/rest/products', {
+    axios.get( 'https://honeymam.store/rest/products/', {
       headers: {
         "Http-App-ID": "537dd91c-4729-4f26-8e6e-20c49b9d6551",
         withCredentials: true,
