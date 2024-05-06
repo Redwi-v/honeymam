@@ -112,8 +112,8 @@ export const Header: FC<HeaderProps> = ( { breadCrumpsList } ) => {
             wrapperClass={ `${ s.control_with_icon } flex items-center` }
             frames={ [
 
-              <HeartImage key={ 1 } />,
-              <HeartImageFrame2 key={ 2 } />,
+              <HeartImage className={ s.icon } key={ 1 } />,
+              <HeartImageFrame2 className={ s.icon } key={ 2 } />,
 
             ] }
 
@@ -130,16 +130,14 @@ export const Header: FC<HeaderProps> = ( { breadCrumpsList } ) => {
 
           </Animate>
 
-
-
           <Animate
 
             className={s.icon }
             wrapperClass={ `${ s.control_with_icon } flex items-center` }
             frames={ [
 
-              <LoginImage key={ 1 } />,
-              <LoginImageFrame2 key={ 2 } />,
+              <LoginImage className={ s.icon } key={ 1 } />,
+              <LoginImageFrame2 className={ s.icon } key={ 2 } />,
 
             ] }
 
@@ -177,6 +175,7 @@ interface IControlsWithIcon {
 const ControlWithIcon: FC<IControlsWithIcon> = ( props ) => {
 
   const { count, Icon, text, href, adaptiveText, adaptiveTextMobile, className } = props
+
 
   return (
 

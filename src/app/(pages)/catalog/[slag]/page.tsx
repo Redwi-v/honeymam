@@ -13,376 +13,73 @@ import { Counter } from "@/shared/ui.kit";
 import { BannerCategories } from "@/entities/banner.categories";
 import { Header } from "@/widgets/header";
 import { Footer } from "@/widgets/footer";
+import { CategoriesApi, ProductsApi } from "@/shared/api";
+import { useRouter } from "next/navigation";
+import { Catalog } from "@/widgets/catalog";
 
 interface CatalogPageProps {
 
+  params: {
+    slag: string
+  }
+
 }
 
-const breadCrumbsList: ICrumbItem[] = [
+async function getData( categories: string ) {
 
-  {
-    href: '/',
-    title: 'Главная',
-  },
-  {
-    href: '/catalog',
-    title: 'Каталог',
-  },
-  {
-    href: '/catalog',
-    title: 'Торты',
-  },
+  const res = await ProductsApi.getList( { categories } )
+  const categoriesRes = await CategoriesApi.getList()
 
-]
+  const category = categoriesRes.data.results.find( item => item.id === +categories )
 
-const CatalogPage: NextPage<CatalogPageProps> = props => {
+
+  if ( res.status !== 200 ) {
+    throw new Error( 'Failed to fetch data' )
+  }
+
+  return {
+
+    productsData: res.data,
+    category: category,
+
+  }
+
+}
+
+const CatalogPage: NextPage<CatalogPageProps> = async props => {
+
+  const listData = await getData( props.params.slag )
+
+  const breadCrumbsList: ICrumbItem[] = [
+
+    {
+      href: '/',
+      title: 'Главная',
+    },
+    {
+      href: '/catalog',
+      title: 'Каталог',
+    },
+    {
+      href: '/catalog',
+      title: listData.category?.title || '',
+    },
+
+  ]
 
   return (
 
     <>
+
       <Header breadCrumpsList={ breadCrumbsList } />
 
       <div className={ `${ s.catalog }` }>
 
-        <H1 className={ `${ s.title } mt-24 text-left container` }>Торты</H1>
+        <H1 className={ `${ s.title } mt-24 text-left container` }>{ listData.category?.title || '' }</H1>
 
         <section className={ `container mb-120` }>
 
-          <ul className={ s.list }>
-
-            <li className={ s.item }>
-
-              <div className={ s.preview }>
-
-                <Image fill src='/images/cake.jpg' alt="product preview" />
-
-                <button className={ s.like }>
-                  <HeartImage />
-                </button>
-
-                <div className={ s.type }>
-                  <Image src={ '/images/testData/action.svg' } alt="action" fill />
-                </div>
-
-              </div>
-
-              <div className={ s.main_info }>
-
-                <H2 className={ s.item_title }>Наполеон классический</H2>
-
-                <P className={ s.item_description }>
-                  Бисквит, клубника, крем из взбитых сливок, мёед . 2 кг
-                </P>
-
-                <div className={ s.bottom }>
-
-                  <div className={ s.price }>
-
-                    <P className={ s.price }>1 000 ₽</P>
-                    <P className={ s.old_price }>
-                      <StickImage />
-                      1 600 ₽
-                    </P>
-
-                  </div>
-
-                  <Counter />
-
-                </div>
-
-              </div>
-
-            </li>
-
-            <li className={ s.item }>
-
-              <div className={ s.preview }>
-
-                <Image fill src='/images/cake.jpg' alt="product preview" />
-
-                <button className={ s.like }>
-                  <HeartImage />
-                </button>
-
-              </div>
-
-              <div className={ s.main_info }>
-
-                <H2 className={ s.item_title }>Наполеон классический</H2>
-
-                <P className={ s.item_description }>
-                  Бисквит, клубника, крем из взбитых сливок, мёед . 2 кг
-                </P>
-
-                <div className={ s.bottom }>
-
-                  <div className={ s.price }>
-
-                    <P className={ s.price }>1 000 ₽</P>
-                    <P className={ s.old_price }>
-                      <StickImage />
-                      1 600 ₽
-                    </P>
-
-                  </div>
-
-                  <Counter />
-
-                </div>
-
-              </div>
-
-            </li>
-
-            <li className={ s.item }>
-
-              <div className={ s.preview }>
-
-                <Image fill src='/images/cake.jpg' alt="product preview" />
-
-                <button className={ s.like }>
-                  <HeartImage />
-                </button>
-
-              </div>
-
-              <div className={ s.main_info }>
-
-                <H2 className={ s.item_title }>Наполеон классический</H2>
-
-                <P className={ s.item_description }>
-                  Бисквит, клубника, крем из взбитых сливок, мёед . 2 кг
-                </P>
-
-                <div className={ s.bottom }>
-
-                  <div className={ s.price }>
-
-                    <P className={ s.price }>1 000 ₽</P>
-                    <P className={ s.old_price }>
-                      <StickImage />
-                      1 600 ₽
-                    </P>
-
-                  </div>
-
-                  <Counter />
-
-                </div>
-
-              </div>
-
-            </li>
-
-            <li className={ s.item }>
-
-              <div className={ s.preview }>
-
-                <Image fill src='/images/cake.jpg' alt="product preview" />
-
-                <button className={ s.like }>
-                  <HeartImage />
-                </button>
-
-              </div>
-
-              <div className={ s.main_info }>
-
-                <H2 className={ s.item_title }>Наполеон классический</H2>
-
-                <P className={ s.item_description }>
-                  Бисквит, клубника, крем из взбитых сливок, мёед . 2 кг
-                </P>
-
-                <div className={ s.bottom }>
-
-                  <div className={ s.price }>
-
-                    <P className={ s.price }>1 000 ₽</P>
-                    <P className={ s.old_price }>
-                      <StickImage />
-                      1 600 ₽
-                    </P>
-
-                  </div>
-
-                  <Counter />
-
-                </div>
-
-              </div>
-
-            </li>
-
-            <li className={ s.item }>
-
-              <div className={ s.preview }>
-
-                <Image fill src='/images/cake.jpg' alt="product preview" />
-
-                <button className={ s.like }>
-                  <HeartImage />
-                </button>
-
-              </div>
-
-              <div className={ s.main_info }>
-
-                <H2 className={ s.item_title }>Наполеон классический</H2>
-
-                <P className={ s.item_description }>
-                  Бисквит, клубника, крем из взбитых сливок, мёед . 2 кг
-                </P>
-
-                <div className={ s.bottom }>
-
-                  <div className={ s.price }>
-
-                    <P className={ s.price }>1 000 ₽</P>
-                    <P className={ s.old_price }>
-                      <StickImage />
-                      1 600 ₽
-                    </P>
-
-                  </div>
-
-                  <Counter />
-
-                </div>
-
-              </div>
-
-            </li>
-
-            <li className={ s.item }>
-
-              <div className={ s.preview }>
-
-                <Image fill src='/images/cake.jpg' alt="product preview" />
-
-                <button className={ s.like }>
-                  <HeartImage />
-                </button>
-
-              </div>
-
-              <div className={ s.main_info }>
-
-                <H2 className={ s.item_title }>Наполеон классический</H2>
-
-                <P className={ s.item_description }>
-                  Бисквит, клубника, крем из взбитых сливок, мёед . 2 кг
-                </P>
-
-                <div className={ s.bottom }>
-
-                  <div className={ s.price }>
-
-                    <P className={ s.price }>1 000 ₽</P>
-                    <P className={ s.old_price }>
-                      <StickImage />
-                      1 600 ₽
-                    </P>
-
-                  </div>
-
-                  <Counter />
-
-                </div>
-
-              </div>
-
-            </li>
-
-            <li className={ s.item }>
-
-              <div className={ s.preview }>
-
-                <Image fill src='/images/cake.jpg' alt="product preview" />
-
-                <button className={ s.like }>
-                  <HeartImage />
-                </button>
-
-                <div className={ s.type }>
-                  <Image src={ '/images/testData/action.svg' } alt="action" fill />
-                </div>
-
-              </div>
-
-              <div className={ s.main_info }>
-
-                <H2 className={ s.item_title }>Наполеон классический</H2>
-
-                <P className={ s.item_description }>
-                  Бисквит, клубника, крем из взбитых сливок, мёед . 2 кг
-                </P>
-
-                <div className={ s.bottom }>
-
-                  <div className={ s.price }>
-
-                    <P className={ s.active_price }>1 000 ₽</P>
-                    <P className={ s.old_price }>
-                      <StickImage />
-                      1 600 ₽
-                    </P>
-
-                  </div>
-
-                  <Counter />
-
-                </div>
-
-              </div>
-
-            </li>
-
-            <li className={ s.item }>
-
-              <div className={ s.preview }>
-
-                <Image fill src='/images/cake.jpg' alt="product preview" />
-
-                <button className={ s.like }>
-                  <HeartImage />
-                </button>
-
-                <div className={ s.type }>
-                  <Image src={ '/images/testData/action.svg' } alt="action" fill />
-                </div>
-
-              </div>
-
-              <div className={ s.main_info }>
-
-                <H2 className={ s.item_title }>Наполеон классический</H2>
-
-                <P className={ s.item_description }>
-                  Бисквит, клубника, крем из взбитых сливок, мёед . 2 кг
-                </P>
-
-                <div className={ s.bottom }>
-
-                  <div className={ s.price }>
-
-                    <P className={ s.price }>1 000 ₽</P>
-                    <P className={ s.old_price }>
-                      <StickImage />
-                      1 600 ₽
-                    </P>
-
-                  </div>
-
-                  <Counter />
-
-                </div>
-
-              </div>
-
-            </li>
-
-          </ul>
+          <Catalog header={ false } list={ listData.productsData.results } />
 
         </section>
       </div>

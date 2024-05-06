@@ -1,0 +1,43 @@
+@import '@/app/_styles/apx.scss';
+@import '@/app/_styles/breakpoints.scss';
+
+.map {
+
+  width: $apx-765;
+  height: $apx-489;
+  background: var(--color-beige);
+  border-radius: $apx-40;
+  overflow: hidden;
+
+}
+
+
+@media (max-width: $media-laptop) {
+
+  .map {
+
+    min-width: $apx-l-435 !important;
+    min-height: $apx-l-277;
+    border-radius: $apx-l-20;
+    position: absolute;
+    right: $apx-l-14;
+    bottom: $apx-l-60;
+
+  }
+
+}
+
+@media (max-width: $media-mobile) {
+
+  .map {
+
+    min-width: $apx-m-276 !important;
+    min-height: $apx-m-190;
+    border-radius: $apx-m-16;
+    position: absolute;
+    right: $apx-m-10;
+    bottom: $apx-m-40;
+
+  }
+
+}

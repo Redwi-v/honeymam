@@ -55,6 +55,12 @@
     display: inline-block;
   }
 
+
+  .bin {
+    height: auto;
+    width: 100%;
+  }
+
   button:last-child {
 
     background: var(--color-green);

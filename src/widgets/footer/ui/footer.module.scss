@@ -6,6 +6,9 @@
   height: $apx-344 !important;
   position: relative;
 
+  a {
+  }
+
   background: var(--color-green);
   color: var(--color-white) !important;
   padding: $apx-60 0;
@@ -22,6 +25,8 @@
     color: inherit;
     text-align: left !important;
     font-size: $apx-24;
+    text-decoration-color: var(--color-white) !important;
+
 
   }
 

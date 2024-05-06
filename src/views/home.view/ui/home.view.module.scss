@@ -1,6 +1,7 @@
 @import '@/app/_styles/apx.scss';
 @import '@/app/_styles/breakpoints.scss';
 
+
 .home {
 
   .banner {
@@ -27,8 +28,6 @@
 
   }
 
-
-
   .all_link {
 
     display: flex;
@@ -45,6 +44,7 @@
 
       width: $apx-87;
       height: $apx-33;
+      margin-top: -$apx-10;
 
     }
 
@@ -102,145 +102,31 @@
 
 }
 
-.catalog {
+.more_link {
 
-  .title {
+  display: flex;
+  gap: $apx-12;
+  justify-content: center;
+  align-items: center;
+  margin-top: $apx-52;
 
-    font-family: var(--font-myweekend);
-    margin-top: $apx-100;
-
+  span {
+    color: var(--color-green);
   }
 
 
-  .list {
+}
 
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    justify-content: center;
-    gap: $apx-40;
-    margin-top: $apx-47;
+.more_link_icon {
 
-    .item {
-
-      position: relative;
-      max-width: $apx-380;
-
-    }
-
-    .preview {
-
-      position: relative;
-      width: $apx-380;
-      height: $apx-390;
-
-      border-radius: $apx-26;
-      overflow: hidden;
-
-    }
-
-    .main_info {
-      margin-top: $apx-56;
-    }
-
-    .main_info a,
-    p,
-    h2 {
-
-      text-align: left !important;
-
-    }
-
-    .item_title {
-      font-family: var(--font-myweekend);
-    }
-
-    .item_description {
-
-      margin-top: $apx-10;
-      color: #37363F;
-
-    }
-
-    .bottom {
-
-      display: flex;
-      justify-content: space-between;
-      margin-top: $apx-32;
-
-    }
-
-    .price {
-
-      display: flex;
-      gap: $apx-10;
-      flex-wrap: nowrap;
+  width: $apx-87;
+  height: $apx-33;
 
 
-      p {
-        font-size: $apx-40;
-        font-family: var(--font-myweekend);
-        white-space: nowrap;
-
-      }
-
-      .old_price {
-        position: relative;
-        opacity: .5;
-
-        svg {
-          position: absolute;
-          left: -$apx-5;
-          bottom: $apx-13;
-          width: $apx-104;
-          height: $apx-16;
-
-        }
-      }
-
-    }
-
-
-    .like {
-
-      position: absolute;
-      width: $apx-46;
-      height: $apx-46;
-
-      top: $apx-24;
-      right: $apx-24;
-      padding-top: $apx-3;
-
-      background: var(--color-white) !important;
-
-      svg path {
-        stroke: var(--color-green) !important
-      }
-
-      svg {
-        width: $apx-25;
-        height: $apx-25;
-      }
-
-      border-radius: 50%;
-      border: none;
-
-    }
-
-
-  }
-
-  .type {
-
-    position: relative;
-    left: $apx-16;
-    top: $apx-20;
-    width: $apx-100;
-    height: $apx-60;
-
-    img {
-      object-fit: contain;
-    }
-
+  svg,
+  div {
+    width: 100%;
+    height: 100%;
   }
 
 }
@@ -261,31 +147,7 @@
     z-index: -1;
   }
 
-  .more_link {
 
-    display: flex;
-    gap: $apx-12;
-    justify-content: center;
-    align-items: center;
-    margin-top: $apx-52;
-
-    span {
-      color: var(--color-green);
-    }
-
-    .more_link_icon {
-
-      width: $apx-87;
-      height: $apx-33;
-
-      svg, div {
-        width: 100%;
-        height: 100%;
-      }
-
-    }
-
-  }
 
   .title {
 
@@ -373,15 +235,6 @@
 
   }
 
-  .map {
-
-    width: $apx-765;
-    height: $apx-489;
-    background: var(--color-beige);
-    border-radius: $apx-40;
-    overflow: hidden;
-
-  }
 
   .info {
 
@@ -476,82 +329,82 @@
     position: relative;
 
     .title {
-  
+
       margin-top: $apx-l-60;
-  
+
     }
-  
+
     .map {
-  
-      min-width: $apx-l-435 !important; 
+
+      min-width: $apx-l-435 !important;
       min-height: $apx-l-277;
       border-radius: $apx-l-20;
       position: absolute;
       right: $apx-l-14;
       bottom: $apx-l-60;
-  
+
     }
-  
+
     .info {
-  
+
       margin-bottom: $apx-l-60;
-      margin-top: calc( $apx-l-34 + $apx-l-33 );
+      margin-top: calc($apx-l-34 + $apx-l-33 );
       width: 100%;
       display: block;
-  
+
     }
-  
+
     .text {
-  
+
       width: $apx-l-368;
       height: $apx-l-260;
       padding-top: $apx-l-75;
       padding-left: $apx-l-35;
-  
+
       left: $apx-l-10;
       right: auto;
       top: -$apx-l-34;
-  
-  
+
+
       &::after {
-  
+
         border-radius: $apx-l-20;
-  
+
       }
-  
+
     }
-  
+
     .text .name {
-  
+
       margin-bottom: $apx-l-10;
       font-size: $apx-l-18;
-  
+
     }
-  
+
     .text .address {
       font-size: $apx-l-20;
     }
-  
+
     .text .link {
-  
+
       display: flex;
       gap: $apx-l-18;
       margin-top: $apx-l-30;
       align-items: center;
-  
+
       .icon {
-  
+
         width: $apx-l-45;
         height: $apx-l-17;
-  
+
       }
-  
-  
+
+
     }
-  
-  
+
+
   }
-  
+
   .catalog {
 
     .title {
@@ -656,14 +509,14 @@
     .bg {
       width: 104% !important;
     }
-  
+
     .more_link {
-  
+
       gap: $apx-l-12;
       margin-top: $apx-l-30;
       display: flex;
 
-      
+
     }
 
     .more_link_icon {
@@ -671,66 +524,67 @@
       width: $apx-l-45;
       height: $apx-l-17;
       right: 0;
-  
+
+
     }
 
-  
+
     .title {
-  
+
       width: $apx-l-475;
       margin-top: $apx-l-100;
-  
+
     }
-  
+
     .discolor {
-  
+
       right: -$apx-l-4;
       top: -$apx-l-14;
       z-index: -1;
-  
+
       width: $apx-l-282;
       height: $apx-l-62;
-  
+
     }
-  
+
     .wave_underlining {
 
       bottom: $apx-l-43;
       right: -$apx-l-24;
       width: $apx-l-528;
       height: $apx-l-16;
-  
-  
+
+
     }
-  
+
     .stick {
-  
+
       bottom: -$apx-l-11;
       left: $apx-l-116;
-  
+
       width: $apx-l-66;
-  
+
     }
-  
+
     .heart {
-  
+
       right: $apx-36;
       bottom: $apx-4;
-  
+
       width: $apx-l-12;
       height: $apx-l-11;
 
     }
-  
+
     .subtitle {
-  
+
       font-size: $apx-l-20;
       width: $apx-l-378;
       margin-top: $apx-l-30;
-  
+
     }
-  
-  
+
+
   }
 
   .home {
@@ -803,33 +657,33 @@
     min-height: $apx-m-457 !important;
 
     .title {
-  
+
       margin-top: $apx-m-40;
-  
+
     }
-  
+
     .map {
-  
-      min-width: $apx-m-276 !important; 
+
+      min-width: $apx-m-276 !important;
       min-height: $apx-m-190;
       border-radius: $apx-m-16;
       position: absolute;
       right: $apx-m-10;
       bottom: $apx-m-40;
-  
+
     }
-  
+
     .info {
-  
+
 
       width: 100%;
       padding-top: $apx-m-10;
       display: block;
 
     }
-  
+
     .text {
-  
+
       width: $apx-m-262;
       height: $apx-m-224;
       padding-top: $apx-m-40;
@@ -837,45 +691,59 @@
       left: $apx-m-9;
 
       &::after {
-  
+
         border-radius: $apx-l-20;
-  
+
       }
-  
+
     }
-  
+
     .text .name {
-  
+
       margin-bottom: $apx-m-6;
       font-size: $apx-m-18;
-  
+
     }
-  
+
     .text .address {
       font-size: $apx-m-16;
     }
-  
+
     .text .link {
-  
+
       display: flex;
       gap: $apx-l-18;
       margin-top: $apx-l-30;
       align-items: center;
-  
+
       .icon {
-  
+
         width: $apx-m-33;
         height: $apx-m-13;
-  
+
       }
-  
-  
+
     }
-  
-  
+
   }
 
+
   .about {
+
+    .more_link_icon {
+
+      width: $apx-m-33;
+      height: $apx-m-13;
+
+    }
+
+    .more_link {
+
+      gap: $apx-m-12;
+      margin-top: $apx-m-30;
+      align-items: center;
+
+    }
 
     min-height: $apx-m-447;
     margin-top: $apx-m-40;
@@ -893,38 +761,22 @@
     .bg {
 
       display: none;
-      
-    }
-  
-    .more_link {
-  
-      gap: $apx-m-12;
-      margin-top: $apx-m-30;
-      align-items: center;
 
-  
-      .more_link_icon {
-  
-        width: $apx-m-33;
-        height: $apx-m-13;
-  
-      }
-  
     }
-  
+
     .title {
-  
+
       width: $apx-m-276;
       margin-top: $apx-m-80;
-  
+
     }
-  
+
     .discolor {
-  
+
       right: -$apx-l-4;
       top: -$apx-l-14;
       z-index: -1;
-  
+
       width: $apx-m-169;
       height: $apx-m-37;
 
@@ -932,48 +784,48 @@
       top: $apx-m-24;
       width: $apx-m-215;
       height: $apx-m-39;
-  
+
     }
-  
+
     .wave_underlining {
 
       bottom: $apx-m-27;
       right: $apx-m-29;
       width: $apx-m-217;
       height: $apx-m-11;
-  
-  
+
+
     }
-  
+
     .stick {
-  
+
       bottom: -$apx-m-10;
       left: $apx-m-91;
       width: $apx-m-54;
-  
+
     }
-  
+
     .heart {
-  
+
       right: $apx-m-5;
       bottom: $apx-m-1;
-  
+
       width: $apx-m-10;
       height: $apx-m-11;
 
     }
-  
+
     .subtitle {
-  
+
       font-size: $apx-m-16;
       width: $apx-m-288;
       margin-top: $apx-m-37;
-  
+
     }
-  
-  
+
+
   }
-  
+
   .catalog {
 
 
@@ -1093,8 +945,8 @@
 
       .icon {
 
-        width: $apx-m-33;
-        height: $apx-m-13;
+        width: $apx-m-33 !important;
+        height: $apx-m-13 !important;
 
 
       }
@@ -1164,7 +1016,6 @@
           font-size: $apx-m-10;
           position: absolute;
           bottom: $apx-m-31
-
         }
 
       }

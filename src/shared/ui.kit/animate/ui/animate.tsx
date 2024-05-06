@@ -3,6 +3,7 @@ import { FC, JSXElementConstructor, PropsWithChildren, ReactElement, ReactNode, 
 import s from './animate.module.scss'
 import { cssIf } from '@/shared/scripts';
 import { useInterval } from 'react-use';
+import Link from 'next/link';
 
 
 interface IAnimateProps {
@@ -64,3 +65,36 @@ export const Animate: FC<IAnimateProps & PropsWithChildren> = ( props ) => {
 
 }
 
+interface IHoverAnimatedLinkProps {
+
+  frames: JSX.Element[]
+  href: string,
+  className?: string,
+  animateClassName?: string,
+  wrapperClassName?: string
+
+}
+
+export const HoverAnimatedLink: FC<IHoverAnimatedLinkProps & PropsWithChildren> = ( { animateClassName, wrapperClassName, frames, href, children, className } ) => {
+
+  const [ isActive, setIsActive ] = useState( false )
+
+  return (
+
+    <Link onMouseLeave={ () => setIsActive( false ) } onMouseEnter={ () => setIsActive( true ) } className={ className } href={ href }>
+      <span className="h2">{ children }</span>
+
+      <Animate
+
+        className={ animateClassName }
+        wrapperClass={ wrapperClassName }
+        isActive={ isActive }
+        frames={ frames }
+
+      />
+
+    </Link>
+
+  )
+
+}

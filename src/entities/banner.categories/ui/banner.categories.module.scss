@@ -14,6 +14,7 @@
   a {
 
     position: relative;
+    text-decoration: none !important;
 
     height: $apx-194 !important;
     display: block;
@@ -70,8 +71,8 @@
 
     svg {
       
-      width: $apx-122;
-      height: $apx-103;
+      width: $apx-142;
+      height: $apx-133;
       position: absolute;
 
       transform: rotate(21.18deg);
@@ -89,7 +90,7 @@
     svg {
 
       width: $apx-151;
-      height: $apx-75;
+      height: $apx-95;
       position: absolute;
 
       right: $apx-7;

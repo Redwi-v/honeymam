@@ -57,6 +57,11 @@ html {
 
 }
 
+a:hover {
+  text-decoration: underline !important;
+  text-decoration-color: var(--color-green) !important;
+}
+
 .carcass.with_bread_crumbs {
 
   main {

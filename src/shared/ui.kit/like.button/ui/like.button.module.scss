@@ -1,0 +1,78 @@
+@import '@/app/_styles/apx.scss';
+@import '@/app/_styles/breakpoints.scss';
+
+.like {
+
+  position: absolute;
+  width: $apx-46;
+  height: $apx-46;
+
+  top: $apx-24;
+  right: $apx-24;
+  padding-top: $apx-3;
+
+  background: var(--color-white) !important;
+
+  svg path {
+    stroke: var(--color-green) !important
+  }
+
+  svg {
+    width: $apx-25;
+    height: $apx-25;
+  }
+
+  border-radius: 50%;
+  border: none;
+
+}
+
+.like.active {
+
+  svg {
+    fill: var(--color-green);
+  }
+
+}
+
+
+@media (max-width: $media-laptop) {
+
+  .like {
+
+    width: $apx-l-30;
+    height: $apx-l-30;
+
+    top: $apx-l-16;
+    right: $apx-l-16;
+    padding-top: $apx-l-3;
+
+    svg {
+      width: $apx-l-19;
+      height: $apx-l-19;
+    }
+
+  }
+
+
+}
+
+@media (max-width: $media-mobile) {
+
+  .like {
+
+    width: $apx-m-22;
+    height: $apx-m-22;
+
+    top: $apx-m-8;
+    right: $apx-m-8;
+    padding-top: $apx-m-3;
+
+    svg {
+      width: $apx-m-14;
+      height: $apx-m-14;
+    }
+
+  }
+
+}

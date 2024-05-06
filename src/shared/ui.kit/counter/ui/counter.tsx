@@ -6,6 +6,7 @@ import { PlusImage } from "@/app/_images/plus";
 import { cssIf } from "@/shared/scripts";
 
 import s from './counter.module.scss'
+import { BinImage } from "@/app/_images/bin";
 
 export const Counter = () => {
 
@@ -17,7 +18,7 @@ export const Counter = () => {
 
       <button onClick={ () => setCount( prev => prev - 1 <= 0 ? 0 : prev - 1 ) } className={ s.button }>
 
-        <MinusImage />
+        { count === 1 ? <BinImage className={ s.bin } /> : <MinusImage /> }
 
 
       </button>

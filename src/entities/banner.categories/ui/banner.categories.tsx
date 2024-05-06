@@ -10,28 +10,56 @@ import { FC } from "react";
 
 import s from './banner.categories.module.scss'
 import { cssIf } from "@/shared/scripts";
+import async from '../../../app/page';
+import { CategoriesApi, ProductsApi } from "@/shared/api";
 
-export const BannerCategories:FC<{ isGrid?:boolean, list?:boolean, classList?: string }> = ({ isGrid, list, classList }) => (
+async function getData() {
 
-  <ul className={`${ s.categories } ${ cssIf( isGrid, s.grid ) } ${ cssIf( list, s.list) } ${ classList }`}>
+  const res = await CategoriesApi.getList()
 
-    <li className={ s.category }>
+  if ( res.status !== 200 ) {
+    throw new Error( 'Failed to fetch data' )
+  }
 
-      <Link href={ '/catalog/1' }>
+  return {
+    categories: res.data
+  }
 
-        <H2>Торты</H2>
-        <CakeImage />
+}
 
-      </Link>
+export async function BannerCategories( { isGrid, list, classList }: { isGrid?: boolean, list?: boolean, classList?: string } ) {
 
-    </li>
+  const { categories } = await getData()
 
-    <li className={ s.category }>
+  return (
+
+    <ul className={ `${ s.categories } ${ cssIf( isGrid, s.grid ) } ${ cssIf( list, s.list ) } ${ classList }` }>
+
+      { categories.results.reverse().map( category => (
+
+        <li key={ category.id } className={ s.category }>
+
+          <Link href={ `/catalog/${ category.id }` }>
+
+            <H2>{ category.title }</H2>
+            { category.id === 1 && <CakeImage /> }
+            { category.id === 2 && <MiniCakesImage /> }
+            { category.id === 3 && <CookieImage /> }
+            { category.id === 4 && <CandiesImage /> }
+
+          </Link>
+
+        </li>
+
+      ) ) }
+
+
+      {/* <li className={ s.category }>
 
       <Link href={ '/' }>
 
         <H2>Пирожные</H2>
-        <MiniCakesImage />
+
 
       </Link>
 
@@ -57,8 +85,9 @@ export const BannerCategories:FC<{ isGrid?:boolean, list?:boolean, classList?: s
 
       </Link>
 
-    </li>
+    </li> */}
 
-  </ul>
+    </ul>
+  )
 
-)
+}

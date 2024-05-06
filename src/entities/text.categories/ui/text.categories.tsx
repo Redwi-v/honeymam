@@ -1,53 +1,59 @@
+'use client'
 import Link from "next/link"
 import { MiniStarImage } from "@/app/_images/mini.star";
 import { MiniHeartsImage } from "@/app/_images/mini.hearts";
 import s from './text.categories.module.scss'
-import { FC } from "react";
+import { FC, useState } from "react";
+
 
 export const TextCategories:FC<{ className?: string,  listType?: boolean }> = ({ className, listType }) => {
+
+
+  const [ activeItem, setActiveItem ] = useState( 0 )
+
 
   return (
 
     <ul className={`${ s.tabs } ${ className } ${ listType && s.listType }`}>
 
-      { !listType && <li>
+      { !listType && <li className={ `${ activeItem === 0 && s.active }` } onClick={ () => setActiveItem( 0 ) }>
 
-        <Link className="p" href={ '/' }>Все</Link>
+        <span className="p">Все</span>
 
       </li> }
 
-      <li className={ s.stars }>
+      <li className={ `${ s.stars } ${ activeItem === 1 && s.active }` } onClick={ () => setActiveItem( 1 ) }>
 
-        <Link className={`p`} href={ '/' }>Акции</Link>
+        <span className={ `p` }>Акции</span>
         <MiniStarImage />
 
       </li>
 
-      <li className={ s.hearts }>
+      <li className={ `${ s.hearts } ${ activeItem === 2 && s.active }` } onClick={ () => setActiveItem( 2 ) }>
 
-        <Link className={`p`} href={ '/' }>Хит</Link>
+        <span className={ `p` }>Хит</span>
         <MiniHeartsImage />
 
 
       </li>
 
 
-      <li>
+      <li className={ `${ activeItem === 3 && s.active }` } onClick={ () => setActiveItem( 3 ) }>
 
-        <Link className="p" href={ '/' }>Торты</Link>
-
-      </li>
-
-      <li>
-
-        <Link className="p" href={ '/' }>Пирожные</Link>
+        <span className="p">Торты</span>
 
       </li>
 
+      <li className={ `${ activeItem === 4 && s.active }` } onClick={ () => setActiveItem( 4 ) }>
 
-      <li>
+        <span className="p">Пирожные</span>
 
-        <Link className="p" href={ '/' }>Печенье</Link>
+      </li>
+
+
+      <li className={ `${ activeItem === 5 && s.active }` } onClick={ () => setActiveItem( 5 ) }>
+
+        <span className="p">Печенье</span>
 
       </li>
 
