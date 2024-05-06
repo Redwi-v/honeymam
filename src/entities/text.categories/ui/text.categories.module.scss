@@ -66,9 +66,13 @@
 
   li {
     width: fit-content;
+
+    span {
+      padding: $apx-m-4 $apx-m-8;
+    }
   }
 
-                                                                                                                                                                                                                                                                li:nth-child(1) span {
+   li:nth-child(1) span {
     color: var(--color-black) !important;
   }
 

@@ -71,8 +71,8 @@
 
 .icon {
 
-  width: $apx-26 !important;
-  height: $apx-26 !important;
+  width: $apx-26;
+  height: $apx-26;
 
 }
 
@@ -253,8 +253,8 @@
   .mobile_menu_button {
 
     display: block !important;
-    width: $apx-m-36;
-    height: $apx-m-36;
+    width: $apx-m-24;
+    height: $apx-m-24;
     background: none;
     padding: 0;
     border: none;
@@ -278,8 +278,12 @@
 
   .controls {
     gap: $apx-m-16;
+    div:nth-child(2) {
+      display: none;
+    }  
   }
 
+  
   .control_with_icon {
 
     .icon {
@@ -293,7 +297,7 @@
 
   .header.header_small {
 
-    height: $apx-m-57;
+    height: $apx-m-57 !important;
 
   }
 
@@ -301,13 +305,26 @@
 
     height: $apx-m-114;
 
+
     .logo {
 
-      width: $apx-m-113;
-      height: $apx-m-42;
+      width: $apx-m-100;
+      height: $apx-m-37;
       margin-right: -$apx-m-26 !important;
       display: block;
       margin: 0 auto;
+
+      svg {
+        width: 100%;
+        height: 100%;
+      }
+
+
+    }
+
+    .navigation_item span {
+
+        padding: $apx-m-4 $apx-m-8 !important;
 
     }
 
