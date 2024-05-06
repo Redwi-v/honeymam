@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./_styles/globals.scss";
 
+export const revalidate = 3600
+
 const Kosko = localFont( {
 
   src: [
