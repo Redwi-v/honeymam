@@ -27,7 +27,7 @@ export const Catalog: FC<ICatalogProps> = ( props ) => {
 
     <div className={ s.catalog }>
 
-      { header &&
+      { header !== false &&
         <>
           <H1 className={ s.title }>{ title || 'Каталог вкусных десертов' }</H1>
 
