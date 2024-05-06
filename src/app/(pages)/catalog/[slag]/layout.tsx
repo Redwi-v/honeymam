@@ -18,13 +18,13 @@ export default function RootLayout( { children }: Readonly<{ children: React.Rea
 
   return (
 
-    <section className="carcass with_bread_crumbs">
+    < >
 
 
-      <>{ children }</>
+      { children }
 
 
-    </section>
+    </>
 
   )
 

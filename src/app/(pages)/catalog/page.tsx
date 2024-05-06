@@ -58,28 +58,33 @@ async function CatalogPage( props: CatalogPageProps ) {
 
   return (
 
-    <div className={ `${ s.catalog }` }>
+    <div className={ `carcass with_bread_crumbs ${ s.catalog }` }>
 
       <Header breadCrumpsList={ breadCrumbsList } />
 
 
-      <H1 className={ `${ s.title } mt-24 text-left container` }>Каталог вкусных десертов</H1>
-      <BannerCategories classList={ `container` } list />
+      <main>
 
-      <section className={ `mb-120 container` }>
+        <H1 className={ `${ s.title } mt-0 text-left container` }>Каталог вкусных десертов</H1>
+        <BannerCategories classList={ `container` } list />
 
-
-        <H2 className={ `${ s.title } mt-120 text-left` }>Акции</H2>
-
-
-        <Catalog header={ false } list={ productListActions } />
-
-        <H2 className={ `${ s.title } mt-120 text-left` }>Наши хиты</H2>
-
-        <Catalog header={ false } list={ productListHits } />
+        <section className={ `mb-120 container` }>
 
 
-      </section>
+          <H2 className={ `${ s.title } mt-120 text-left` }>Акции</H2>
+
+
+          <Catalog header={ false } list={ productListActions } />
+
+          <H2 className={ `${ s.title } mt-120 text-left` }>Наши хиты</H2>
+
+          <Catalog header={ false } list={ productListHits } />
+
+
+        </section>
+
+      </main>
+
       <Footer />
 
     </div>

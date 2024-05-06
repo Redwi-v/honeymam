@@ -71,23 +71,25 @@ const CatalogPage: NextPage<CatalogPageProps> = async props => {
 
   return (
 
-    <>
+    <section className="carcass with_bread_crumbs">
 
       <Header breadCrumpsList={ breadCrumbsList } /> 
 
-      <div className={ `${ s.catalog }` }>
+      <main className={ `${ s.catalog }` }>
 
-        <H1 className={ `${ s.title } mt-24 text-left container` }>{ listData.activeCategory?.title || '' }</H1>
+        <H1 className={ `${ s.title } mt-0 text-left container` }>{ listData.activeCategory?.title || '' }</H1>
 
         <section className={ `container mb-120` }>
 
           <Catalog header={ false } list={ listData.productsData.results } /> 
 
         </section>
-      </div>
+
+      </main>
+
       <Footer />
 
-    </>
+    </section>
 
   )
 

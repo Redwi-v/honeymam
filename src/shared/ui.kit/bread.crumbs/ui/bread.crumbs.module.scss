@@ -8,7 +8,7 @@
 
 
   .link {
-    font-size: $apx-16;
+    font-size: $apx-16 !important;
   }
 
   .link:not(:last-child) {
@@ -37,7 +37,7 @@
 
 
     .link {
-      font-size: $apx-l-16;
+      font-size: $apx-l-16 !important;
     }
 
     .arrow {
@@ -62,7 +62,7 @@
     padding-top: $apx-m-16;
 
     .link {
-      font-size: $apx-m-14;
+      font-size: $apx-m-14 !important;
     }
 
     .arrow {
