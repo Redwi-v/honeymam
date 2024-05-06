@@ -57,7 +57,7 @@ export const Catalog: FC<ICatalogProps> = ( props ) => {
 
 
 
-const CatalogItem: FC<IProduct> = ( { image, title, description, price, discount, badge } ) => (
+const CatalogItem: FC<IProduct> = ( { image, title, description, price, discount, badge, raw_price } ) => (
 
   <li className={ s.item }>
 
@@ -101,7 +101,7 @@ const CatalogItem: FC<IProduct> = ( { image, title, description, price, discount
           <P className={ s.price_value }>{ price }  ₽</P>
           { discount && <P className={ s.old_price }>
             <StickImage />
-            { Math.ceil( price + ( price / 100 * discount ) ) } ₽
+            { raw_price } ₽
           </P> }
 
         </div>

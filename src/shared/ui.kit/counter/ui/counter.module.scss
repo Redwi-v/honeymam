@@ -142,14 +142,19 @@
 
     button {
 
-      width: $apx-m-23;
+      min-width: $apx-m-23;
       height: $apx-m-23;
+      display: flex;
+      justify-content: center;
+      align-items: center;
 
       border: $apx-m-1 solid var(--color-green);
 
       svg {
-        width: $apx-m-13;
-        height: $apx-m-13;
+
+        min-width: $apx-m-13 !important;
+        min-height: $apx-m-13 !important;
+
       }
 
     }

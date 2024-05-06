@@ -13,7 +13,7 @@
   width: 100%;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: center;
+  justify-content: space-between;
 
   padding-top: $apx-10;
   height: $apx-150;
@@ -253,8 +253,8 @@
   .mobile_menu_button {
 
     display: block !important;
-    width: $apx-m-24;
-    height: $apx-m-24;
+    width: $apx-m-36;
+    height: $apx-m-36;
     background: none;
     padding: 0;
     border: none;
@@ -298,18 +298,25 @@
   .header.header_small {
 
     height: $apx-m-57 !important;
+    padding-top: 0;
+    padding-bottom: 0;
+    justify-content: center;
+
 
   }
 
   .header {
 
-    height: $apx-m-114;
+    height: $apx-m-132;
+    padding-top: $apx-m-16;
+    padding-bottom: $apx-m-10;
+
 
 
     .logo {
 
-      width: $apx-m-100;
-      height: $apx-m-37;
+      width: $apx-m-113;
+      height: $apx-m-42;
       margin-right: -$apx-m-26 !important;
       display: block;
       margin: 0 auto;
