@@ -28,12 +28,17 @@ export const Catalog: FC<ICatalogProps> = ( props ) => {
     <div className={ s.catalog }>
 
       { header !== false &&
+
         <>
+
           <H1 className={ s.title }>{ title || 'Каталог вкусных десертов' }</H1>
 
           <TextCategories />
+
         </>
+
       }
+
       <ul className={ s.list }>
 
         { list?.length > 0 &&
@@ -58,7 +63,7 @@ const CatalogItem: FC<IProduct> = ( { image, title, description, price, discount
 
     <div className={ s.preview }>
 
-      <Image fill src={ '/images/product_bg.png' } alt="product preview" />
+      {/* <Image fill src={ '/images/product_bg.png' } alt="product preview" /> */ }
       <Image fill src={ image } alt="product preview" />
 
       <LikeButton />

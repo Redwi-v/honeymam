@@ -62,7 +62,7 @@ export const Footer: FC<FooterProps> = () => {
 
         <div className={ `${ s.bottom } flex` } >
 
-          <P className={ s.transparent }>© 2024 HoneyMama</P>
+          <P className={ s.transparent }>© 2024 HoneyMam</P>
           <a className={ `${ s.transparent } p` }>Политика обработки персональных данных</a>
 
         </div>

@@ -23,6 +23,21 @@
     border: $apx-2 solid var(--color-green);
     background: none;
 
+      
+    &:hover {
+
+      transition: background .1s;
+
+      background: var(--color-green);
+
+      svg path {
+
+        stroke: var(--color-white);
+
+      }
+
+    }
+
   }
 
   button:first-child {
@@ -59,18 +74,6 @@
   .bin {
     height: auto;
     width: 100%;
-  }
-
-  button:last-child {
-
-    background: var(--color-green);
-
-    svg path {
-
-      stroke: var(--color-white);
-
-    }
-
   }
 
 }

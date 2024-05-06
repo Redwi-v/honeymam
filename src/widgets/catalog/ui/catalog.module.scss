@@ -37,19 +37,19 @@
       min-height: $apx-390;
 
 
-      img {
-        border-radius: $apx-26;
-        transition: .3s transform;
-      }
+      // img {
+      //   border-radius: $apx-26;
+      //   transition: .3s transform;
+      // }
 
-      &:hover {
+      // &:hover {
 
 
-        img:first-child {
-          transform: rotate(8deg);
-        }
+      //   img:first-child {
+      //     transform: rotate(8deg);
+      //   }
 
-      }
+      // }
 
     }
 

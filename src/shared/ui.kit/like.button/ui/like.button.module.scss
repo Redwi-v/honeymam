@@ -25,9 +25,13 @@
   border-radius: 50%;
   border: none;
 
+  &:active {
+    transform: scale(1.1);
+  }
+
 }
 
-.like.active {
+.like.active, .like:hover {
 
   svg {
     fill: var(--color-green);
