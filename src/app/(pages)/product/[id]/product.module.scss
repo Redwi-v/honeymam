@@ -1,0 +1,37 @@
+@import '@/app/_styles/apx.scss';
+@import '@/app/_styles/breakpoints.scss';
+
+.content {
+
+  display: flex;
+  gap: $apx-40;
+
+  padding-bottom: $apx-100;
+
+}
+
+
+@media screen and ( max-width: $media-laptop ) {
+  
+  .content {
+
+    gap: $apx-l-20;
+  
+    padding-bottom: $apx-l-60;
+  
+  }
+
+}
+
+@media screen and ( max-width: $media-mobile ) {
+  
+  .content {
+
+    gap: $apx-m-24;
+    flex-direction: column;
+
+    padding-bottom: $apx-m-49;
+  
+  }
+
+}

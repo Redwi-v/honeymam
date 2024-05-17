@@ -1,0 +1,101 @@
+@import '@/app/_styles/apx.scss';
+@import '@/app/_styles/breakpoints.scss';
+
+.we_have_content {
+
+  background: var(--color-beige);
+  padding: $apx-90 $apx-110;
+
+  border-radius: $apx-90 $apx-90 0 0 ;
+
+  .we_have_header {
+
+    display: flex;
+    justify-content: space-between;
+
+  }
+
+  .title {
+
+    font-size: $apx-64;
+
+  }
+
+  .slider {
+
+    margin:  0 auto;
+    margin-top: $apx-40;
+
+  }
+
+  .slide {
+
+    display: flex;
+    width: fit-content;
+    justify-content: center;
+
+  }
+
+}
+
+@media screen and (max-width: $media-laptop) {
+  
+  .we_have_content {
+
+    padding: $apx-l-60 $apx-l-10;
+  
+    border-radius: $apx-l-60 $apx-l-60 0 0 ;
+  
+    .title {
+  
+      font-size: $apx-l-44;
+  
+    }
+  
+    .slider {
+  
+      margin:  0 auto;
+      margin-top: $apx-l-24;
+  
+    }
+  
+    .slide {
+  
+      display: flex;
+      width: fit-content;
+      justify-content: center;
+      width: max-content;
+  
+    }
+  
+  }
+
+}
+
+
+@media screen and (max-width: $media-mobile) {
+  
+  .we_have_content {
+
+    padding: $apx-m-40 $apx-m-10;
+  
+    border-radius: $apx-m-40 $apx-m-40 0 0 ;
+  
+    .title {
+  
+      font-size: $apx-m-32;
+  
+    }
+  
+    .slider {
+  
+      margin:  0 auto;
+      margin-top: $apx-m-24;
+  
+    }
+  
+  
+  }
+
+}
+

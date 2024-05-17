@@ -58,7 +58,7 @@ async function CatalogPage( props: CatalogPageProps ) {
 
   return (
 
-    <div className={ `carcass with_bread_crumbs ${ s.catalog }` }>
+    <section className={ `carcass with_bread_crumbs ${ s.catalog }` }>
 
       <Header breadCrumpsList={ breadCrumbsList } />
 
@@ -87,7 +87,7 @@ async function CatalogPage( props: CatalogPageProps ) {
 
       <Footer />
 
-    </div>
+    </section>
 
   )
 

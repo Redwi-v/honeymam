@@ -1,5 +1,5 @@
 import apiInstance from '../instance/instance'
-import { IGetProductListRes } from './types'
+import {  IGetProductListRes, IProduct, IProductRatingsRes } from './types'
 
 export const ProductsApi = {
 
@@ -11,6 +11,18 @@ export const ProductsApi = {
         categories,
       }
     } )
+
+  },
+
+  async getProductById( { id } : { id: number} ) {
+
+    return apiInstance.get<IProduct>( `rest/products/${ id }`)
+
+  },
+
+  async getProductRating( { id } : { id: number} ) {
+
+    return apiInstance.get<IProductRatingsRes>( `rest/products/${ id }/ratings`)
 
   }
 

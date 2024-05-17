@@ -8,6 +8,8 @@ import { Counter, H1, H2, P } from '@/shared/ui.kit';
 import { StickImage } from "@/app/_images/stick";
 import type { IProduct } from '@/shared/api';
 import { LikeButton } from '@/shared/ui.kit/like.button/ui/like.button';
+import Link from 'next/link';
+import { Badge } from './badge';
 
 
 
@@ -57,7 +59,7 @@ export const Catalog: FC<ICatalogProps> = ( props ) => {
 
 
 
-const CatalogItem: FC<IProduct> = ( { image, title, description, price, discount, badge, raw_price } ) => (
+export const CatalogItem: FC<IProduct> = ( { image, title, description, price, discount, badge, raw_price, id } ) => (
 
   <li className={ s.item }>
 
@@ -68,27 +70,13 @@ const CatalogItem: FC<IProduct> = ( { image, title, description, price, discount
 
       <LikeButton />
 
-      { badge === 'PROMOTION' &&
-
-        <div className={ s.type }>
-          <Image src={ '/images/testData/action.svg' } alt="action" fill />
-        </div>
-
-      }
-
-      { badge === 'HIT' &&
-
-        <div className={ s.type }>
-          <Image src={ '/images/testData/hit.svg' } alt="action" fill />
-        </div>
-
-      }
+      <Badge badge = { badge }/>
 
     </div>
 
     <div className={ s.main_info }>
 
-      <H2 className={ s.item_title }>{ title }</H2>
+      <Link href = {`/product/${ id }`} className = {`${ s.item_title } h2`}>{ title }</Link>
 
       <P className={ s.item_description }>
         { description }

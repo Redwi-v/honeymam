@@ -44,6 +44,7 @@ const myWeekend = localFont( {
   variable: '--font-myweekend'
 
 } );
+
 const garamondCondensed = localFont( {
 
   src: [
