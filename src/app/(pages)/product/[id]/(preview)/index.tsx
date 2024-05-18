@@ -29,9 +29,9 @@ const noImageItem = {
   type: 'image',
 }
 
-interface IActiveItem { type: string, src: string, id: number, index?: number }
+export interface IActiveItem { type: string, src: string, id: number, index?: number }
 
-export const Preview: FC<IPreviewProps> = ( { images = [ ], videos = [], type } ) => {
+export const Preview: FC<IPreviewProps> = ( { images = [], videos = [], type } ) => {
 
   const [ fullPreviewOpen, setFullPreviewOpen ] = useState( false )
   const [ activeItem, setActiveItem ] = useState<IActiveItem>()
@@ -59,7 +59,7 @@ export const Preview: FC<IPreviewProps> = ( { images = [ ], videos = [], type } 
 
   if ( commonPreviews.length === 0 ) commonPreviews = [ noImageItem ]
 
-  const [ sliderRef, { instanceRef, currentSlide } ] = useDotsSlider({ initial: Math.round( commonPreviews.length / 2 ) })
+  const [ sliderRef, { instanceRef, currentSlide } ] = useDotsSlider( { initial: Math.round( commonPreviews.length / 2 ) } )
 
   useEffect( () => {
 
@@ -73,65 +73,17 @@ export const Preview: FC<IPreviewProps> = ( { images = [ ], videos = [], type } 
 
     <div className={ `${ s.preview }` }>
 
-      { fullPreviewOpen && <div className={ s.full_screen_preview }>
+      <FullImagePreview 
 
-        <button onClick={ () => setFullPreviewOpen( false ) } className={ s.cross }>
+        activeItem={activeItem || null}
+        commonPreviews={commonPreviews}
+        fullPreviewOpen = { fullPreviewOpen }
+        setActiveItem={setActiveItem}
+        setFullPreviewOpen={setFullPreviewOpen}
+        showControls= { activeItem?.type === 'video' }
+        type={ 'none' }
 
-          <CrossImage />
-
-        </button>
-
-        <div className={ `${ s.slider }` }>
-
-          <VideoPreview
-
-            activeItem={ activeItem || null }
-            fullHandler={ setFullPreviewOpen }
-            items={ commonPreviews }
-            setActiveItem={ setActiveItem }
-            type={ type }
-            showControls={ showControls || false }
-            autoPlay={ false }
-            arrows={ false }
-            hideFull
-
-          />
-
-        </div>
-
-        { commonPreviews.length > 1 &&
-
-          <div className={ s.full_controls }>
-
-            <button onClick={ () => {
-
-              const targetIndex = commonPreviews.findIndex( item => item.id === activeItem?.id )
-
-              setActiveItem( commonPreviews[ targetIndex - 1 >= 0 ? targetIndex - 1 : commonPreviews.length - 1 ] )
-
-            } } >
-
-              <ArrowImage />
-
-            </button>
-
-            <button onClick={ () => {
-
-              const targetIndex = commonPreviews.findIndex( item => item.id === activeItem?.id )
-
-              setActiveItem( commonPreviews[ targetIndex + 1 < commonPreviews.length ? targetIndex + 1 : 0 ] )
-
-            } }>
-
-              <ArrowImage />
-
-            </button>
-
-          </div>
-
-        }
-
-      </div> }
+      />
 
       <div ref={ sliderRef } className={ `${ s.dots_list }  keen-slider` }>
 
@@ -171,7 +123,7 @@ export const Preview: FC<IPreviewProps> = ( { images = [ ], videos = [], type } 
         showControls={ showControls || false }
         autoPlay={ true }
         arrows={ true }
-        openInFull = { fullPreviewOpen }
+        openInFull={ fullPreviewOpen }
 
       />
 
@@ -183,7 +135,7 @@ export const Preview: FC<IPreviewProps> = ( { images = [ ], videos = [], type } 
 
 type sliderResProps = [ ( node: HTMLElement | null ) => void, { currentSlide: number, loaded: boolean, instanceRef: MutableRefObject<KeenSliderInstance<{}, {}, KeenSliderHooks> | null> } ]
 
-const useDotsSlider = ({ initial }: { initial: number }): sliderResProps => {
+const useDotsSlider = ( { initial }: { initial: number } ): sliderResProps => {
 
   const [ currentSlide, setCurrentSlide ] = useState( 0 )
   const [ loaded, setLoaded ] = useState( false )
@@ -204,7 +156,7 @@ const useDotsSlider = ({ initial }: { initial: number }): sliderResProps => {
     breakpoints: {
 
       '(max-width: 520px)': {
-        
+
         vertical: false,
         slides: {
 
@@ -248,9 +200,9 @@ const VideoPreview: FC<IVideoPreviewProps> = ( { openInFull, hideFull, arrows, a
   const videoPlayerRef = useRef<null | HTMLVideoElement>( null )
   const [ isPaused, setIsPaused ] = useState( autoPlay ? false : true )
 
-  useEffect( () => { 
+  useEffect( () => {
 
-    
+
     setIsPaused( openInFull ? true : false )
 
   }, [ activeItem ] )
@@ -354,7 +306,7 @@ const VideoPreview: FC<IVideoPreviewProps> = ( { openInFull, hideFull, arrows, a
 
         ? <video className={ s.preview_image } ref={ videoPlayerRef } src={ activeItem?.src } autoPlay={ autoPlay && !openInFull } >
 
-    
+
         </video>
 
         : <img onClick={ () => fullHandler( true ) } className={ s.preview_image } src={ activeItem?.src } alt="preview" />
@@ -366,6 +318,94 @@ const VideoPreview: FC<IVideoPreviewProps> = ( { openInFull, hideFull, arrows, a
   )
 
 }
+ 
+interface IFullImagePreview {
 
+  fullPreviewOpen:boolean
+  setFullPreviewOpen: (value: boolean) => void
+  activeItem: IActiveItem | null
+  commonPreviews: IActiveItem[]
+  setActiveItem: ( item: IActiveItem ) => void
+  type: string
+  showControls: boolean
 
+}
+
+export const FullImagePreview:FC< IFullImagePreview > = (props) => {
+
+  const { 
+  
+    fullPreviewOpen, setFullPreviewOpen, activeItem,
+    commonPreviews, setActiveItem, type, showControls
+  
+  } = props
+
+  return (
+
+    <>
+
+      { fullPreviewOpen && <div className={ s.full_screen_preview }>
+
+        <button onClick={ () => setFullPreviewOpen( false ) } className={ s.cross }>
+
+          <CrossImage />
+
+        </button>
+
+        <div className={ `${ s.slider }` }>
+
+          <VideoPreview
+
+            activeItem={ activeItem || null }
+            fullHandler={ setFullPreviewOpen }
+            items={ commonPreviews }
+            setActiveItem={ setActiveItem }
+            type={ type }
+            showControls={ showControls || false }
+            autoPlay={ false }
+            arrows={ false }
+            hideFull
+
+          />
+
+        </div>
+
+        { commonPreviews.length > 1 &&
+
+          <div className={ s.full_controls }>
+
+            <button onClick={ () => {
+
+              const targetIndex = commonPreviews.findIndex( item => item.id === activeItem?.id )
+
+              setActiveItem( commonPreviews[ targetIndex - 1 >= 0 ? targetIndex - 1 : commonPreviews.length - 1 ] )
+
+            } } >
+
+              <ArrowImage />
+
+            </button>
+
+            <button onClick={ () => {
+
+              const targetIndex = commonPreviews.findIndex( item => item.id === activeItem?.id )
+
+              setActiveItem( commonPreviews[ targetIndex + 1 < commonPreviews.length ? targetIndex + 1 : 0 ] )
+
+            } }>
+
+              <ArrowImage />
+
+            </button>
+
+          </div>
+
+        }
+
+      </div> }
+    </>
+
+  )
+
+}
 

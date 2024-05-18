@@ -42,7 +42,7 @@ const navigationParams = {
   aboutUs: {
 
     title: 'О нас',
-    href: '/aboutUs',
+    href: '/about.us',
 
   },
 
@@ -206,9 +206,9 @@ const MobileMenu = () => {
         <a href="/catalog" className="h2">Каталог</a>
         <TextCategories listType className={ s.categories } />
 
-        <a href="/catalog" className="h2">Доставка и оплата</a>
-        <a href="/catalog" className="h2">О нас</a>
-        <a href="/catalog" className="h2">Контакты</a>
+        <a href="/delivery.and.pay" className="h2">Доставка и оплата</a>
+        <a href="/about.us" className="h2">О нас</a>
+        <a href="/contacts" className="h2">Контакты</a>
 
         <div className={ s.controls }>
 

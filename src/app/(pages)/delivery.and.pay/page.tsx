@@ -35,12 +35,12 @@ const ContactsPage: NextPage<ContactsPageProps> = props => {
 
       </div>
 
-      <P className={ `${ s.address } flex gap-8 mt-16 items-center` }>
+      <P className={ `${ s.address } flex gap-8 mt-16 mt-l-16 mt-m-16 items-center` }>
         <MapPointImage />
         Москва, 3-я улица Строителей, 25
       </P>
 
-      <P className={ `${ s.time } flex gap-8 mt-16 items-center` }>
+      <P className={ `${ s.time } flex gap-8 mt-16 mt-l-16 mt-m-16 items-center` }>
         <ClockImage />
         Время работы заведения: с 10:00 до 21:00
       </P>
@@ -53,9 +53,9 @@ const ContactsPage: NextPage<ContactsPageProps> = props => {
         </div>
       </YMaps>
 
-      <H2 className="mt-60">Доставка</H2>
+      <H2 className="mt-60 mt-l-40 mt-m-40">Доставка</H2>
 
-      <P className={ `${ s.text } mt-24` }>
+      <P className={ `${ s.text } mt-24 mt-l-24 mt-m-16` }>
 
         Доставка заказов производится с 9:00 до 22:00 по Санкт-Петербургу в рамках «серой зоны». Способ получения заказа и временной интервал вы выбираете при оформлении заказа.
         
@@ -79,9 +79,9 @@ const ContactsPage: NextPage<ContactsPageProps> = props => {
         Оформленный заказ также можно забрать в наших кафе. Самовывоз - бесплатно.
       </P>
 
-      <H2 className={ `mt-60` }>оплата</H2>
+      <H2 className={ `mt-60 mt-l-40 mt-m-40` }>оплата</H2>
 
-      <P className={ `${ s.text } mt-24` }>
+      <P className={ `${ s.text } mt-24 mt-l-24 mt-m-16` }>
         Возможные способы оплаты меняются в зависимости от вашего адреса, а также способа и  времени доставки. Увидеть все доступные способы оплаты и выбрать самый удобный вы можете в  корзине.
       </P>
 

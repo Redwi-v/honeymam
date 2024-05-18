@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./_styles/globals.scss";
+import Providers from "./progress.bar";
 
 export const revalidate = 3600
 
@@ -76,8 +77,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="ru" className={ `${ Kosko.variable } ${ myWeekend.variable } ${ garamondCondensed.variable } font-sans ` }>
 
       <body>
-
-        { children }
+        
+        <Providers>{ children }</Providers>
 
       </body>
 

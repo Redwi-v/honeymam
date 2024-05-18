@@ -1,6 +1,130 @@
 @import '@/app/_styles/apx.scss';
 @import '@/app/_styles/breakpoints.scss';
 
+
+.full_screen_preview {
+
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+
+  z-index: 1000;
+
+  background: rgba(55, 54, 63, 0.7);
+
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .slider {
+
+    max-width: $apx-1014 !important;
+    max-height: $apx-1000 !important;
+
+    display: flex;
+    justify-content: center;
+
+    video, img {
+
+
+
+    }
+
+    .preview_main {
+
+      border-radius: 0 !important;
+      width: fit-content;
+
+      img { width: 100%; }
+
+    }
+
+  }
+
+  .full_controls {
+
+    button {
+
+      background: none;
+      border: none;
+
+      position: absolute;
+
+      top: 0;
+      bottom: 0;
+      padding: 0 $apx-32;
+
+
+      svg {
+
+        path { stroke: var(--color-white); }
+        width: $apx-42;
+        height: $apx-42;
+
+      }
+
+    }
+
+    button:first-child {
+
+      left: 0;
+
+      svg {
+
+        transform: rotate(180deg);
+
+      }
+
+    }
+
+    button:last-child {
+
+      right: 0;
+
+      svg {
+
+        
+      }
+
+    }
+
+  }
+
+  .cross {
+
+    position: absolute;
+    top: $apx-32;
+    right: $apx-32;
+
+    width: $apx-32;
+    height: $apx-32;
+
+    border-radius: 50%;
+
+    z-index: 1000;
+    
+    background: var(--color-white);
+    border: none;
+    padding: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    svg {
+
+      width: $apx-24;
+      height: $apx-24;
+
+    }
+
+  }
+
+}
+
 .preview {
 
   max-width: $apx-590;
@@ -10,129 +134,6 @@
   gap: $apx-16;
 
 
-  .full_screen_preview {
-
-    position: fixed;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    top: 0;
-
-    z-index: 1000;
-
-    background: rgba(55, 54, 63, 0.7);
-
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    .slider {
-
-      max-width: $apx-1014 !important;
-      max-height: $apx-1000 !important;
-
-      display: flex;
-      justify-content: center;
-
-      video, img {
-
-
-
-      }
-
-      .preview_main {
-
-        border-radius: 0 !important;
-        width: fit-content;
-
-      }
-
-
-
-
-    }
-
-    .full_controls {
-
-      button {
-
-        background: none;
-        border: none;
-
-        position: absolute;
-
-        top: 0;
-        bottom: 0;
-        padding: 0 $apx-32;
-
-
-        svg {
-
-          path { stroke: var(--color-white); }
-          width: $apx-42;
-          height: $apx-42;
-
-        }
-
-      }
-
-      button:first-child {
-
-        left: 0;
-
-        svg {
-
-          transform: rotate(180deg);
-
-        }
-
-      }
-
-      button:last-child {
-
-        right: 0;
-
-        svg {
-
-          
-        }
-
-      }
-
-    }
-
-    .cross {
-
-      position: absolute;
-      top: $apx-32;
-      right: $apx-32;
-
-      width: $apx-32;
-      height: $apx-32;
-
-      border-radius: 50%;
-
-      z-index: 1000;
-      
-      background: var(--color-white);
-      border: none;
-      padding: 0;
-
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      
-      svg {
-
-        width: $apx-24;
-        height: $apx-24;
-
-      }
-
-    }
-
-  }
 
   video::-webkit-media-controls-fullscreen-button {
     display: none;
@@ -306,13 +307,10 @@
 
     &:hover .controls {
 
-      opacity: 1 !important;
+      opacity: 1 ;
       z-index: 5;
 
     }
-
-    
-
 
     .badge {
 
@@ -642,6 +640,44 @@
 
 @media screen and (max-width: $media-mobile) {
   
+  .full_screen_preview {
+  
+    .full_controls {
+
+      button {
+
+        padding: 0 $apx-m-10;
+
+        svg {
+
+          width: $apx-m-16;
+          height: $apx-m-16;
+
+        }
+
+      }
+
+    }
+
+    .cross {
+
+      top: $apx-m-16;
+      right: $apx-m-16;
+
+      width: $apx-m-32;
+      height: $apx-m-32;
+      
+      svg {
+
+        width: $apx-m-24;
+        height: $apx-m-24;
+
+      }
+
+    }
+
+  }
+
   .preview {
 
     max-width: none;
@@ -649,45 +685,6 @@
     
     gap: $apx-m-12;
     flex-direction: column-reverse;
-  
-  
-    .full_screen_preview {
-  
-      .full_controls {
-  
-        button {
-  
-          padding: 0 $apx-m-10;
-  
-          svg {
-  
-            width: $apx-m-16;
-            height: $apx-m-16;
-  
-          }
-  
-        }
-  
-      }
-  
-      .cross {
-  
-        top: $apx-m-16;
-        right: $apx-m-16;
-  
-        width: $apx-m-32;
-        height: $apx-m-32;
-        
-        svg {
-  
-          width: $apx-m-24;
-          height: $apx-m-24;
-  
-        }
-  
-      }
-  
-    }
 
     .active {
   

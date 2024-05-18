@@ -15,6 +15,7 @@ export default async function Home() {
       <Header />
 
       <HomeView productsList={ productListData.results } />
+      
 
       <Footer />
 
