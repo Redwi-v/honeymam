@@ -233,7 +233,7 @@
       border: none;
       padding: 0;
 
-      max-width: $apx-124;
+      max-width: none !important;
       min-width: $apx-124;
 
       max-height: $apx-154;
@@ -728,7 +728,7 @@
   
       button {
   
-        max-width: $apx-m-46;
+        max-width: $apx-m-46 !important;
         min-width: $apx-m-46;
   
         max-height: $apx-m-46;

@@ -16,4 +16,15 @@
   border: none;
   background: var(--color-green);
 
+  transition: background .3s;
+
+  &:hover {
+
+    background-color: #1C823F;
+
+  }
+  &:active {
+    background-color: #0E602A;
+  }
+
 }

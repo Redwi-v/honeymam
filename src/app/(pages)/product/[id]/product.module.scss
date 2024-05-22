@@ -10,6 +10,26 @@
 
 }
 
+.skeleton {
+
+  display: flex;
+  padding: $apx-50;
+  gap: $apx-40;
+  height: 100%;
+
+  justify-content: space-between;
+
+  span {
+    display: block !important;
+    width: 100% !important;
+  }
+
+  span:last-child {
+    height: $apx-30;
+  }
+
+}
+
 
 @media screen and ( max-width: $media-laptop ) {
   
@@ -32,6 +52,18 @@
 
     padding-bottom: $apx-m-49;
   
+  }
+
+  .skeleton {
+
+    flex-direction: column;
+    height: 100%;
+    padding-bottom: $apx-m-200;
+
+    span{
+      height: 100%;
+    }
+
   }
 
 }

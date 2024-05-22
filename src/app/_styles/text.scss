@@ -29,6 +29,7 @@
   font-size: $apx-24;
   text-align: center;
   color: #37363f;
+  line-height: $apx-28;
 
 }
 
@@ -37,7 +38,12 @@
   
   .h1 { font-size: $apx-l-42; }
   .h2 { font-size: $apx-l-24; }
-  .p { font-size: $apx-l-18; }
+  .p { 
+
+    font-size: $apx-l-18;
+    line-height: $apx-l-20;
+
+  }
   
 }
 
@@ -45,7 +51,12 @@
   
   .h1 { font-size: $apx-m-28; }
   .h2 { font-size: $apx-m-18; }
-  .p { font-size: $apx-m-14; }
+  .p { 
+
+    font-size: $apx-m-14;
+    line-height: $apx-m-15;
+
+  }
   
 }
 

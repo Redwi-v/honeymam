@@ -8,6 +8,7 @@
     justify-content: center;
     gap: $apx-40;
     margin-top: $apx-47;
+    
 
   }
 
@@ -19,6 +20,9 @@
     display: flex;
     flex-direction: column;
     height: 100%;
+    text-decoration: none !important;
+    
+    &:hover  h2 { text-decoration: underline !important; }
     
   }
 
@@ -46,10 +50,16 @@
   }
 
   .main_info {
-    margin-top: $apx-56;
     display: flex;
     height: 100%;
     flex-direction: column;
+    
+    .top {
+      padding-top: $apx-56;
+      text-decoration: none !important;
+
+    }
+
   }
 
   .main_info a,
@@ -74,6 +84,7 @@
     margin-top: $apx-10;
     color: #37363F;
     margin-bottom: $apx-32;
+    opacity: .8;
 
   }
 
@@ -94,13 +105,16 @@
 
 
     p {
+
       font-size: $apx-40;
       font-family: var(--font-myweekend);
       white-space: nowrap;
+      line-height: normal;
 
     }
 
     .old_price {
+
       position: relative;
       opacity: .5;
 
@@ -109,8 +123,8 @@
         position: absolute;
         left: -$apx-5;
         bottom: $apx-13;
-        width: auto;
-        height: $apx-16;
+        width: 114%;
+        height: $apx-18;
 
       }
     }

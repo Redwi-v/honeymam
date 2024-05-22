@@ -66,21 +66,28 @@ export const CatalogItem: FC<IProduct> = ( { image, title, description, price, d
     <div className={ s.preview }>
 
       {/* <Image fill src={ '/images/product_bg.png' } alt="product preview" /> */ }
-      <Image fill src={ image } alt="product preview" />
+      <Link href={ `/product/${ id }` }>
+        <Image fill src={ image } alt="product preview" />
+      </Link>
 
       <LikeButton />
 
-      <Badge badge = { badge }/>
+      <Badge badge={ badge } />
 
     </div>
 
     <div className={ s.main_info }>
 
-      <Link href = {`/product/${ id }`} className = {`${ s.item_title } h2`}>{ title }</Link>
+      <Link className={ s.top } href={ `/product/${ id }` }>
 
-      <P className={ s.item_description }>
-        { description }
-      </P>
+        <H2 className={ `${ s.item_title } ` }>{ title }</H2>
+
+        <P className={ s.item_description }>
+          { description }
+        </P>
+
+      </Link>
+
 
       <div className={ s.bottom }>
 

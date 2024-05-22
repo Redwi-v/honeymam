@@ -9,7 +9,7 @@ const Providers:FC<PropsWithChildren> = ({ children }) => {
     <>
       {children}
       <ProgressBar
-        height="7px"
+        height="3px"
         color="#117031"
         options={{ showSpinner: false }}
         shallowRouting

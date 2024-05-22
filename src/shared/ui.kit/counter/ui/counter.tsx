@@ -8,6 +8,7 @@ import { cssIf } from "@/shared/scripts";
 import s from './counter.module.scss'
 import { BinImage } from "@/app/_images/bin";
 
+
 export const Counter = () => {
 
   const [ count, setCount ] = useState( 0 )

@@ -58,8 +58,8 @@ html {
 }
 
 a:hover {
-  text-decoration: underline !important;
-  text-decoration-color: var(--color-green) !important;
+  text-decoration: underline ;
+  text-decoration-color: var(--color-green) ;
 }
 
 .carcass.with_bread_crumbs {
@@ -104,7 +104,6 @@ textarea {
 }
 
 a,
-a:hover,
 a:visited {
 
   text-decoration: none;

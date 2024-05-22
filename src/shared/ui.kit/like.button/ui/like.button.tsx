@@ -17,7 +17,7 @@ export const LikeButton: FC<ILikeButtonProps> = ( props ) => {
     <button
 
       className={ `${ s.like } ${ isActive && s.active }` }
-      onClick={ () => setIsActive( prev => !prev ) }>
+      onClick={ ( e ) => setIsActive( prev => { e.stopPropagation() ; e.preventDefault(); return !prev }  ) }>
 
       <HeartImage />
 

@@ -7,7 +7,7 @@ import { NextPage } from "next";
 import s from './product.module.scss'
 import { Preview } from "./(preview)";
 import { Controls, Info } from "./(info)";
-import { FC } from "react";
+import { FC, Suspense } from "react";
 import WeHaveSlider from "./(we.have)";
 
 
@@ -71,10 +71,9 @@ const ProductPage: NextPage<IProductPageProps> = async ( { params } ) => {
 
   return (
 
-    <section className={ `carcass with_bread_crumbs` }>
+    <>
 
       <Header breadCrumpsList={ breadCrumbsList } />
-
 
       <main className={ `${ s.content } container` }>
 
@@ -82,14 +81,11 @@ const ProductPage: NextPage<IProductPageProps> = async ( { params } ) => {
 
         <Info { ...resProduct.data } reviews={ resRating.data } />
 
-
       </main>
 
       <WeHaveSlider  list={productsListRes.data.results} />
 
-      <Footer />
-
-    </section>
+    </>
 
   )
 
