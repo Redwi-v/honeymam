@@ -75,11 +75,11 @@
     }
 
     .advantages__item:nth-child(3) .advantages__title {
+
       margin-bottom: $apx-37;
     }
 
     .advantages__item {
-
 
       background-image: url('/images/patern.jpg');
       min-height: $apx-376;
@@ -108,6 +108,8 @@
     .advantages__title {
 
       margin-top: 0 !important;
+      padding-top: $apx-24;
+
 
     }
 
