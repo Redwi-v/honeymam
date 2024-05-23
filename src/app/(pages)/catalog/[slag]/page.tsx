@@ -3,7 +3,7 @@ import s from '../../../home.module.scss';
 import { H1, ICrumbItem } from '@/shared/ui.kit';
 import { Header } from "@/widgets/header";
 import { Footer } from "@/widgets/footer";
-import { CategoriesApi, ICategory, ProductsApi } from "@/shared/api";
+import { CategoriesApi, ProductsApi } from "@/shared/api";
 import { Catalog } from "@/widgets/catalog";
 
 
