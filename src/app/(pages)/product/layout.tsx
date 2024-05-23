@@ -17,14 +17,8 @@ export default function RootLayout({
   return (
 
     <section className={ `carcass with_bread_crumbs` }>
-
-      <Suspense fallback = {
-          <div className={ s.skeleton }>
-            <Skeleton height={'100%'} width={'100%'}/>
-            <Skeleton count={10} height={'100%'} width={'100%'}/>
-          </div>
-      }>{children}</Suspense>
-
+      
+      {children}
       <Footer />
 
     </section>

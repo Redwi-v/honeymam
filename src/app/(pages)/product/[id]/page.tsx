@@ -50,7 +50,7 @@ const ProductPage: NextPage<IProductPageProps> = async ( { params } ) => {
   const { id } = params
   const { resProduct, resRating, productsListRes } = await getData( +id )
 
-  const { images, videos, badge } = resProduct.data
+  const { images, videos, badge, image } = resProduct.data
 
   const breadCrumbsList: ICrumbItem[] = [
 
@@ -77,7 +77,7 @@ const ProductPage: NextPage<IProductPageProps> = async ( { params } ) => {
 
       <main className={ `${ s.content } container` }>
 
-        <Preview type={ badge } images={ images } videos={ videos } />
+        <Preview type={ badge } images={ [ {id: 13914241459786123, image: image, product: +id}, ...images] } videos={ videos } />
 
         <Info { ...resProduct.data } reviews={ resRating.data } />
 
