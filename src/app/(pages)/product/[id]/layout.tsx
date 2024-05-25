@@ -1,8 +1,4 @@
 import { Footer } from "@/widgets/footer"
-import { Suspense } from "react"
-import Skeleton from 'react-loading-skeleton'
-import 'react-loading-skeleton/dist/skeleton.css'
-import s from './[id]/product.module.scss'
 
 export const metadata = {
   title: 'Next.js',

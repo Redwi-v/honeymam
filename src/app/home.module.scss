@@ -37,6 +37,11 @@
     margin-top: $apx-76;
     gap: $apx-16;
 
+    &:hover {
+      text-decoration-color: var(--color-green) !important;
+    }
+
+
     span {
       color: var(--color-green);
     }
@@ -268,6 +273,11 @@
     justify-content: center;
     align-items: center;
     margin-top: $apx-52;
+
+    &:hover {
+      text-decoration-color: var(--color-green) !important;
+    }
+
 
     span {
       color: var(--color-green);
@@ -1099,6 +1109,7 @@
 
       }
 
+   
     }
 
     .banner {

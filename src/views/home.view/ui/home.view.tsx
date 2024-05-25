@@ -20,9 +20,10 @@ import { HomeMap } from "@/widgets/home.map";
 
 interface IHomeViewProps {
   productsList: IProduct[]
+  tab?: string
 }
 
-export const HomeView: FC<IHomeViewProps> = ( { productsList } ) => {
+export const HomeView: FC<IHomeViewProps> = ( { productsList, tab } ) => {
 
 
   return (
@@ -40,7 +41,7 @@ export const HomeView: FC<IHomeViewProps> = ( { productsList } ) => {
 
         <BannerCategories isGrid />
 
-        <Catalog list={ productsList } />
+        <Catalog tab = { tab } list={ productsList } />
 
         <HoverAnimatedLink wrapperClassName={ `${ s.all_link_icon } flex items-center` } className={ s.all_link } animateClassName={ s.icon } href="/catalog" frames={ [
 

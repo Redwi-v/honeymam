@@ -1,5 +1,5 @@
 'use client'
-import { H1, H2, P } from "@/shared/ui.kit"
+import { BreadCrumbs, H1, H2, ICrumbItem, P } from "@/shared/ui.kit"
 import { NextPage } from "next"
 import s from './contacts.module.scss'
 import { Map, YMaps } from '@pbe/react-yandex-maps';
@@ -10,10 +10,23 @@ interface ContactsPageProps {
 
 const ContactsPage: NextPage<ContactsPageProps> = props => {
 
+  const breadCrumbsList: ICrumbItem[] = [
+
+    {
+      href: '/',
+      title: 'Главная',
+    },
+    {
+      href: '/',
+      title: 'Контакты',
+    },
+  
+  ]
+
   return (
 
     <section className={ `${ s.contacts_page } container` }>
-
+<BreadCrumbs list={breadCrumbsList}/>
       <H1 className={ s.title }>Контакты</H1>
 
       <div className={ s.main }>

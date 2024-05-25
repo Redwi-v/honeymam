@@ -18,12 +18,13 @@ interface ICatalogProps {
   list: IProduct[],
   title?: string
   header?: boolean
+  tab?: string
 
 }
 
 export const Catalog: FC<ICatalogProps> = ( props ) => {
 
-  const { list, title, header } = props
+  const { list, title, header, tab } = props
 
   return (
 
@@ -35,7 +36,7 @@ export const Catalog: FC<ICatalogProps> = ( props ) => {
 
           <H1 className={ s.title }>{ title || 'Каталог вкусных десертов' }</H1>
 
-          <TextCategories />
+          <TextCategories tab = { tab }/>
 
         </>
 
@@ -65,8 +66,7 @@ export const CatalogItem: FC<IProduct> = ( { image, title, description, price, d
 
     <div className={ s.preview }>
 
-      {/* <Image fill src={ '/images/product_bg.png' } alt="product preview" /> */ }
-      <Link href={ `/product/${ id }` }>
+      <Link href={ `/product/${ id }` } scroll={true}>
         <Image fill src={ image } alt="product preview" />
       </Link>
 
@@ -78,7 +78,7 @@ export const CatalogItem: FC<IProduct> = ( { image, title, description, price, d
 
     <div className={ s.main_info }>
 
-      <Link className={ s.top } href={ `/product/${ id }` }>
+      <Link className={ s.top } href={ `/product/${ id }` } scroll={true}>
 
         <H2 className={ `${ s.item_title } ` }>{ title }</H2>
 

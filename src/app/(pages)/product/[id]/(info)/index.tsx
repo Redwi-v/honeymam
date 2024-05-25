@@ -11,47 +11,14 @@ import { PlusImage } from "@/app/_images/plus"
 import { MinusImage } from "@/app/_images/minus"
 import { ArrowImage } from "@/app/_images/arrow"
 import { StarImage } from "@/app/_images/star"
-import { log } from "console"
 import { useKeenSlider } from "keen-slider/react"
 import { ProductReview } from "@/shared/api/products/types"
 import { AvatarIamge } from "@/app/_images/avatar"
 
 import moment from 'moment'
-import 'moment/locale/ru'  // without this line it didn't work
+import 'moment/locale/ru'  
 moment.locale( 'ru' )
 
-const comments = [
-  {
-    "id": 0,
-    "product": 1,
-    "rating": 2,
-    "comment": "Пример комментария",
-    "user": {
-      "id": 3,
-      "first_name": "Имя",
-      "last_name": "Фамилия",
-      "username": "Пользователь",
-      "email": "example@mail.ru",
-      "phone": "+79991234567"
-    },
-    "created_at": "2024-05-17T10:12:34.281Z"
-  },
-  {
-    "id": 4,
-    "product": 5,
-    "rating": 0,
-    "comment": "string",
-    "user": {
-      "id": 6,
-      "first_name": "John",
-      "last_name": "Doe",
-      "username": "jdoe12345",
-      "email": "user@example.com",
-      "phone": "+79991234567"
-    },
-    "created_at": "2024-05-17T10:12:34.281Z"
-  }
-]
 const amountMessages: { [ key: string ]: string } = {
 
   GRAM: 'гр',

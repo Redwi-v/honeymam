@@ -67,9 +67,9 @@ export const Header: FC<HeaderProps> = ( { breadCrumpsList } ) => {
 
     navigationList.push(
 
-      <li className={ s.navigation_item } >
+      <li key={ key } className={ s.navigation_item } >
 
-        <Link key={ key } className="p" href={ value.href }>{ value.title }</Link>
+        <Link  className="p" href={ value.href }>{ value.title }</Link>
 
       </li>
 
@@ -78,82 +78,82 @@ export const Header: FC<HeaderProps> = ( { breadCrumpsList } ) => {
   }
 
   return (
+    <>
+      <header className={ `${ s.header } ${ s.header_small } ` }>
 
-    <header className={ `${ s.header } ${ cssIf( !breadCrumpsList, s.header_small ) } ` }>
+        { menuIsOpen && <MobileMenu /> }
 
-      { menuIsOpen && <MobileMenu /> }
+        <div className={ `${ s.main } container flex items-center` }>
 
-      <div className={ `${ s.main } container flex items-center` }>
+          <button className={ s.mobile_menu_button } onClick={ () => setMenuIsOpen( prev => !prev ) }>
+            { menuIsOpen ? <MenuClosedImage /> : <MenuImage /> }
+          </button>
 
-        <button className={ s.mobile_menu_button } onClick={ () => setMenuIsOpen( prev => !prev ) }>
-          { menuIsOpen ? <MenuClosedImage /> : <MenuImage /> }
-        </button>
+          <Link className={ s.logo } href={ '/' }>
+            <LogoImage />
+          </Link>
 
-        <Link className={ s.logo } href={ '/' }>
-          <LogoImage />
-        </Link>
+          <ul className={ s.navigation }>{ navigationList }</ul>
 
-        <ul className={ s.navigation }>{ navigationList }</ul>
-
-        <ul className={ `${ s.controls } flex gap-24 gap-l-16` }>
-
-          <ControlWithIcon
-
-            adaptiveText href="/"
-            Icon={ <CartImage className={ s.icon } /> }
-            text="Корзина"
-
-          />
-
-
-          <Animate
-
-            className={ ` ${ s.icon }` }
-            wrapperClass={ `${ s.control_with_icon } flex items-center` }
-            frames={ [
-
-              <HeartImage className={ s.icon } key={ 1 } />,
-              <HeartImageFrame2 className={ s.icon } key={ 2 } />,
-
-            ] }
-
-          >
+          <ul className={ `${ s.controls } flex gap-24 gap-l-16` }>
 
             <ControlWithIcon
 
-              className={ `${ s.mobile_hide }` }
-              adaptiveText
-              href="/"
-              text="Избранное"
+              adaptiveText href="/"
+              Icon={ <CartImage className={ s.icon } /> }
+              text="Корзина"
 
             />
 
-          </Animate>
 
-          <Animate
+            <Animate
 
-            className={s.icon }
-            wrapperClass={ `${ s.control_with_icon } flex items-center` }
-            frames={ [
+              className={ ` ${ s.icon }` }
+              wrapperClass={ `${ s.control_with_icon } flex items-center` }
+              frames={ [
 
-              <LoginImage className={ s.icon } key={ 1 } />,
-              <LoginImageFrame2 className={ s.icon } key={ 2 } />,
+                <HeartImage className={ s.icon } key={ 1 } />,
+                <HeartImageFrame2 className={ s.icon } key={ 2 } />,
 
-            ] }
+              ] }
 
-          >
+            >
 
-            <ControlWithIcon adaptiveTextMobile href="/"  text="Войти" />
+              <ControlWithIcon
 
-          </Animate>
+                className={ `${ s.mobile_hide }` }
+                adaptiveText
+                href="/"
+                text="Избранное"
 
-        </ul>
+              />
 
-      </div>
+            </Animate>
 
-      { breadCrumpsList && <BreadCrumbs list={ breadCrumpsList } /> }
+            <Animate
 
-    </header>
+              className={s.icon }
+              wrapperClass={ `${ s.control_with_icon } flex items-center` }
+              frames={ [
+
+                <LoginImage className={ s.icon } key={ 1 } />,
+                <LoginImageFrame2 className={ s.icon } key={ 2 } />,
+
+              ] }
+
+            >
+
+              <ControlWithIcon adaptiveTextMobile href="/"  text="Войти" />
+
+            </Animate>
+
+          </ul>
+
+        </div>
+
+
+      </header>
+    </>
 
   );
 

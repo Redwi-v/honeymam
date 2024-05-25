@@ -36,6 +36,11 @@
     margin-top: $apx-76;
     gap: $apx-16;
 
+    &:hover {
+      text-decoration-color: var(--color-green) !important;
+    }
+
+
     span {
       color: var(--color-green);
     }
@@ -112,6 +117,10 @@
 
   span {
     color: var(--color-green);
+  }
+
+  &:hover {
+    text-decoration-color: var(--color-green) !important;
   }
 
 
@@ -307,6 +316,10 @@
 
     span {
       color: var(--color-green);
+    }
+
+    &:hover {
+      text-decoration-color: var(--color-green) !important;
     }
 
     .icon {
@@ -949,6 +962,8 @@
       align-items: center;
       margin-top: $apx-m-24;
       gap: $apx-m-12;
+
+
 
       .icon {
 

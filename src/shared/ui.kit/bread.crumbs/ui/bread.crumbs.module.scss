@@ -3,9 +3,8 @@
 
 .bread_crumbs {
 
-
-  padding-top: $apx-50;
-
+  margin-bottom: $apx-24;
+  margin-top: $apx-12;
 
   .link {
     font-size: $apx-16 !important;
@@ -33,7 +32,7 @@
 
   .bread_crumbs {
 
-  padding-top: calc($apx-l-24 + $apx-l-4);
+  margin-bottom: $apx-l-20;
 
 
     .link {
@@ -56,10 +55,10 @@
 
 @media (max-width: $media-mobile) {
 
-
+  
+  
   .bread_crumbs {
-
-    padding-top: $apx-m-16;
+    margin-bottom: $apx-m-20;
 
     .link {
       font-size: $apx-m-14 !important;

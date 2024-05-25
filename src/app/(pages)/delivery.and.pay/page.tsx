@@ -1,5 +1,5 @@
 'use client'
-import { H1, H2, P } from "@/shared/ui.kit"
+import { BreadCrumbs, H1, H2, ICrumbItem, P } from "@/shared/ui.kit"
 import { NextPage } from "next"
 import s from './delivery.and.pay.module.scss'
 import { Map, YMaps } from '@pbe/react-yandex-maps';
@@ -16,9 +16,25 @@ const ContactsPage: NextPage<ContactsPageProps> = props => {
 
   const [ pointsActive, setPointsActive ] = useState( false )
 
+  const breadCrumbsList: ICrumbItem[] = [
+
+    {
+      href: '/',
+      title: 'Главная',
+    },
+    {
+      href: '/',
+      title: 'Доставка и оплата',
+    },
+  
+  ]
+  
+
   return (
 
     <section className={ `${ s.delivery_and_pay } container` }>
+
+    <BreadCrumbs list={breadCrumbsList}/>
 
       <H1 className={ `${ s.title } text-left` }>Доставка и оплата</H1>
 

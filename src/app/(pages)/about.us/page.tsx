@@ -1,5 +1,5 @@
 'use client'
-import { H1, H2, ICrumbItem, P } from "@/shared/ui.kit"
+import { BreadCrumbs, H1, H2, ICrumbItem, P } from "@/shared/ui.kit"
 import { NextPage } from "next"
 import s from './about.us.module.scss'
 import { Map, YMaps } from '@pbe/react-yandex-maps';
@@ -66,13 +66,13 @@ const ContactsPage: NextPage<ContactsPageProps> = props => {
 
   return (
 
-    <section className="carcass with_bread_crumbs" >
+    <section className="carcass" >
 
-
-      <Header breadCrumpsList={ breadCrumbsList } />
+      <Header />
 
       <main className={ `${ s.content } container` }>
 
+        <BreadCrumbs list={breadCrumbsList}/>
         <H2 className={ s.title } >О НАС</H2>
 
         <div className={ s.banner }>

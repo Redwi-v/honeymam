@@ -9,7 +9,7 @@ import { CookieImage } from "@/app/_images/сookie";
 import Link from "next/link";
 import { CakeImage } from "@/app/_images/cake";
 import { CandiesImage } from "@/app/_images/candies";
-import { Counter, ICrumbItem } from "@/shared/ui.kit";
+import { BreadCrumbs, Counter, ICrumbItem } from "@/shared/ui.kit";
 import { BannerCategories } from "@/entities/banner.categories";
 import { Header } from "@/widgets/header";
 import { Footer } from "@/widgets/footer";
@@ -38,6 +38,7 @@ async function getData() {
   const resActions = await ProductsApi.getList( { badge: 'PROMOTION' } )
   const resHIT = await ProductsApi.getList( { badge: 'HIT' } )
 
+
   if ( resActions.status !== 200 || resHIT.status !== 200 ) {
     throw new Error( 'Failed to fetch data' )
   }
@@ -58,13 +59,13 @@ async function CatalogPage( props: CatalogPageProps ) {
 
   return (
 
-    <section className={ `carcass with_bread_crumbs ${ s.catalog }` }>
+    <section className={ `carcass ${ s.catalog }` }>
 
-      <Header breadCrumpsList={ breadCrumbsList } />
+      <Header />
 
 
       <main>
-
+        <BreadCrumbs className="container" list={ breadCrumbsList } />
         <H1 className={ `${ s.title } mt-0 text-left container` }>Каталог вкусных десертов</H1>
         <BannerCategories classList={ `container` } list />
 

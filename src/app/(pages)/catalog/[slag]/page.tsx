@@ -1,6 +1,6 @@
 import { NextPage } from "next";
 import s from '../../../home.module.scss';
-import { H1, ICrumbItem } from '@/shared/ui.kit';
+import { BreadCrumbs, H1, ICrumbItem } from '@/shared/ui.kit';
 import { Header } from "@/widgets/header";
 import { Footer } from "@/widgets/footer";
 import { CategoriesApi, ProductsApi } from "@/shared/api";
@@ -71,12 +71,13 @@ const CatalogPage: NextPage<CatalogPageProps> = async props => {
 
   return (
 
-    <section className="carcass with_bread_crumbs">
+    <section className="carcass">
 
-      <Header breadCrumpsList={ breadCrumbsList } /> 
+      <Header /> 
 
       <main className={ `${ s.catalog }` }>
 
+        <BreadCrumbs className="container" list={breadCrumbsList}/>
         <H1 className={ `${ s.title } mt-0 text-left container` }>{ listData.activeCategory?.title || '' }</H1>
 
         <section className={ `container mb-120` }>

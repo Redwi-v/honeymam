@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Header } from "@/widgets/header";
 import { Footer } from "@/widgets/footer";
-import type { ICrumbItem } from "@/shared/ui.kit";
+import { BreadCrumbs, type ICrumbItem } from "@/shared/ui.kit";
 
 
 export const metadata: Metadata = {
@@ -11,29 +11,19 @@ export const metadata: Metadata = {
 
 };
 
-const breadCrumbsList: ICrumbItem[] = [
-
-  {
-    href: '/',
-    title: 'Главная',
-  },
-  {
-    href: '/',
-    title: 'Доставка и оплата',
-  },
-
-]
 
 
 export default function RootLayout( { children }: Readonly<{ children: React.ReactNode }> ) {
 
   return (
 
-    <section className="carcass with_bread_crumbs">
+    <section className="carcass">
 
 
-      <Header breadCrumpsList={ breadCrumbsList } />
-      <main className="main">{ children }</main>
+      <Header  />
+      <main className="main">
+        { children }
+      </main>
       <Footer />
 
 

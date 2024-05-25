@@ -3,7 +3,7 @@ import axios from 'axios';
 const instance = axios.create( {
 
   baseURL: 'https://honeymam.store',
-  timeout: 10000,
+  timeout: 50000,
   headers: {
     "Http-App-ID": process.env.Http_App_ID
   }
@@ -11,6 +11,8 @@ const instance = axios.create( {
 } );
 
 instance.interceptors.response.use( response => response, error => {
+
+  console.log(error)
 
   if ( !error.response ) {
 

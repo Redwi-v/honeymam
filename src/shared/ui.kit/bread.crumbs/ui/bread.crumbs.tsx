@@ -8,14 +8,15 @@ import { ArrowImage } from "@/app/_images/arrow"
 interface IBreadCrumbsProps {
 
   list: ICrumbItem[]
+  className?: string
 
 }
 
-export const BreadCrumbs: FC<IBreadCrumbsProps> = ( { list } ) => {
+export const BreadCrumbs: FC<IBreadCrumbsProps> = ( { list, className } ) => {
 
   return (
 
-    <section className={ `${ s.bread_crumbs } flex container` }>
+    <section className={ `${ s.bread_crumbs } ${ className } flex` }>
 
       { list.map( ( params, index ) => (
 

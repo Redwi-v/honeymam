@@ -1,13 +1,11 @@
-import { IProduct, ProductsApi } from "@/shared/api";
-import { H2, ICrumbItem } from "@/shared/ui.kit";
-import { Footer } from "@/widgets/footer";
+import { ProductsApi } from "@/shared/api";
+import { BreadCrumbs, ICrumbItem } from "@/shared/ui.kit";
 import { Header } from "@/widgets/header";
 import { NextPage } from "next";
 
 import s from './product.module.scss'
 import { Preview } from "./(preview)";
-import { Controls, Info } from "./(info)";
-import { FC, Suspense } from "react";
+import { Info } from "./(info)";
 import WeHaveSlider from "./(we.have)";
 
 
@@ -18,19 +16,16 @@ async function getData( id: number ) {
 
   const productPromise = ProductsApi.getProductById( { id } )
   const ratingPromise = ProductsApi.getProductRating( { id } )
-  const productsListPromise = ProductsApi.getList({})
+  const productsListPromise = ProductsApi.getList( {} )
 
   const [ resProduct, resRating, productsListRes ] = await Promise.all( [ productPromise, ratingPromise, productsListPromise ] )
 
-
-  if ( resProduct.statusText !== 'OK' || resRating.statusText !== 'OK' ) {
-    throw new Error( 'Failed to fetch data' )
-  }
-
   return {
+
     resProduct,
     resRating,
     productsListRes,
+
   }
 
 }
@@ -66,24 +61,29 @@ const ProductPage: NextPage<IProductPageProps> = async ( { params } ) => {
       href: '/catalog/product',
       title: resProduct.data.title,
     },
-  
+
   ]
 
   return (
 
     <>
 
-      <Header breadCrumpsList={ breadCrumbsList } />
+      <Header />
 
-      <main className={ `${ s.content } container` }>
+      <main className={ `container` }>
 
-        <Preview type={ badge } images={ [ {id: 13914241459786123, image: image, product: +id}, ...images] } videos={ videos } />
+        <BreadCrumbs list={breadCrumbsList}/>
+        <div className={ s.content }>
 
-        <Info { ...resProduct.data } reviews={ resRating.data } />
+          <Preview type={ badge } images={ [ { id: 13914241459786123, image: image, product: +id }, ...images ] } videos={ videos } />
+
+          <Info { ...resProduct.data } reviews={ resRating.data } />
+
+        </div>
 
       </main>
 
-      <WeHaveSlider  list={productsListRes.data.results} />
+      <WeHaveSlider list={ productsListRes.data.results } />
 
     </>
 
