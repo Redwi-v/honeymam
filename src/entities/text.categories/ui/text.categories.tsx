@@ -61,6 +61,7 @@ export const TextCategories: FC<{ className?: string, listType?: boolean, tab?: 
           pathname: '/',
           query: { tab: 'HIT' }
         } }
+        scroll={false}
         className={ `${ s.hearts } ${ activeItem === 2 && s.active }` }
         onClick={ () => setActiveItem( 2 ) }
 
