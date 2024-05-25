@@ -12,7 +12,7 @@ export default function RootLayout({
 }) {
   return (
 
-    <section className={ `carcass with_bread_crumbs` }>
+    <section className={ `carcass` }>
       
       {children}
       <Footer />

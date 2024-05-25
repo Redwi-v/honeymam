@@ -7,7 +7,7 @@ export default function NotFound() {
 
   return (
 
-    <section className="carcass with_bread_crumbs">
+    <section className="carcass">
 
 
       <Header />
