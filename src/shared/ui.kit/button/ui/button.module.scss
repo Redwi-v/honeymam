@@ -28,3 +28,72 @@
   }
 
 }
+
+.button.white {
+
+  background: var(--color-white);
+  border: $apx-1 solid var(--color-green);
+
+  color: var(--color-green);
+
+}
+
+.button.red {
+
+  background: var(--color-white);
+  border: $apx-1 solid var(--color-red);
+
+  color: var(--color-red);
+
+}
+
+@media (max-width: $media-laptop) {
+  
+  .button {
+
+    padding: $apx-l-10 $apx-l-40;
+    border-radius: $apx-l-81;
+  
+    font-size: $apx-l-14;
+  
+  }
+  
+  .button.white {
+  
+    border: $apx-l-1 solid var(--color-green);
+  
+  }
+  
+  .button.red {
+  
+    border: $apx-l-1 solid var(--color-red);
+  
+  }
+
+}
+
+
+@media (max-width: $media-mobile) {
+  
+  .button {
+
+    padding: $apx-m-10 $apx-m-40;
+    border-radius: $apx-m-81;
+  
+    font-size: $apx-m-14;
+  
+  }
+  
+  .button.white {
+  
+    border: $apx-m-1 solid var(--color-green);
+  
+  }
+  
+  .button.red {
+  
+    border: $apx-m-1 solid var(--color-red);
+  
+  }
+
+}

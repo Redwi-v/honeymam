@@ -31,13 +31,17 @@ async function getData( tab: string ) {
 
   }
 
-  if ( !Number(tab) ) {
+  if ( !Number( tab ) ) {
+
     params.badge = tab
+
   }
+
   if ( !params.badge ) {
+
     params.categories = tab
+
   }
-  console.log(params)
 
   const res = await ProductsApi.getList( params )
 
@@ -45,9 +49,7 @@ async function getData( tab: string ) {
     throw new Error( 'Failed to fetch data' )
   }
 
-  return {
-    productListData: res.data
-  }
+  return { productListData: res.data }
 
 }
 

@@ -1,4 +1,4 @@
-export const AvatarIamge = ( { className }: { className?: string } ) => (
+export const AvatarImage = ( { className }: { className?: string } ) => (
 <svg className={ className } width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
   <g clip-path="url(#clip0_329_30339)">
     <path d="M27.0145 15.5419C27.0145 12.1977 26.1502 11.5736 25.7182 10.1801C20.5332 -0.270603 9.51527 4.60643 6.27467 8.09004C4.99599 9.4646 4.20006 12.3252 4.26244 15.5419C-0.9289 16.4507 1.93738 23.3303 5.51961 23.3303C6.6928 26.2167 9.94273 29.8028 13.4013 30.3398C21.2402 31.5571 25.6839 27.805 27.0145 22.1388C28.2082 22.3964 30.5679 22.024 30.5679 18.6236C30.5679 16.4352 29.1035 15.5419 27.0145 15.5419Z" stroke="#117031" stroke-width="2.18537" stroke-linecap="round" />

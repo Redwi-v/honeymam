@@ -8,7 +8,6 @@ export interface IGetListRes {
 
 }
 
-
 //params
 
 //common

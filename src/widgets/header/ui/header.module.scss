@@ -87,7 +87,8 @@
 .control_with_icon {
 
   gap: $apx-4;
-
+  background: none;
+  border: none;
 
   p {
 
@@ -96,7 +97,6 @@
   }
 
 }
-
 
 .mobile_menu {
 
@@ -126,7 +126,7 @@
 
     flex-direction: column;
 
-    a {
+    a, button {
 
       font-family: var(--font-garamondCondensed) !important;
       padding-top: 0 !important;
@@ -136,7 +136,7 @@
     }
     
   }
-  a {
+  a, button {
 
     display: block;
     font-family: var(--font-myweekend) !important;
@@ -154,13 +154,14 @@
     padding-top: $apx-m-22;
 
 
-    a {
+    a, button {
       display: flex;
       align-items: center;
       gap:  $apx-m-8;
+
     }
 
-    a svg path{
+    a button svg path, button svg path{
 
       stroke: var(--color-black);
 
@@ -187,7 +188,7 @@
 
     margin-top: $apx-m-24;
 
-    a { padding: 0; margin: 0; }
+    a, button { padding: 0; margin: 0; }
 
     p {
     
@@ -200,13 +201,111 @@
 
 }
 
+.sign_in_popup {
+
+
+
+}
+
+.sign_in_form {
+
+  .sign_in_button {
+  
+    margin-top: $apx-40;
+    width: 100%;
+  
+  }
+
+  .code_time {
+
+    font-weight: 400;
+    font-size: $apx-14;
+    line-height: 120%;
+    text-align: center;
+    margin-top: $apx-16;
+
+  }
+
+  .sign_in_code_send_button {
+    
+    margin-top: $apx-32;
+    margin-bottom: $apx-10;
+
+  }
+
+  button {
+    width: 100%;
+  }
+
+  .sign_in_privacy_policy {
+
+    margin-top: $apx-16;
+    font-size: $apx-16;
+    color: var(--color-black);
+    line-height: 120%;
+
+    a {
+
+      font-size: inherit !important;
+      line-height: inherit;
+      color: var(--color-green) !important;
+
+    }
+
+  }
+
+  .sign_in_code {
+
+    display: flex;
+    gap: $apx-16;
+    width: fit-content;
+    margin: 0 auto;
+    margin-top: $apx-8;
+    flex-wrap: nowrap;
+    justify-content: center;
+
+    div {
+
+      margin-top: 0;
+
+    }
+
+    input {
+
+      width: 100%;
+      text-align: center;
+
+    }
+
+  }
+
+  .sign_in_code_label, .sign_in_code_err {
+
+    font-family: var(--font-myweekend);
+    font-weight: 400;
+    font-size: $apx-14;
+    line-height: 120%;
+
+    margin-top: $apx-32;
+    text-align: left;
+
+  }
+
+  .sign_in_code_err {
+
+    color: var(--color-red);
+    font-family: var(--font-garamondCondensed);
+    margin-top: $apx-8;
+
+  }
+
+}
+
 @media (max-width: $media-laptop) {
 
   .control_with_icon.adaptive_text {
 
-    p {
-      display: none;
-    }
+    p { display: none; }
 
   }
 
@@ -260,8 +359,77 @@
 
   }
 
-}
+  .sign_in_popup {
 
+    max-width: $apx-l-414;
+
+  }
+
+  .sign_in_form {
+
+
+    .sign_in_button {
+    
+      margin-top: $apx-l-24;
+    
+    }
+  
+    .code_time {
+  
+      font-size: $apx-l-14;
+      margin-top: $apx-l-16;
+  
+    }
+  
+    .sign_in_code_send_button {
+      
+      margin-top: $apx-l-32;
+      margin-bottom: $apx-l-10;
+  
+    }
+  
+    button {
+      width: 100%;
+    }
+  
+    .sign_in_privacy_policy {
+  
+      margin-top: $apx-l-16;
+      font-size: $apx-l-13;
+  
+    }
+  
+    .sign_in_code {
+  
+      gap: $apx-l-10;
+      margin: 0 auto;
+      margin-top: $apx-l-8;
+  
+    }
+  
+    .sign_in_code_label, .sign_in_code_err {
+  
+      font-family: var(--font-myweekend);
+      font-weight: 400;
+      font-size: $apx-l-14;
+      line-height: 120%;
+  
+      margin-top: $apx-l-32;
+      text-align: left;
+  
+    }
+  
+    .sign_in_code_err {
+  
+      color: var(--color-red);
+      font-family: var(--font-garamondCondensed);
+      margin-top: $apx-l-8;
+  
+    }
+  
+  }
+
+}
 
 @media (max-width: $media-mobile) {
 
@@ -297,7 +465,7 @@
 
   .controls {
     gap: $apx-m-16;
-    div:nth-child(2) {
+    .favorite {
       display: none;
     }  
   }
@@ -358,6 +526,95 @@
 
     }
 
+  }
+
+  .sign_in_popup {
+
+    max-width: $apx-m-300;
+
+  }
+
+  .sign_in_form {
+
+
+    .sign_in_button {
+    
+      margin-top: $apx-m-16;
+    
+    }
+  
+    .code_time {
+  
+      font-size: $apx-l-14;
+      margin-top: $apx-l-16;
+  
+    }
+  
+    .sign_in_code_send_button {
+      
+      margin-top: $apx-l-32;
+      margin-bottom: $apx-l-10;
+  
+    }
+  
+    button {
+
+      width: 100%;
+
+    }
+  
+    .sign_in_privacy_policy {
+  
+      margin-top: $apx-m-16;
+      font-size: $apx-m-12;
+  
+    }
+  
+    .sign_in_code {
+  
+      display: flex;
+      gap: $apx-16;
+      width: fit-content;
+      margin: 0 auto;
+      margin-top: $apx-8;
+      flex-wrap: wrap;
+      justify-content: center;
+  
+      div {
+  
+        margin-top: 0;
+  
+      }
+  
+      input {
+  
+        width: $apx-91;
+        text-align: center;
+  
+      }
+  
+    }
+  
+    .sign_in_code_label, .sign_in_code_err {
+  
+      font-family: var(--font-myweekend);
+      font-weight: 400;
+      font-size: $apx-14;
+      line-height: 120%;
+  
+      margin-top: $apx-32;
+      text-align: left;
+  
+    }
+  
+    .sign_in_code_err {
+  
+      color: var(--color-red);
+      font-family: var(--font-garamondCondensed);
+      margin-top: $apx-8;
+  
+    }
+  
   }
 
 }

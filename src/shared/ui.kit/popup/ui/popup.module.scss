@@ -1,0 +1,202 @@
+@import '@/app/_styles/apx.scss';
+@import '@/app/_styles/breakpoints.scss';
+
+.wrapper {
+
+  opacity: 0;
+  visibility: hidden;
+  transition: .3s;
+  z-index: 2001 !important;
+  position: fixed;
+  overflow: auto;
+
+}
+
+.wrapper.active {
+
+  opacity: 1 !important;
+  visibility: visible !important;
+
+}
+
+.overlay {
+
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+
+  margin: auto;
+  background: rgba(55, 54, 63, 0.41);
+  z-index: 200;
+
+}
+
+.window_wrapper {
+
+  position: fixed;
+  margin: auto;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  width: fit-content;
+
+  display: flex;
+  overflow: auto;
+
+  z-index: 2001;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  & {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+  }
+
+}
+
+.window {
+
+
+  max-width: $apx-478;
+  width: fit-content;
+  height: fit-content;
+
+  margin: $apx-30 0;
+  margin-top: 20vh;
+
+  padding: $apx-32;
+  border-radius: $apx-22;
+
+  background: var(--color-white);
+
+}
+
+.header {
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: $apx-40;
+
+  .close {
+
+    position: relative;
+
+    min-width: $apx-32;
+    height: $apx-32;
+
+    padding: 0;
+    border: none;
+
+    border-radius: 50%;
+
+    img,
+    svg {
+
+      width: $apx-24 !important;
+      height: $apx-24 !important;
+
+      left: 0;
+      right: 0;
+      bottom: 0;
+      top: 0;
+
+      margin: auto;
+
+    }
+
+  }
+
+
+}
+
+@media (max-width: $media-laptop) {
+  
+  .window {
+    max-width: $apx-l-478;
+  
+    margin: $apx-l-30 0;
+    margin-top: 20vh;
+  
+    padding: $apx-l-32;
+    border-radius: $apx-l-22;
+  
+  }
+  
+  .header {
+
+    gap: $apx-l-40;
+  
+    .close {
+  
+      min-width: $apx-l-32 ;
+      height: $apx-l-32 ;
+  
+      img,
+      svg {
+  
+        width: $apx-l-24 !important;
+        height: $apx-l-24 !important;
+  
+      }
+  
+    }
+  
+    .title {
+      font-size: $apx-l-28;
+    } 
+  
+  }
+
+
+}
+
+
+@media (max-width: $media-mobile) {
+  
+  .window {
+    max-width: none;
+    width: $apx-m-300;
+  
+    margin: $apx-m-30 0;
+    margin-top: 20vh;
+  
+    padding: $apx-m-24 $apx-m-16; 
+    border-radius: $apx-m-22;
+  
+  }
+  
+  .header {
+
+    gap: $apx-m-10;
+  
+    .close {
+  
+      min-width: $apx-m-32 ;
+      height: $apx-m-32 ;
+  
+      img,
+      svg {
+  
+        width: $apx-m-24 !important;
+        height: $apx-m-24 !important;
+  
+      }
+  
+    }
+  
+    .title {
+      font-size: $apx-m-20;
+    } 
+  
+  }
+
+
+}

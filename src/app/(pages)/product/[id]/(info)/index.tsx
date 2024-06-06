@@ -13,7 +13,7 @@ import { ArrowImage } from "@/app/_images/arrow"
 import { StarImage } from "@/app/_images/star"
 import { useKeenSlider } from "keen-slider/react"
 import { ProductReview } from "@/shared/api/products/types"
-import { AvatarIamge } from "@/app/_images/avatar"
+import { AvatarImage } from "@/app/_images/avatar"
 
 import moment from 'moment'
 import 'moment/locale/ru'  
@@ -376,7 +376,7 @@ const Review:FC<{ review: ProductReview }> = ({ review }) => {
 
         <div className={ s.review_item_user_avatar }>
 
-          <AvatarIamge />
+          <AvatarImage />
 
         </div>
 

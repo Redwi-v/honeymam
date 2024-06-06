@@ -3,7 +3,7 @@ import { FC, ReactElement, useState } from "react";
 
 import s from './header.module.scss';
 import Link from "next/link";
-import { BreadCrumbs, ICrumbItem, P } from "@/shared/ui.kit";
+import { Button, ICrumbItem, Input, P } from "@/shared/ui.kit";
 import { cssIf } from "@/shared/scripts";
 
 import { LogoImage } from "@/app/_images/logo";
@@ -16,6 +16,13 @@ import { MenuClosedImage } from "@/app/_images/menu.closed";
 import { Animate } from "@/shared/ui.kit/animate";
 import { HeartImageFrame2 } from "@/app/_images/heart.frame2";
 import { LoginImageFrame2 } from "@/app/_images/login.frame2";
+import { Popup } from "@/shared/ui.kit";
+import { SubmitHandler, useForm } from 'react-hook-form'
+import { useMutation, useQuery } from 'react-query'
+import { UserApi } from "@/shared/api/user/user.api";
+import { AxiosError } from "axios";
+import { AvatarImage } from "@/app/_images/avatar";
+import { useRouter } from "next/navigation";
 
 interface HeaderProps {
 
@@ -57,19 +64,29 @@ const navigationParams = {
 
 export const Header: FC<HeaderProps> = ( { breadCrumpsList } ) => {
 
-
   // render navigation list
   const navigationList: ReactElement[] = []
   const [ menuIsOpen, setMenuIsOpen ] = useState( false )
+  const [ signInPopupIsActive, setSignInPopupIsActive ] = useState( false )
+  const router = useRouter()
 
-  for ( const [ key, value ] of Object.entries( navigationParams ) )
-  {
+  const { data, refetch: refetchUser } = useQuery( {
+
+    queryKey: [ 'activeUser' ],
+    initialData: null,
+    queryFn: UserApi.getActiveUser,
+    retry: 0,
+
+  } )
+
+
+  for ( const [ key, value ] of Object.entries( navigationParams ) ) {
 
     navigationList.push(
 
       <li key={ key } className={ s.navigation_item } >
 
-        <Link  className="p" href={ value.href }>{ value.title }</Link>
+        <Link className="p" href={ value.href }>{ value.title }</Link>
 
       </li>
 
@@ -79,6 +96,7 @@ export const Header: FC<HeaderProps> = ( { breadCrumpsList } ) => {
 
   return (
     <>
+
       <header className={ `${ s.header } ${ s.header_small } ` }>
 
         { menuIsOpen && <MobileMenu /> }
@@ -99,7 +117,7 @@ export const Header: FC<HeaderProps> = ( { breadCrumpsList } ) => {
 
             <ControlWithIcon
 
-              adaptiveText href="/"
+              adaptiveText
               Icon={ <CartImage className={ s.icon } /> }
               text="Корзина"
 
@@ -108,6 +126,7 @@ export const Header: FC<HeaderProps> = ( { breadCrumpsList } ) => {
 
             <Animate
 
+              containerClassName = { s.favorite  }
               className={ ` ${ s.icon }` }
               wrapperClass={ `${ s.control_with_icon } flex items-center` }
               frames={ [
@@ -123,36 +142,49 @@ export const Header: FC<HeaderProps> = ( { breadCrumpsList } ) => {
 
                 className={ `${ s.mobile_hide }` }
                 adaptiveText
-                href="/"
                 text="Избранное"
 
               />
 
             </Animate>
 
-            <Animate
+            { !data
+              ? <Animate
 
-              className={s.icon }
-              wrapperClass={ `${ s.control_with_icon } flex items-center` }
-              frames={ [
+                onClick = { () => setSignInPopupIsActive( true ) }
+                className={ s.icon }
+                wrapperClass={ `${ s.control_with_icon } flex items-center` }
+                frames={ [
 
-                <LoginImage className={ s.icon } key={ 1 } />,
-                <LoginImageFrame2 className={ s.icon } key={ 2 } />,
+                  <LoginImage className={ s.icon } key={ 1 } />,
+                  <LoginImageFrame2 className={ s.icon } key={ 2 } />,
 
-              ] }
+                ] }
 
-            >
+              >
 
-              <ControlWithIcon adaptiveTextMobile href="/"  text="Войти" />
+                <ControlWithIcon
+                  onClick={ () => setSignInPopupIsActive( true ) }
+                  adaptiveTextMobile
+                  text="Войти"
+                />
 
-            </Animate>
+              </Animate>
+              : <ControlWithIcon
+                onClick={ () => router.push('/profile') }
+                adaptiveTextMobile
+                text="Профиль"
+                Icon={ <AvatarImage className = { s.icon }/> }
+              /> }
 
           </ul>
 
         </div>
 
+        <SignInForm refetchUser = { () => refetchUser() } setSignInPopupIsActive={ setSignInPopupIsActive } signInPopupIsActive={ signInPopupIsActive } />
 
       </header>
+
     </>
 
   );
@@ -164,7 +196,7 @@ interface IControlsWithIcon {
   Icon?: ReactElement,
   text: string,
   count?: string | number,
-  href: string
+  onClick?: ( value: any ) => void,
   adaptiveText?: boolean
   adaptiveTextMobile?: boolean
   className?: string
@@ -174,14 +206,13 @@ interface IControlsWithIcon {
 
 const ControlWithIcon: FC<IControlsWithIcon> = ( props ) => {
 
-  const { count, Icon, text, href, adaptiveText, adaptiveTextMobile, className } = props
-
+  const { count, Icon, text, adaptiveText, onClick, adaptiveTextMobile, className } = props
 
   return (
 
-    <Link
+    <button
 
-      href={ href }
+      onClick={ onClick }
       className={ `${ s.control_with_icon } ${ cssIf( className, className! ) } ${ cssIf( adaptiveText, s.adaptive_text ) } flex items-center` }
 
     >
@@ -190,7 +221,7 @@ const ControlWithIcon: FC<IControlsWithIcon> = ( props ) => {
 
       <P className={ `${ s.control_text } ${ cssIf( adaptiveTextMobile, s.mobile_hide ) }` } >{ text }</P>
 
-    </Link>
+    </button>
 
   )
 
@@ -242,5 +273,213 @@ const MobileMenu = () => {
 
 }
 
+interface SignInFormProps {
+
+  signInPopupIsActive: boolean
+  setSignInPopupIsActive: ( vale: boolean ) => void
+  refetchUser: () => void
+
+}
+
+type Inputs = {
+
+  phone: string
+  code1: number,
+  code2: number,
+  code3: number,
+  code4: number,
+  code5: number,
+  code6: number,
+
+}
+
+const SignInForm: FC<SignInFormProps> = ( { signInPopupIsActive, setSignInPopupIsActive, refetchUser } ) => {
+
+  const [ time, setTime ] = useState( 60 )
+
+  const {
+
+    register,
+    handleSubmit,
+    watch,
+    getValues,
+    setError,
+    clearErrors,
+    formState: { errors },
+
+  } = useForm<Inputs>()
+
+  const onSubmit: SubmitHandler<Inputs> = ( data ) => {
+    sendPhoneMutation.mutate( {
+      phone: data.phone.replaceAll( ' ', '1' ).replaceAll( '+', '' )
+    } )
+  }
+
+  const sendCodeMutation = useMutation( {
+
+    mutationFn: () => {
+
+      clearErrors( 'root' )
+
+      return UserApi.authConfirm( {
+        phone: getValues().phone.replaceAll( '+', '' ).replaceAll( ' ', '' ),
+        code:
+          getValues().code1
+          + getValues().code2
+          + getValues().code3
+          + getValues().code4
+          + getValues().code5
+          + getValues().code6
+      } )
+    },
+
+    onError: ( err: AxiosError<any> ) => {
+
+      setError( 'root', {
+        message: err.response?.data.code?.[ 0 ]
+      } )
+
+    },
+
+    onSuccess: () => {
+
+      refetchUser()
+      setSignInPopupIsActive( false )
+
+    }
+
+  } )
+
+  const sendPhoneMutation = useMutation( {
+
+    mutationFn: ( data: { phone: string } ) => UserApi.sendAuthRequest( data ),
+    onSuccess: () => {
+
+      setStep( 1 )
+      setTime( 60 )
+
+      const timeInterval = setInterval( () => {
+
+        setTime( prev => {
+
+          if ( prev - 1 <= 0 ) clearInterval( timeInterval )
+          return prev - 1
+
+        } )
+
+      }, 1000 )
+
+    },
+
+    onError: ( err: AxiosError<any> ) => {
+
+      setError( 'phone', {
+        message: err.response?.data?.phone[ 0 ]
+      } )
+
+    }
+
+  } )
+
+  const steps = [
+    <>
+
+      <Input
+
+        key={ 0 }
+        error={ errors.phone?.message }
+        label="Ваш телефон*"
+        inputParams={ {
+          placeholder: "+7 999 999 99 99",
+
+          ...register( 'phone', {
+
+            minLength: {
+
+              value: 8,
+              message: 'Введен слишком короткий номер телефона'
+
+            },
+            pattern: {
+
+              value: /(^8|7|\+7)((\d{10})|(\s\d{3}\s\d{3}\s\d{2}\s\d{2}))/,
+              message: "неправильный формат, прмер: +7 999 999 99 99"
+
+            }
+
+          } )
+
+        } }
+
+      />
+
+      <Button onClick={ handleSubmit( onSubmit ) } className={ s.sign_in_button } >Получить код</Button>
+      <P className={ s.sign_in_privacy_policy }>
+
+        Нажимая на кнопку, вы соглашаетесь на
+        { " " }
+        <a className="p" href="/">
+          обработку персональных данных в
+          соответствии с политикой конфиденциальности
+        </a>
+
+      </P>
+    </>,
+
+    <>
+
+      <P className={ s.sign_in_code_label }>
+
+        Код отправлен на номер
+        { " " }
+        { getValues().phone?.[ 0 ] === '7' ? '+' : '' }
+        { getValues().phone }
+
+      </P>
+
+      <div className={ s.sign_in_code } key={ 1 }>
+
+        <Input errorStyle = { !!errors.root?.message } inputParams={ { placeholder: '', max: 9, min: 1, type: 'number', ...register( 'code1', { max: 9 } ) } }></Input>
+        <Input errorStyle = { !!errors.root?.message } inputParams={ { placeholder: '', max: 9, min: 1, type: 'number', ...register( 'code2', { max: 9 } ) } }></Input>
+        <Input errorStyle = { !!errors.root?.message } inputParams={ { placeholder: '', max: 9, min: 1, type: 'number', ...register( 'code3', { max: 9 } ) } }></Input>
+        <Input errorStyle = { !!errors.root?.message } inputParams={ { placeholder: '', max: 9, min: 1, type: 'number', ...register( 'code4', { max: 9 } ) } }></Input>
+        <Input errorStyle = { !!errors.root?.message } inputParams={ { placeholder: '', max: 9, min: 1, type: 'number', ...register( 'code5', { max: 9 } ) } }></Input>
+        <Input errorStyle = { !!errors.root?.message } inputParams={ { placeholder: '', max: 9, min: 1, type: 'number', ...register( 'code6', { max: 9 } ) } }></Input>
+
+      </div>
+
+      { errors.root?.message && <P className={ s.sign_in_code_err }>{ errors.root.message }</P> }
+      <Button onClick={ () => sendCodeMutation.mutate() } className={ s.sign_in_code_send_button }>Отправить</Button>
+      { time <= 0
+        ? <Button onClick={ handleSubmit( onSubmit ) } >Отправить еще раз</Button>
+        : <P className={ s.code_time }>Получить новый можно через { time >= 60 ? time : '00:' + time }</P> }
+
+    </>
+
+  ]
+
+  const [ step, setStep ] = useState( 0 )
+
+  return (
+
+    <Popup
+
+      isActive={ signInPopupIsActive }
+      title="Вход или регистрация"
+      setIsActive={ setSignInPopupIsActive }
+      className={ `${ s.sign_in_popup } ${ s[ `step_${ step }` ] }` }
+
+    >
+
+      <div className={ s.sign_in_form }>
+
+        { steps[ step ] }
+
+      </div>
+
+    </Popup>
+  );
+
+}
 
 

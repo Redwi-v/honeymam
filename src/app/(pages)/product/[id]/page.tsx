@@ -8,10 +8,6 @@ import { Preview } from "./(preview)";
 import { Info } from "./(info)";
 import WeHaveSlider from "./(we.have)";
 
-
-
-
-
 async function getData( id: number ) {
 
   const productPromise = ProductsApi.getProductById( { id } )

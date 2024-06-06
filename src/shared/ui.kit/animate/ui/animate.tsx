@@ -12,12 +12,14 @@ interface IAnimateProps {
   wrapperClass?: string,
   frames: ReactElement[]
   isActive?: boolean
+  containerClassName?: string
+  onClick?: () => void
 
 }
 
 export const Animate: FC<IAnimateProps & PropsWithChildren> = ( props ) => {
 
-  const { frames, className, children, wrapperClass, isActive } = props
+  const { frames, className, children, wrapperClass, isActive, containerClassName, onClick } = props
 
   const [ index, setIndex ] = useState( 0 );
   const [ delay, setDelay ] = useState( 500 );
@@ -47,7 +49,7 @@ export const Animate: FC<IAnimateProps & PropsWithChildren> = ( props ) => {
 
   return (
 
-    <div onMouseLeave={ () => toggleIsRunning( false ) } onMouseEnter={ () => toggleIsRunning( true ) } className={`${ wrapperClass }`}>
+    <div onClick={onClick} onMouseLeave={ () => toggleIsRunning( false ) } onMouseEnter={ () => toggleIsRunning( true ) } className={`${ wrapperClass } ${ containerClassName }`}>
       <div className={ `${ s.animate } ${ cssIf( className, className! ) }` }>
 
         { frames.map( ( frame, frameIndex ) => (

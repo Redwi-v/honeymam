@@ -1,5 +1,5 @@
 export const ClockImage = ( { className }: { className?: string } ) => (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <svg className = { className } width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M21.7181 13.1847C23.195 6.16936 17.2566 3.47755 13.4105 2.86216C7.4104 2.40062 4.64123 3.49247 2.33353 9.95401C0.0258414 16.4155 6.48732 21.954 10.1796 21.954C13.8719 21.954 19.8719 21.954 21.7181 13.1847Z" stroke="#37363F" stroke-width="1.8" stroke-linecap="round" />
     <path d="M12.0668 6.5896C12.0668 7.81398 12.0431 9.03648 11.9992 10.2602C11.9616 11.3063 11.8948 12.3566 11.903 13.4039C11.9061 13.7959 11.8815 14.1607 12.1879 14.4399C12.9556 15.1396 13.9719 15.6037 14.8367 16.1737C15.0866 16.3385 15.1267 16.4427 15.271 16.2022" stroke="#37363F" stroke-width="1.8" stroke-linecap="round" />
   </svg>

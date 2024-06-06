@@ -71,14 +71,15 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-
+  
   return (
 
     <html lang="ru" className={ `${ Kosko.variable } ${ myWeekend.variable } ${ garamondCondensed.variable } font-sans ` }>
 
       <body>
+
+          <Providers>{ children }</Providers>
         
-        <Providers>{ children }</Providers>
 
       </body>
 

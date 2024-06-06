@@ -1,0 +1,59 @@
+@import '@/app/_styles/apx.scss';
+@import '@/app/_styles/breakpoints.scss';
+
+.label {
+
+  display: flex;
+  cursor: pointer;
+
+  input {
+
+    display: none;
+
+  }
+
+  .styled_button {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+    width: $apx-17;
+    height: $apx-17;
+
+    border-radius: 50%;
+    background: var(--color-beige);
+
+    span {
+
+      width: $apx-9;
+      height: $apx-9;
+      border-radius: 50%;
+      transition: background .3s;
+
+    }
+
+  }
+
+  .styled_button.active {
+
+    border: $apx-1 solid var(--color-yellow);
+    background: var(--color-white);
+
+    span { background: var(--color-yellow); }
+
+  }
+
+  .label_text {
+
+    margin-left: $apx-8;
+   
+    font-family: var(--font-myweekend);
+    font-weight: 400;
+    font-size: $apx-16;
+    line-height: 120%;
+
+  }
+
+}

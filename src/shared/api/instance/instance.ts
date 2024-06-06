@@ -5,10 +5,12 @@ const instance = axios.create( {
   baseURL: 'https://honeymam.store',
   timeout: 50000,
   headers: {
-    "Http-App-ID": process.env.Http_App_ID
-  }
+    "Http-App-ID": process.env.Http_App_ID,
+  }, 
 
 } );
+
+
 
 instance.interceptors.response.use( response => response, error => {
 

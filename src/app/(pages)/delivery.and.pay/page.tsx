@@ -134,6 +134,7 @@ const ContactsPage: NextPage<ContactsPageProps> = props => {
     </section>
 
   )
+  
 }
 
 export default ContactsPage
