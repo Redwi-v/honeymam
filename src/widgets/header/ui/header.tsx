@@ -1,5 +1,5 @@
 'use client'
-import { FC, ReactElement, useState } from "react";
+import { BaseSyntheticEvent, FC, LegacyRef, ReactElement, RefAttributes, useEffect, useRef, useState } from "react";
 
 import s from './header.module.scss';
 import Link from "next/link";
@@ -288,8 +288,7 @@ type Inputs = {
   code2: number,
   code3: number,
   code4: number,
-  code5: number,
-  code6: number,
+
 
 }
 
@@ -305,6 +304,8 @@ const SignInForm: FC<SignInFormProps> = ( { signInPopupIsActive, setSignInPopupI
     getValues,
     setError,
     clearErrors,
+    setFocus,
+    getFieldState,
     formState: { errors },
 
   } = useForm<Inputs>()
@@ -328,8 +329,6 @@ const SignInForm: FC<SignInFormProps> = ( { signInPopupIsActive, setSignInPopupI
           + getValues().code2
           + getValues().code3
           + getValues().code4
-          + getValues().code5
-          + getValues().code6
       } )
     },
 
@@ -381,6 +380,18 @@ const SignInForm: FC<SignInFormProps> = ( { signInPopupIsActive, setSignInPopupI
 
   } )
 
+
+  if ( getValues('code1') && !getFieldState('code1').isTouched ) {
+    setFocus('code2')
+  }
+  if ( getValues('code2') && !getFieldState('code2').isTouched ) {
+    setFocus('code3')
+  }
+  if ( getValues('code3') && !getFieldState('code3').isTouched ) {
+    setFocus('code4')
+  }
+
+
   const steps = [
     <>
 
@@ -390,6 +401,7 @@ const SignInForm: FC<SignInFormProps> = ( { signInPopupIsActive, setSignInPopupI
         error={ errors.phone?.message }
         label="Ваш телефон*"
         inputParams={ {
+          type: 'number',
           placeholder: "+7 999 999 99 99",
 
           ...register( 'phone', {
@@ -439,12 +451,10 @@ const SignInForm: FC<SignInFormProps> = ( { signInPopupIsActive, setSignInPopupI
 
       <div className={ s.sign_in_code } key={ 1 }>
 
-        <Input errorStyle = { !!errors.root?.message } inputParams={ { placeholder: '', max: 9, min: 1, type: 'number', ...register( 'code1', { max: 9 } ) } }></Input>
-        <Input errorStyle = { !!errors.root?.message } inputParams={ { placeholder: '', max: 9, min: 1, type: 'number', ...register( 'code2', { max: 9 } ) } }></Input>
-        <Input errorStyle = { !!errors.root?.message } inputParams={ { placeholder: '', max: 9, min: 1, type: 'number', ...register( 'code3', { max: 9 } ) } }></Input>
-        <Input errorStyle = { !!errors.root?.message } inputParams={ { placeholder: '', max: 9, min: 1, type: 'number', ...register( 'code4', { max: 9 } ) } }></Input>
-        <Input errorStyle = { !!errors.root?.message } inputParams={ { placeholder: '', max: 9, min: 1, type: 'number', ...register( 'code5', { max: 9 } ) } }></Input>
-        <Input errorStyle = { !!errors.root?.message } inputParams={ { placeholder: '', max: 9, min: 1, type: 'number', ...register( 'code6', { max: 9 } ) } }></Input>
+        <Input errorStyle = { !!errors.root?.message } inputParams={ { placeholder: '', max: 9, maxLength: 1, min: 1, type: 'text', ...register( 'code1', { max: 9 } ) } } />
+        <Input errorStyle = { !!errors.root?.message } inputParams={ { placeholder: '', max: 9, maxLength: 1, min: 1, type: 'text', ...register( 'code2', { max: 9 } ) } } />
+        <Input errorStyle = { !!errors.root?.message } inputParams={ { placeholder: '', max: 9, maxLength: 1, min: 1, type: 'text', ...register( 'code3', { max: 9 } ) } } />
+        <Input errorStyle = { !!errors.root?.message } inputParams={ { placeholder: '', max: 9, maxLength: 1, min: 1, type: 'text', ...register( 'code4', { max: 9 } ) } } />
 
       </div>
 
@@ -481,5 +491,4 @@ const SignInForm: FC<SignInFormProps> = ( { signInPopupIsActive, setSignInPopupI
   );
 
 }
-
 

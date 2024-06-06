@@ -246,7 +246,7 @@ const UserData: FC<IUserData> = ( { } ) => {
     <div className={ s.user_data }>
 
       <Input inputParams={ { placeholder: '', ...register( 'name', { minLength: { value: 3, message: 'Минимальная длина 3' } } ) } } label="Имя" />
-      <Input inputParams={ { placeholder: '', ...register( 'lastName', { minLength: { value: 3, message: 'Минимальная длина 3' } } ) } } label="Имя" />
+      <Input inputParams={ { placeholder: '', ...register( 'lastName', { minLength: { value: 3, message: 'Минимальная длина 3' } } ) } } label="Фамилия" />
 
       <P className={ s.toggle_label }>Пол</P>
       <div onClick={ () => setGender( prev => !prev ) } className={ s.toggle }>
