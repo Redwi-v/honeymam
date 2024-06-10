@@ -207,6 +207,14 @@
 
 }
 
+.input_code {
+
+  padding-right: 0 !important;
+  padding-left: 0 !important;
+  text-align: center !important;
+
+}
+
 .sign_in_form {
 
   .sign_in_button {
@@ -285,6 +293,7 @@
     font-weight: 400;
     font-size: $apx-14;
     line-height: 120%;
+    width: 100%;
 
     margin-top: $apx-32;
     text-align: left;
@@ -296,12 +305,17 @@
     color: var(--color-red);
     font-family: var(--font-garamondCondensed);
     margin-top: $apx-8;
+    display: block;
 
   }
 
 }
 
 @media (max-width: $media-laptop) {
+
+  .laptop_hide {
+    display: none;
+  }
 
   .control_with_icon.adaptive_text {
 
@@ -432,10 +446,10 @@
 }
 
 @media (max-width: $media-mobile) {
-
-  .mobile_hide {
-    display: none;
-  }
+  
+    .mobile_hide {
+      display: none !important;
+    }
 
   .mobile_menu_button {
 

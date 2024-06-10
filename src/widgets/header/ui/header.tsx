@@ -140,10 +140,10 @@ export const Header: FC<HeaderProps> = ( { breadCrumpsList } ) => {
 
               <ControlWithIcon
 
-                className={ `${ s.mobile_hide }` }
+                className={ `${ s.mobile_hide } ${ s.laptop_hide }` }
                 adaptiveText
+                
                 text="Избранное"
-
               />
 
             </Animate>
@@ -381,15 +381,22 @@ const SignInForm: FC<SignInFormProps> = ( { signInPopupIsActive, setSignInPopupI
   } )
 
 
-  if ( getValues('code1') && !getFieldState('code1').isTouched ) {
-    setFocus('code2')
-  }
-  if ( getValues('code2') && !getFieldState('code2').isTouched ) {
-    setFocus('code3')
-  }
-  if ( getValues('code3') && !getFieldState('code3').isTouched ) {
-    setFocus('code4')
-  }
+
+
+  const values = [ watch('code1'), watch('code2'), watch('code3'), watch('code4') ]
+
+  useEffect(() => {
+
+    const index = values.findIndex( str => {
+      if ( !str ) return true
+    })
+
+    const name = `code${index + 1}` as "code1" | "code2" | "code3" | "code4"
+    setFocus(name)
+    console.log(name);
+    
+
+  }, values )
 
 
   const steps = [
@@ -400,6 +407,7 @@ const SignInForm: FC<SignInFormProps> = ( { signInPopupIsActive, setSignInPopupI
         key={ 0 }
         error={ errors.phone?.message }
         label="Ваш телефон*"
+
         inputParams={ {
           type: 'number',
           placeholder: "+7 999 999 99 99",
@@ -412,15 +420,20 @@ const SignInForm: FC<SignInFormProps> = ( { signInPopupIsActive, setSignInPopupI
               message: 'Введен слишком короткий номер телефона'
 
             },
+            validate: {
+
+            },
             pattern: {
 
               value: /(^8|7|\+7)((\d{10})|(\s\d{3}\s\d{3}\s\d{2}\s\d{2}))/,
               message: "неправильный формат, прмер: +7 999 999 99 99"
 
-            }
+            },
 
-          } )
+          } ),
 
+
+   
         } }
 
       />
@@ -451,10 +464,10 @@ const SignInForm: FC<SignInFormProps> = ( { signInPopupIsActive, setSignInPopupI
 
       <div className={ s.sign_in_code } key={ 1 }>
 
-        <Input errorStyle = { !!errors.root?.message } inputParams={ { placeholder: '', max: 9, maxLength: 1, min: 1, type: 'text', ...register( 'code1', { max: 9 } ) } } />
-        <Input errorStyle = { !!errors.root?.message } inputParams={ { placeholder: '', max: 9, maxLength: 1, min: 1, type: 'text', ...register( 'code2', { max: 9 } ) } } />
-        <Input errorStyle = { !!errors.root?.message } inputParams={ { placeholder: '', max: 9, maxLength: 1, min: 1, type: 'text', ...register( 'code3', { max: 9 } ) } } />
-        <Input errorStyle = { !!errors.root?.message } inputParams={ { placeholder: '', max: 9, maxLength: 1, min: 1, type: 'text', ...register( 'code4', { max: 9 } ) } } />
+        <Input errorStyle = { !!errors.root?.message } inputParams={ { className: s.input_code , placeholder: '', max: 9, maxLength: 1, min: 0, type: 'text', ...register( 'code1', { max: 9 } ) } } />
+        <Input errorStyle = { !!errors.root?.message } inputParams={ { className: s.input_code , placeholder: '', max: 9, maxLength: 1, min: 0, type: 'text', ...register( 'code2', { max: 9 } ) } } />
+        <Input errorStyle = { !!errors.root?.message } inputParams={ { className: s.input_code , placeholder: '', max: 9, maxLength: 1, min: 0, type: 'text', ...register( 'code3', { max: 9 } ) } } />
+        <Input errorStyle = { !!errors.root?.message } inputParams={ { className: s.input_code , placeholder: '', max: 9, maxLength: 1, min: 0, type: 'text', ...register( 'code4', { max: 9 } ) } } />
 
       </div>
 

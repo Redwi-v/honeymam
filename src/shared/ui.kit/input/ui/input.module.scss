@@ -3,10 +3,51 @@
 
 .wrapper {
 
+  margin-top: $apx-32;
+  gap: $apx-8;
   display: flex;
   flex-direction: column;
-  gap: $apx-8;
-  margin-top: $apx-32;
+  width: 100%;
+  
+  .main {
+
+    position: relative;
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    gap: $apx-8;
+
+  }
+
+  .reset {
+
+    position: absolute;
+    right: 0;
+    top: auto;
+    bottom: 0;
+
+    background: none;
+    border: none;
+    margin-right: $apx-5;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+
+    svg {
+
+      width: $apx-16;
+      height: $apx-16;
+
+      path {
+        fill: var(--color-black);
+      }
+
+    }
+    
+  }
 
   .label {
 
@@ -14,6 +55,8 @@
     font-weight: 400 !important;
     font-size: $apx-16;
     line-height: 120%;
+    color: var(--color-black);
+
 
   }
 
@@ -23,6 +66,15 @@
     border-radius: $apx-100;
     background: var(--color-beige);
     border: none;
+    width: 100%;
+    color: var(--color-black);
+
+
+  }
+
+  .input_reset {
+
+    padding-right: $apx-40 !important;
 
   }
 
@@ -66,6 +118,8 @@
 
   position: absolute;
 
+  z-index: 110;
+
   display: flex;
   flex-direction: column;
   left: 0;
@@ -106,6 +160,19 @@
     gap: $apx-l-8;
     margin-top: $apx-l-24;
 
+    .reset {
+
+      margin-right: $apx-l-5;
+  
+      svg {
+  
+        width: $apx-l-16;
+        height: $apx-l-16;
+  
+      }
+      
+    }
+
     .label {
 
       font-size: $apx-l-14;
@@ -116,7 +183,15 @@
 
       padding: $apx-l-10 $apx-l-12;
       border-radius: $apx-l-100;
+      font-size: $apx-l-14;
 
+
+    }
+
+    .input_reset {
+    
+      padding-right: $apx-l-40 !important;
+  
     }
 
     .err_label {
@@ -172,6 +247,19 @@
     gap: $apx-m-8;
     margin-top: $apx-m-16;
 
+    .reset {
+
+      margin-right: $apx-m-5;
+  
+      svg {
+  
+        width: $apx-m-16;
+        height: $apx-m-16;
+  
+      }
+      
+    }
+
     .label {
 
       font-size: $apx-m-14;
@@ -182,7 +270,15 @@
 
       padding: $apx-m-10 $apx-m-12;
       border-radius: $apx-m-100;
+      font-size: $apx-m-14;
 
+    }
+
+    
+    .input_reset {
+    
+      padding-right: $apx-m-40 !important;
+  
     }
 
     .err_label {
@@ -194,8 +290,8 @@
 
     .input:focus {
 
-      border: $apx-l-1 solid var(--color-yellow);
-      padding: $apx-l-10 $apx-l-12;
+      border: $apx-m-1 solid var(--color-yellow);
+      padding: $apx-m-10 $apx-m-12;
 
     }
 
@@ -205,20 +301,20 @@
 
   .list {
 
-    border-radius: $apx-l-12;
-    border: $apx-l-1 solid var(--color-dark-grey);
+    border-radius: $apx-m-12;
+    border: $apx-m-1 solid var(--color-dark-grey);
 
     button {
 
-      font-size: $apx-l-16;
-      padding: $apx-l-10 0;
-      border-bottom: $apx-l-1 solid var(--color-dark-grey);
+      font-size: $apx-m-16;
+      padding: $apx-m-10 0;
+      border-bottom: $apx-m-1 solid var(--color-dark-grey);
 
     }
 
     button.active {
       opacity: 1;
-      border-top: $apx-l-1 solid var(--color-dark-grey);
+      border-top: $apx-m-1 solid var(--color-dark-grey);
 
     }
 

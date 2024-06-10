@@ -17,21 +17,23 @@ export type IGetAddressesRes = {
   next: string
   previous: string
 
-  results: Array<{
-    id: number
-    city: string
-    address: string
-    number: string
-    apartment: number
-    building: string
-    stage: number
-    entrance: number
-    longitude?: string
-    latitude?: string
-    is_private_house: boolean
-    is_selected: boolean
-  }>
+  results: IAddress[]
 
+}
+
+export interface IAddress {
+  id: number
+  city: string
+  address: string
+  number: string
+  apartment: number
+  building: string
+  stage: number
+  entrance: number
+  longitude?: string
+  latitude?: string
+  is_private_house: boolean
+  is_selected: boolean
 }
 
 export interface IAddAddressReq {

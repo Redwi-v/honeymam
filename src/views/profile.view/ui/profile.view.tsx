@@ -25,6 +25,7 @@ import Image from "next/image";
 import { Status1 } from "@/app/_images/status1";
 import cookies from "@/shared/api/cookies/cookies";
 import { useRouter, useSearchParams } from "next/navigation";
+import { IAddress } from "@/shared/api/user/types";
 moment.locale( 'ru' );
 
 interface ProfilePageProps {
@@ -68,7 +69,7 @@ const ProfilePage: FC<ProfilePageProps> = props => {
             cookies.remove( 'token' )
             router.push( '/' )
             queryClient.clear()
-            queryClient.invalidateQueries(['activeUser'])
+            queryClient.invalidateQueries( [ 'activeUser' ] )
             setExitPopupIsOpen( false )
           } } style={ ButtonStylesEnum.white }>Да</Button>
           <Button onClick={ () => setExitPopupIsOpen( false ) }>Нет</Button>
@@ -181,6 +182,7 @@ const UserData: FC<IUserData> = ( { } ) => {
     watch,
     setValue,
     setError,
+    resetField,
     formState: { errors },
   } = useForm<Inputs>( {
     defaultValues: {
@@ -236,7 +238,6 @@ const UserData: FC<IUserData> = ( { } ) => {
   } )
 
 
-
   const [ gender, setGender ] = useState( false )
   console.log( errors );
 
@@ -245,8 +246,8 @@ const UserData: FC<IUserData> = ( { } ) => {
 
     <div className={ s.user_data }>
 
-      <Input inputParams={ { placeholder: '', ...register( 'name', { minLength: { value: 3, message: 'Минимальная длина 3' } } ) } } label="Имя" />
-      <Input inputParams={ { placeholder: '', ...register( 'lastName', { minLength: { value: 3, message: 'Минимальная длина 3' } } ) } } label="Фамилия" />
+      <Input clearAction={ () => setValue( 'name', '' ) } className={ `${ s.first_input } ${ s.input }` } inputParams={ { placeholder: '', ...register( 'name', { minLength: { value: 3, message: 'Минимальная длина 3' } } ) } } label="Имя" />
+      <Input clearAction={ () => setValue( 'lastName', '' ) } className={ s.input } inputParams={ { placeholder: '', ...register( 'lastName', { minLength: { value: 3, message: 'Минимальная длина 3' } } ) } } label="Фамилия" />
 
       <P className={ s.toggle_label }>Пол</P>
       <div onClick={ () => setGender( prev => !prev ) } className={ s.toggle }>
@@ -322,7 +323,6 @@ interface IAddressesData {
 
 type AddressesFormInputs = {
 
-  address: string
   number: string
 
   entrance: number,
@@ -341,18 +341,19 @@ const Addresses: FC<IAddressesData> = ( { } ) => {
     watch,
     getValues,
     setError,
+    setValue,
+    reset,
+    resetField,
     formState: { errors },
   } = useForm<AddressesFormInputs>()
 
-
-  const { data: addressesData } = useQuery( {
+  const { data: addressesData, refetch: refetchAddresses } = useQuery( {
 
     queryKey: 'Addresses',
     queryFn: () => UserApi.getAddressesList( { limit: 20 } ),
     initialData: null,
 
   } )
-
 
   const addAddressMutation = useMutation( {
 
@@ -376,20 +377,63 @@ const Addresses: FC<IAddressesData> = ( { } ) => {
         message: Object.keys( err.response?.data )[ 0 ] + ' ' + Object.values( err.response?.data )[ 0 ]
       } )
 
+    },
+
+    onSuccess: () => {
+
+      setPopupIsOpen( false )
+      refetchAddresses()
+
     }
 
   } )
 
-  // const deleteAddressMutation = useMutation({
-  //   mutationFn: () => UserApi.deleteAddress( addressesData. )
-  // })
+  const deleteAddressMutation = useMutation( {
+
+    mutationFn: ( id: number ) => UserApi.deleteAddress( id ),
+    onSuccess: () => {
+      refetchAddresses()
+      setPopupIsOpen( false )
+    }
+
+  } )
+
+  const selectAddressMutation = useMutation( {
+    mutationFn: ( { id, selectedAddress }: { id: number, selectedAddress: IAddress } ) => {
+
+      return UserApi.selectActiveAddress( id, selectedAddress )
+    },
+
+  } )
+
+  const updateAddressMutation = useMutation( {
+
+    mutationFn: ( { editAddress, id }: { id: number, editAddress: IAddress } ) => UserApi.updateAddress( id, {
+
+      ...editAddress,
+      address: daDataState[ 0 ]?.value || editAddress.address,
+      city: daDataState[ 0 ]?.data?.city || editAddress.city,
+      apartment: getValues( 'apartment' ) || editAddress.apartment,
+      number: getValues( 'number' ) || editAddress.number,
+      stage: getValues( 'stage' ) || editAddress.stage,
+      entrance: getValues('entrance') || editAddress.entrance,
+      is_private_house: isPrivateHouse || editAddress.is_private_house
+
+    } ),
+
+    onSuccess: () => {
+      refetchAddresses()
+      setPopupIsOpen(false)
+    }
+
+  } )
 
   const daDataState = useState<DaDataSuggestion<DaDataAddress>>();
 
   const onSubmit: SubmitHandler<AddressesFormInputs> = ( data ) => {
 
-    if ( !daDataState[ 0 ]?.data.city ) return setError( 'root', { message: "Укажите город в адрессе" } )
-    if ( !daDataState[ 0 ]?.data.house ) return setError( 'root', { message: "Укажите номер дома" } )
+    if ( !daDataState[ 0 ]?.data?.city ) return setError( 'root', { message: "Укажите город в адрессе" } )
+    if ( !daDataState[ 0 ]?.data?.house ) return setError( 'root', { message: "Укажите номер дома" } )
 
     addAddressMutation.mutate()
 
@@ -397,6 +441,100 @@ const Addresses: FC<IAddressesData> = ( { } ) => {
 
   const [ activeAddress, setActiveAddress ] = useState( 0 )
   const [ popupIsOpen, setPopupIsOpen ] = useState( false )
+  const [ editId, setEdit ] = useState<number | null>( null )
+
+  useEffect( () => {
+
+    addressesData?.results.find( ( address, index ) => {
+
+      const isSelected = address.is_selected
+      if ( isSelected ) {
+
+        setActiveAddress( address.id )
+        return address
+
+      }
+
+    } )
+
+  }, [ addressesData ] );
+
+  const selectActiveAddress = ( id: number ) => {
+
+    const selectedAddress = addressesData?.results.find( address => address.id === id )
+
+    if ( !selectedAddress ) return
+
+    setActiveAddress( id )
+
+    selectAddressMutation.mutate( {
+      id,
+      selectedAddress: selectedAddress
+    } )
+
+  }
+
+  const editAction = ( id: number ) => {
+
+    const selectedAddress = addressesData?.results.find( address => address.id === id )
+
+    if ( !selectedAddress ) return
+
+    setEdit( id )
+    setPopupIsOpen( true )
+
+    //@ts-expect-error
+    daDataState[ 1 ]( {
+      value: selectedAddress.address
+    } )
+    setValue( 'apartment', selectedAddress.apartment )
+    setValue( 'stage', selectedAddress.stage )
+    setValue( 'entrance', selectedAddress.entrance )
+    setIsPrivateHouse( selectedAddress.is_private_house )
+
+  }
+
+  useEffect( () => {
+
+    if ( popupIsOpen ) return
+
+    setEdit( null )
+    //@ts-expect-error
+    daDataState[ 1 ]( {
+      value: ''
+    } )
+    resetField( 'number' )
+    resetField( 'entrance' )
+    resetField( 'apartment' )
+    resetField( 'stage' )
+    setIsPrivateHouse( false )
+
+  }, [ popupIsOpen ] )
+
+  const removeAddressAction = () => {
+
+    if ( !editId ) return
+
+    deleteAddressMutation.mutate( editId )
+
+  }
+
+  const updateAction = () => {
+
+    const editAddress = addressesData?.results?.find( address => address.id === editId )
+
+    if ( !editAddress ) return
+
+    updateAddressMutation.mutate( {
+
+      id: editId!,
+      editAddress: editAddress
+
+    } )
+
+  }
+
+  const addresses = addressesData?.results?.reverse().toReversed()
 
   return (
 
@@ -456,8 +594,8 @@ const Addresses: FC<IAddressesData> = ( { } ) => {
 
           <div className={ s.form_controls }>
 
-            <Button onClick={ handleSubmit( onSubmit ) }> Изменить адрес </Button>
-            <Button style={ ButtonStylesEnum.red } > Удалить этот адрес </Button>
+            <Button onClick={ editId ? updateAction : handleSubmit( onSubmit ) }>{ editId ? 'Изменить адрес' : 'Добавить адрес' }</Button>
+            { editId && <Button onClick={ removeAddressAction } style={ ButtonStylesEnum.red } > Удалить этот адрес </Button> }
 
           </div>
 
@@ -467,17 +605,17 @@ const Addresses: FC<IAddressesData> = ( { } ) => {
 
       <ul className={ s.list }>
 
-        { addressesData && addressesData.results.length > 1 && addressesData.results.map( ( address, index ) => (
+        { addresses && addresses.length > 0 && addresses.map( ( address, index ) => (
 
           <li className={ s.address_item } key={ address.id }>
 
             <label className={ s.address_info }>
 
-              <RadioButton className={ s.radio_button } isChecked={ index === activeAddress } onChange={ () => setActiveAddress( index ) } />
+              <RadioButton className={ s.radio_button } isChecked={ address.id === activeAddress } onChange={ () => selectActiveAddress( address.id ) } />
 
               <div className={ s.address_main }>
 
-                <P className={ s.address }>{ address.address }, { address.number }</P>
+                <P className={ s.address }>{ address.address }</P>
                 <div className={ s.address_numbers }>
                   <span>Подезд { address.entrance }</span>,
                   <span>Этаж { address.stage }</span>,
@@ -488,7 +626,7 @@ const Addresses: FC<IAddressesData> = ( { } ) => {
 
             </label>
 
-            <button className={ s.edit_button }>
+            <button onClick={ () => editAction( address.id ) } className={ s.edit_button }>
               <PencilIcon />
             </button>
 
@@ -633,7 +771,7 @@ const Reviews: FC<IReviewsData> = ( { } ) => {
           </div>
 
           <div className={ s.text }>
-            <span className={ s.label }>Отлично</span>
+            <span className={ s.label }>Отзыв</span>
             <textarea maxLength={ 500 } { ...register( 'review' ) } placeholder="Поделитесь вашими впечатлениями" />
             <span className={ s.symbols_count }>Осталось { watch( 'review' ) ? 500 - watch( 'review' )?.length : 500 } символов</span>
           </div>
@@ -646,7 +784,7 @@ const Reviews: FC<IReviewsData> = ( { } ) => {
               </span>
               <span className={ s.author_name }>Иван Пирожков</span>
             </div>
-
+              <span className = { s.line }></span>
             <label className={ s.checkbox }>
               <input checked={ IsAnonym } onClick={ () => setIsAnonym( prev => !prev ) } type="checkbox" />
               <span>Или анонимный отзыв</span>

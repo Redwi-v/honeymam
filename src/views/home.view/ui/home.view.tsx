@@ -34,14 +34,29 @@ export const HomeView: FC<IHomeViewProps> = ( { productsList, tab } ) => {
 
         <div className={ s.banner }>
 
-          <img src={ '/images/home_banner.png' } alt="home banner" />
-          <Image fill src={ '/images/home_banner_mobile.svg' } alt="home banner" />
+          <Image quality={100} fill src={ '/images/home_banner.png' } alt="home banner" />
+
+          <H1>
+            <span className = { s.main_word }>Доставка</span>
+            <br/>
+            <span className = { s.yellow_word }>
+
+              любимых
+
+              <svg width="278" height="31" viewBox="0 0 278 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5.58285 25.1537C60.4316 13.5902 119.875 10.6311 176.863 10.0057C208.417 9.65935 240.938 9.48305 272.391 12.5816" stroke="#F6D382" stroke-width="11" stroke-linecap="round" />
+              </svg>
+
+            </span>
+            десертов
+
+          </H1>
 
         </div>
 
         <BannerCategories isGrid />
 
-        <Catalog tab = { tab } list={ productsList } />
+        <Catalog tab={ tab } list={ productsList } />
 
         <HoverAnimatedLink wrapperClassName={ `${ s.all_link_icon } flex items-center` } className={ s.all_link } animateClassName={ s.icon } href="/catalog" frames={ [
 

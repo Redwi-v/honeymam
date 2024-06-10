@@ -1,7 +1,7 @@
 import { headers } from 'next/headers'
 import cookies from '../cookies/cookies'
 import apiInstance from '../instance/instance'
-import { IAddAddressReq, IGetAddressesRes, User } from './types'
+import { IAddAddressReq, IGetAddressesRes, User, IAddress } from './types';
 
 export const UserApi = {
 
@@ -106,14 +106,18 @@ export const UserApi = {
 
   },
 
-  async selectActiveAddress( id: number ): Promise<void> {
+  async selectActiveAddress( id: number, address: IAddress ): Promise<void> {
 
-    const res = await apiInstance.post<void>( `rest/client_addresses/${id}/select`, 
+    const res = await apiInstance.post<void>( `rest/client_addresses/${id}/select/`, 
+      {
+        ...address
+      },
       {
         headers: {
           Authorization: `Bearer ${ cookies.get( 'token' ) }`
-        }
+        },
       }
+      
     )
 
     return res.data
