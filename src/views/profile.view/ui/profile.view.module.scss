@@ -911,6 +911,20 @@
     position: absolute;
     scrollbar-width: thin;
 
+    -ms-overflow-style: none !important;
+    /* IE 10+ */
+    scrollbar-width: none !important;
+    /* Firefox */
+  
+    ::-webkit-scrollbar {
+      /* chrome based */
+      width: 0px;
+      /* ширина scrollbar'a */
+      height: 0px;
+      background: transparent;
+      /* опционально */
+    }
+
     left: 0;
     right: 0;
 
