@@ -3,6 +3,8 @@
 @import './apx.scss';
 @import './tailwind.scss';
 @import './text.scss';
+@import 'react-notifications-component/dist/theme.css';
+@import 'animate.css/animate.min.css';
 
 /* СБРОС СТАНДАРТНЫХ СТИЛЕЙ */
 *,
@@ -256,3 +258,15 @@ input[type=number] {
   }
 
 }
+
+
+// for popup
+.rnc__base  {
+  top: 0
+}
+
+.rnc__notification-item {
+  box-shadow: none !important;
+
+}
+

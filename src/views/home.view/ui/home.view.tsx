@@ -25,7 +25,6 @@ interface IHomeViewProps {
 
 export const HomeView: FC<IHomeViewProps> = ( { productsList, tab } ) => {
 
-
   return (
 
     <>

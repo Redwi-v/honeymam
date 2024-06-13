@@ -1,7 +1,7 @@
 import { headers } from 'next/headers'
 import cookies from '../cookies/cookies'
 import apiInstance from '../instance/instance'
-import { IAddAddressReq, IGetAddressesRes, User, IAddress } from './types';
+import { IAddAddressReq, IGetAddressesRes, User, IAddress, IUpdateUserInfoReq } from './types';
 
 export const UserApi = {
 
@@ -36,7 +36,7 @@ export const UserApi = {
 
   },
 
-  async updateUserData( data: { username: string, last_name: string, first_name: string, email: string } ): Promise<User> {
+  async updateUserData( data: IUpdateUserInfoReq ): Promise<User> {
 
     const res = await apiInstance.patch<User>( 'rest/accounts/users/edit/', data, {
       headers: {

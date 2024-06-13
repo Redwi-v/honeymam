@@ -2,6 +2,7 @@ import { ProductsApi } from "@/shared/api";
 import { HomeView } from "@/views/home.view";
 import { Footer } from "@/widgets/footer";
 import { Header } from "@/widgets/header"
+import { ReactNotifications } from "react-notifications-component";
 
 
 export default async function Home ( props: { searchParams: {tab: string} } ) {

@@ -5,6 +5,7 @@ import { P } from '../../text/ui/text';
 import { AddressSuggestions } from 'react-dadata';
 import { CrossImage } from '@/app/_images/cross';
 import { cssIf } from '@/shared/scripts';
+import InputMask from 'react-input-mask';
 
 interface InputProps {
 
@@ -14,12 +15,13 @@ interface InputProps {
   error?: string
   errorStyle?: boolean
   clearAction?: () => void
+  mask?: RegExp
 
 }
 
 export const Input: FC<InputProps> = ( props ) => {
 
-  const { label, className, error, errorStyle, clearAction } = props
+  const { label, className, error, errorStyle, clearAction, mask } = props
   const { className: inputClassName, onChange, max, min, ...inputParams } = props.inputParams
 
   const changeAction = ( e: ChangeEvent<HTMLInputElement> ) => {
@@ -28,10 +30,12 @@ export const Input: FC<InputProps> = ( props ) => {
 
     e.target.value = String( +e.target.value > +max ? +max : e.target.value )
     e.target.value = String( +e.target.value < +min ? +min : e.target.value )
+
+
+
     onChange && onChange( e )
 
   }
-
 
   return (
 
@@ -40,19 +44,32 @@ export const Input: FC<InputProps> = ( props ) => {
       { label && <span className={ s.label }>{ label }</span> }
       <div className={ s.main }>
 
-        <input
+        { mask 
 
-          className={ `${ s.input } ${ inputClassName } ${ error || errorStyle && s.error } ${ cssIf(clearAction, s.input_reset) } ` }
+          //@ts-ignore
+          ? <InputMask
+
+            className={ `${ s.input } ${ inputClassName } ${ error || errorStyle && s.error } ${ cssIf( clearAction, s.input_reset ) } ` }
+            type="text"
+            placeholder="Placeholder"
+            onChange={ changeAction }
+            { ...inputParams }
+            mask="+7 (999) 999 99 99" 
+          /> 
+
+          : <input
+
+          className={ `${ s.input } ${ inputClassName } ${ error || errorStyle && s.error } ${ cssIf( clearAction, s.input_reset ) } ` }
           type="text"
           placeholder="Placeholder"
           onChange={ changeAction }
 
           { ...inputParams }
 
-        />
+        /> }
 
         { error && <P className={ s.err_label }>{ error }</P> }
-        { clearAction &&  <button className={ s.reset } onClick={ () => clearAction && clearAction() }>
+        { clearAction && <button className={ s.reset } onClick={ () => clearAction && clearAction() }>
           <CrossImage />
         </button> }
       </div>

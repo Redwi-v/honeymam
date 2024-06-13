@@ -1,17 +1,12 @@
-import Image from 'next/image';
+'use client'
 import s from './catalog.module.scss'
 import { TextCategories } from "@/entities/text.categories";
 
-
 import { FC } from 'react';
-import { Counter, H1, H2, P } from '@/shared/ui.kit';
-import { StickImage } from "@/app/_images/stick";
+import { H1 } from '@/shared/ui.kit';
 import type { IProduct } from '@/shared/api';
-import { LikeButton } from '@/shared/ui.kit/like.button/ui/like.button';
-import Link from 'next/link';
-import { Badge } from './badge';
-
-
+import { CatalogItem } from './catalog.item/catalog.item';
+import { cssIf } from '@/shared/scripts';
 
 interface ICatalogProps {
 
@@ -19,13 +14,16 @@ interface ICatalogProps {
   title?: string
   header?: boolean
   tab?: string
+  listClassName?: string
 
 }
 
 export const Catalog: FC<ICatalogProps> = ( props ) => {
 
-  const { list, title, header, tab } = props
+  const { list, title, header, tab, listClassName } = props
 
+  console.log(list);
+  
   return (
 
     <div className={ s.catalog }>
@@ -42,7 +40,7 @@ export const Catalog: FC<ICatalogProps> = ( props ) => {
 
       }
 
-      <ul className={ s.list }>
+      <ul className={`${ s.list } ${ cssIf( listClassName, listClassName! ) }`}>
 
         { list?.length > 0 &&
 
@@ -60,52 +58,3 @@ export const Catalog: FC<ICatalogProps> = ( props ) => {
 
 
 
-export const CatalogItem: FC<IProduct> = ( { image, title, description, price, discount, badge, raw_price, id } ) => (
-
-  <li className={ s.item }>
-
-    <div className={ s.preview }>
-
-      <Link href={ `/product/${ id }` } scroll={true}>
-        <Image fill src={ image } alt="product preview" />
-      </Link>
-
-      <LikeButton />
-
-      <Badge badge={ badge } />
-
-    </div>
-
-    <div className={ s.main_info }>
-
-      <Link className={ s.top } href={ `/product/${ id }` } scroll={true}>
-
-        <H2 className={ `${ s.item_title } ` }>{ title }</H2>
-
-        <P className={ s.item_description }>
-          { description }
-        </P>
-
-      </Link>
-
-
-      <div className={ s.bottom }>
-
-        <div className={ s.price }>
-
-          <P className={ s.price_value }>{ price }  ₽</P>
-          { discount && <P className={ s.old_price }>
-            <StickImage />
-            { raw_price } ₽
-          </P> }
-
-        </div>
-
-        <Counter />
-
-      </div>
-
-    </div>
-
-  </li>
-)

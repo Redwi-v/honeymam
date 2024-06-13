@@ -1,6 +1,10 @@
 @import '@/app/_styles/apx.scss';
 @import '@/app/_styles/breakpoints.scss';
 
+
+.noti {
+  background: red;
+}
 .profile_page {
 
   padding-bottom: $apx-100;
@@ -861,6 +865,7 @@
 
   position: relative;
 
+
   .active {
 
     padding: $apx-12;
@@ -872,6 +877,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    font-size: $apx-16;
 
     svg {
 
@@ -1551,6 +1558,7 @@
 
       padding: $apx-l-12;
       border-radius: $apx-l-100;
+      font-size: $apx-l-14;
 
       svg {
 

@@ -25,12 +25,13 @@ interface IButtonProps {
   href?: string
   onClick?: ( e: MouseEvent<HTMLButtonElement> ) => void
   style?: ButtonStylesEnum
+  loading?: boolean
 
 }
 
 export const Button: FC<PropsWithChildren & IButtonProps> = ( props ) => {
 
-  const { children, className, href, onClick, style } = props
+  const { children, className, href, onClick, style, loading } = props
 
   const { push } = useRouter()
 
@@ -44,7 +45,16 @@ export const Button: FC<PropsWithChildren & IButtonProps> = ( props ) => {
   return (
 
     <button  onClick={ action } className={ `${ s.button } ${ cssIf( className, className! ) } ${ cssIf( style, ButtonStyles[style!] ) }` }>
-      { children }
+     { loading
+
+      ? <div className = { s.loading }>
+        <span />
+        <span />
+        <span />
+      </div>
+      : children
+
+    } 
     </button>
 
   )

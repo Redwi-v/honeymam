@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import "./_styles/globals.scss";
 import Providers from "./progress.bar";
+import "./_styles/globals.scss";
+
 
 export const revalidate = 3600
 
@@ -78,7 +79,10 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
 
       <body>
 
-          <Providers>{ children }</Providers>
+          <Providers>
+            { children }
+            </Providers>
+          
         
 
       </body>

@@ -6,7 +6,7 @@ import { H2 } from "@/shared/ui.kit"
 import s from './we.have.module.scss'
 import { useKeenSlider } from "keen-slider/react"
 import 'keen-slider/keen-slider.min.css'
-import { CatalogItem } from "@/widgets/catalog/ui/catalog"
+import { CatalogItem } from "@/widgets/catalog/ui/catalog.item/catalog.item"
 
 const WeHaveSlider: FC<{ list: IProduct[] }> = ( { list } ) => {
 

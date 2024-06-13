@@ -1,0 +1,49 @@
+@import '@/app/_styles/apx.scss';
+@import '@/app/_styles/breakpoints.scss';
+
+.container {
+
+  background: #F1A906;
+  width: 100%;
+  border-radius: $apx-30;
+
+  padding: $apx-12 $apx-40;
+
+  text-align: center;
+
+  font-family: var(--font-myweekend);
+  color: var(--color-white);
+  animation: popupAnim .1s both;
+
+}
+
+@media (max-width: $media-laptop) {
+
+  .container {
+
+    border-radius: $apx-l-30;
+    padding: $apx-l-12 $apx-l-40;
+
+  }
+
+}
+
+
+@media (max-width: $media-mobile) {
+  .container {
+
+    border-radius: $apx-m-30;
+    padding: $apx-m-12 $apx-m-40;
+
+  }
+}
+
+@keyframes popupAnim {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}

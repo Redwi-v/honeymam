@@ -6,9 +6,20 @@ export interface User {
   username: string,
   email: string,
   phone: string,
+  gender: "MALE" | "FEMALE",
+  date_of_birth: string,
 
 }
 
+
+export interface IUpdateUserInfoReq {
+  username: string,
+  last_name: string,
+  first_name: string,
+  email: string,
+  date_of_birth: string,
+  gender: "MALE" | "FEMALE",
+} 
 
 // addresses
 export type IGetAddressesRes = {

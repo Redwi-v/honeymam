@@ -1,0 +1,52 @@
+@import '@/app/_styles/apx.scss';
+@import '@/app/_styles/breakpoints.scss';
+
+
+.content {
+
+  .catalog_list {
+    margin-top: $apx-27;
+    margin-bottom: $apx-100;
+  }
+  
+  .title {
+    font-size: $apx-64 !important;
+  }
+
+}
+
+@media screen and (max-width: $media-laptop) {
+
+  .content {
+
+    .catalog_list {
+      margin-top: $apx-l-32;
+      margin-bottom: $apx-l-60;
+    }
+    
+    .title {
+      font-size: $apx-l-44 !important;
+    }
+  
+  }
+
+}
+
+
+
+@media screen and (max-width: $media-mobile) {
+
+  .content {
+
+    .catalog_list {
+      margin-top: $apx-m-40;
+      margin-bottom: $apx-m-40;
+    }
+    
+    .title {
+      font-size: $apx-m-32 !important;
+    }
+  
+  }
+
+}

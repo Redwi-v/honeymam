@@ -1,15 +1,6 @@
-import { NextPage } from "next"
 import s from '../../home.module.scss'
-import { StickImage } from "@/app/_images/stick"
-import { H1, H2, P } from '../../../shared/ui.kit/text/ui/text';
-import { HeartImage } from "@/app/_images/heart";
-import Image from "next/image";
-import { MiniCakesImage } from "@/app/_images/mini.cakes";
-import { CookieImage } from "@/app/_images/сookie";
-import Link from "next/link";
-import { CakeImage } from "@/app/_images/cake";
-import { CandiesImage } from "@/app/_images/candies";
-import { BreadCrumbs, Counter, ICrumbItem } from "@/shared/ui.kit";
+import { H1, H2 } from '../../../shared/ui.kit/text/ui/text';
+import { BreadCrumbs, ICrumbItem } from "@/shared/ui.kit";
 import { BannerCategories } from "@/entities/banner.categories";
 import { Header } from "@/widgets/header";
 import { Footer } from "@/widgets/footer";

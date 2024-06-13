@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Header } from "@/widgets/header";
 import { Footer } from "@/widgets/footer";
+import { ReactNotifications } from "react-notifications-component";
 
 
 export const metadata: Metadata = {
@@ -24,6 +25,7 @@ export default function RootLayout( { children }: Readonly<{ children: React.Rea
         { children }
         
       </main>
+
       <Footer />
 
 

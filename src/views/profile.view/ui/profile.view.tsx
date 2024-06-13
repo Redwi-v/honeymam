@@ -1,5 +1,5 @@
 'use client'
-import { BreadCrumbs, Button, DaDataField, H1, H2, ICrumbItem, Input, P, Popup, RadioButton } from "@/shared/ui.kit"
+import { BreadCrumbs, Button, DaDataField, H1, H2, ICrumbItem, Input, Notification, P, Popup, RadioButton } from "@/shared/ui.kit"
 import s from './profile.view.module.scss'
 import { useQuery, useMutation, useQueryClient } from 'react-query';
 import { UserApi } from "@/shared/api/user/user.api"
@@ -25,7 +25,8 @@ import Image from "next/image";
 import { Status1 } from "@/app/_images/status1";
 import cookies from "@/shared/api/cookies/cookies";
 import { useRouter, useSearchParams } from "next/navigation";
-import { IAddress } from "@/shared/api/user/types";
+import { IAddress, IUpdateUserInfoReq } from "@/shared/api/user/types";
+import { Store } from "react-notifications-component";
 moment.locale( 'ru' );
 
 interface ProfilePageProps {
@@ -59,7 +60,6 @@ const ProfilePage: FC<ProfilePageProps> = props => {
   return (
 
     <section className={ `${ s.profile_page } container` }>
-
       <BreadCrumbs list={ breadCrumbsList } />
       <H1 className={ s.title }>Профиль</H1>
 
@@ -130,6 +130,7 @@ const ProfilePage: FC<ProfilePageProps> = props => {
       </div>
 
     </section>
+   
 
   )
 }
@@ -153,7 +154,6 @@ type Inputs = {
 
   name: string,
   lastName: string,
-  gender: 'W' | 'M',
   phone: string,
   email: string,
 
@@ -166,13 +166,13 @@ type Inputs = {
 const UserData: FC<IUserData> = ( { } ) => {
 
   const years: { value: string }[] = Array.from( Array( 100 ).keys() ).map( index => ( { value: String( moment().year() - index ) } ) )
-  const months = Array.from( Array( 12 ).keys() ).map( index => ( { value: moment().month( index ).format( 'MMMM' ) } ) )
+  const months = Array.from( Array( 12 ).keys() ).map( index => ( { value: moment().month( index ).format( 'MMMM' ), number: moment().month( index ).format('MM') } ) )
 
   const { data: userData } = useQuery( {
 
     queryKey: [ 'activeUser' ],
     queryFn: UserApi.getActiveUser,
-    initialData: null
+    initialData: null,
 
   } )
 
@@ -184,49 +184,51 @@ const UserData: FC<IUserData> = ( { } ) => {
     setError,
     resetField,
     formState: { errors },
-  } = useForm<Inputs>( {
-    defaultValues: {
-      gender: 'M',
+  } = useForm<Inputs>()
 
-    }
-  } )
-
-
-  useEffect( () => {
-
-    setValue( 'name', userData?.first_name || '' )
-    setValue( 'lastName', userData?.last_name || '' )
-    setValue( 'phone', userData?.phone || '' )
-    setValue( 'email', userData?.email || '' )
-
-  }, [ userData ] )
-
-  const [ year, setYear ] = useState( years[ 0 ].value )
-  const [ month, setMonth ] = useState( months[ 0 ].value )
+  const [ year, setYear ] = useState( years[ 0 ] )
+  const [ month, setMonth ] = useState( months[ 0 ] )
   const [ days, setDays ] = useState(
-    Array.from( Array( moment( { month: months.findIndex( item => item.value === month ) } ).daysInMonth() ).keys() )
+    Array.from( Array( moment( { month: months.findIndex( item => item.value === month.value ) } ).daysInMonth() ).keys() )
       .map( index => ( { value: String( index + 1 ).length < 2 ? `0${ String( index + 1 ) }` : String( index + 1 ) } ) )
   )
 
-  const [ day, setDay ] = useState( days[ 0 ].value )
+  const [ day, setDay ] = useState( days[ 0 ] )
 
   useEffect( () => {
 
-    setDays( Array.from( Array( moment( { month: months.findIndex( item => item.value === month ) } ).daysInMonth() ).keys() )
+    setDays( Array.from( Array( moment( { month: months.findIndex( item => item.value === month.value ) } ).daysInMonth() ).keys() )
       .map( index => ( { value: String( index + 1 ).length < 2 ? `0${ String( index + 1 ) }` : String( index + 1 ) } ) ) )
 
   }, [ month ] )
 
   const updateUserDataMutation = useMutation( {
 
-    mutationFn: ( data: { username: string, last_name: string, first_name: string, email: string } ) => UserApi.updateUserData( data ),
+    mutationFn: ( data: IUpdateUserInfoReq ) => UserApi.updateUserData( data ),
     onError: ( err: AxiosError<any> ) => {
 
       setError( 'root', { message: err.response?.data?.detail } )
 
+    },
+    onSuccess: () => {
+
+      Store.addNotification({
+        type: "success",
+        content: <Notification text = { 'Данные изменены' }/>,
+        insert: "top",
+        container: "bottom-center",
+        animationIn: ["animate__animated", "animate__bounceIn" ],
+        animationOut: ["animate__animated", "animate__fadeOut"],
+        dismiss: {
+          duration: 1000,
+          onScreen: false
+        }
+      });
+
     }
 
   } )
+
 
   const onSubmit: SubmitHandler<Inputs> = ( data ) => updateUserDataMutation.mutate( {
 
@@ -234,13 +236,46 @@ const UserData: FC<IUserData> = ( { } ) => {
     last_name: data.lastName,
     username: userData?.username!,
     email: data?.email!,
+    date_of_birth: `${year.value}-${month.number}-${day.value}`,
+    gender: gender ?  'FEMALE': 'MALE',
 
   } )
 
 
   const [ gender, setGender ] = useState( false )
-  console.log( errors );
 
+  
+  useEffect( () => {
+
+    setValue( 'name', userData?.first_name || '' )
+    setValue( 'lastName', userData?.last_name || '' )
+    setValue( 'phone', userData?.phone || '' )
+    setValue( 'email', userData?.email || '' )
+    
+    if ( userData?.gender ) setGender( userData?.gender === 'FEMALE' )
+    if ( userData?.date_of_birth ) {
+
+      const [ year, month, day ] = userData?.date_of_birth.split('-')
+      const mothValue = moment().month(+month - 1).format('MMMM');
+      console.log(month);
+      
+  
+      setYear({
+        value: year
+      })
+
+      setMonth({
+        number: month,
+        value: mothValue,
+      })
+
+      setDay({
+        value: day,
+      })
+
+    }
+  
+  }, [ userData ] )
 
   return (
 
@@ -303,13 +338,13 @@ const UserData: FC<IUserData> = ( { } ) => {
       <P className={ s.toggle_label }>Дата рождения</P>
 
       <div className={ s.birth_date }>
-        <DropList className={ s.drop_down } activeValue={ day } setActiveItem={ setDay } list={ days } />
-        <DropList className={ s.drop_down } activeValue={ month } setActiveItem={ setMonth } list={ months } />
-        <DropList className={ s.drop_down } activeValue={ year } setActiveItem={ setYear } list={ years } />
+        <DropList className={ s.drop_down } activeValue={ day.value } setActiveItem={ setDay } list={ days } />
+        <DropList className={ s.drop_down } activeValue={ month.value } setActiveItem={ setMonth } list={ months } />
+        <DropList className={ s.drop_down } activeValue={ year.value } setActiveItem={ setYear } list={ years } />
       </div>
       { errors && <P className={ s.err }>{ errors.root?.message || Object.values( errors ).find( value => value.message )?.message }</P> }
 
-      <Button className={ s.send_button } onClick={ handleSubmit( onSubmit ) }>Сохранить изменения</Button>
+      <Button loading = {updateUserDataMutation.isLoading} className={ s.send_button } onClick={ handleSubmit( onSubmit ) }>Сохранить изменения</Button>
     </div>
 
   )
@@ -404,6 +439,21 @@ const Addresses: FC<IAddressesData> = ( { } ) => {
       return UserApi.selectActiveAddress( id, selectedAddress )
     },
 
+    onSuccess: () => {
+      Store.addNotification({
+        type: "success",
+        content: <Notification text = { 'Адрес был успешно изменен' }/>,
+        insert: "top",
+        container: "bottom-center",
+        animationIn: ["animate__animated", "animate__bounceIn" ],
+        animationOut: ["animate__animated", "animate__fadeOut"],
+        dismiss: {
+          duration: 1000,
+          onScreen: false
+        }
+      });
+    }
+
   } )
 
   const updateAddressMutation = useMutation( {
@@ -423,7 +473,18 @@ const Addresses: FC<IAddressesData> = ( { } ) => {
 
     onSuccess: () => {
       refetchAddresses()
-      setPopupIsOpen(false)
+      setPopupIsOpen( false )
+      Store.addNotification( {
+        content: <Notification text={ 'Адрес был успешно изменен' } />,
+        insert: "bottom",
+        container: "bottom-center",
+        animationIn: [ "animate__animated", "animate__bounceIn" ],
+        animationOut: [ "animate__animated", "animate__fadeOut" ],
+        dismiss: {
+          duration: 1000,
+          onScreen: false,
+        }
+      } )
     }
 
   } )
@@ -967,7 +1028,7 @@ interface IDropListProps {
   }[],
 
   activeValue: string,
-  setActiveItem: ( item: string ) => void
+  setActiveItem: ( item: any ) => void
   className?: string
 
 }
@@ -991,7 +1052,7 @@ const DropList: FC<IDropListProps> = ( { list, activeValue, setActiveItem, class
 
         { list.map( ( item, index ) => (
 
-          <button onClick={ () => { setActiveItem( item.value ); setIsOpen( false ) } } key={ index } value={ item.value }>
+          <button onClick={ () => { setActiveItem( item ); setIsOpen( false ) } } key={ index } value={ item.value }>
 
             { item.value }
 

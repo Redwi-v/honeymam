@@ -128,6 +128,7 @@ export const Header: FC<HeaderProps> = ( { breadCrumpsList } ) => {
 
               containerClassName = { s.favorite  }
               className={ ` ${ s.icon }` }
+              onClick={() => router.push('/favorites')}
               wrapperClass={ `${ s.control_with_icon } flex items-center` }
               frames={ [
 
@@ -312,7 +313,7 @@ const SignInForm: FC<SignInFormProps> = ( { signInPopupIsActive, setSignInPopupI
 
   const onSubmit: SubmitHandler<Inputs> = ( data ) => {
     sendPhoneMutation.mutate( {
-      phone: data.phone.replaceAll( ' ', '1' ).replaceAll( '+', '' )
+      phone: data.phone.replaceAll( ' ', '' ).replaceAll( '+', '' ).replaceAll('-', '').replace(')', '').replace('(', '')
     } )
   }
 
@@ -323,7 +324,7 @@ const SignInForm: FC<SignInFormProps> = ( { signInPopupIsActive, setSignInPopupI
       clearErrors( 'root' )
 
       return UserApi.authConfirm( {
-        phone: getValues().phone.replaceAll( '+', '' ).replaceAll( ' ', '' ),
+        phone: getValues().phone.replaceAll( ' ', '' ).replaceAll( '+', '' ).replaceAll('-', '').replace(')', '').replace('(', ''),
         code:
           getValues().code1
           + getValues().code2
@@ -381,8 +382,6 @@ const SignInForm: FC<SignInFormProps> = ( { signInPopupIsActive, setSignInPopupI
   } )
 
 
-
-
   const values = [ watch('code1'), watch('code2'), watch('code3'), watch('code4') ]
 
   useEffect(() => {
@@ -393,7 +392,6 @@ const SignInForm: FC<SignInFormProps> = ( { signInPopupIsActive, setSignInPopupI
 
     const name = `code${index + 1}` as "code1" | "code2" | "code3" | "code4"
     setFocus(name)
-    console.log(name);
     
 
   }, values )
@@ -407,28 +405,21 @@ const SignInForm: FC<SignInFormProps> = ( { signInPopupIsActive, setSignInPopupI
         key={ 0 }
         error={ errors.phone?.message }
         label="Ваш телефон*"
+        mask = {  /\b(?:\+?7|8)[ -]?\(?\d{3}\)?[ -]?\d{3}[ -]?\d{2}[ -]?\d{2}\b'/ }
 
         inputParams={ {
-          type: 'number',
+          type: 'tel',
           placeholder: "+7 999 999 99 99",
 
           ...register( 'phone', {
 
             minLength: {
 
-              value: 8,
+              value: 2,
               message: 'Введен слишком короткий номер телефона'
 
             },
-            validate: {
-
-            },
-            pattern: {
-
-              value: /(^8|7|\+7)((\d{10})|(\s\d{3}\s\d{3}\s\d{2}\s\d{2}))/,
-              message: "неправильный формат, прмер: +7 999 999 99 99"
-
-            },
+            
 
           } ),
 
