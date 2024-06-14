@@ -7,7 +7,7 @@ export const ProductsApi = {
   async getList( params: { badge?: string, categories?: string } ) {
 
     return apiInstance.get<IGetProductListRes>( 'rest/products', {
-      params
+      params,
     } )
 
   },

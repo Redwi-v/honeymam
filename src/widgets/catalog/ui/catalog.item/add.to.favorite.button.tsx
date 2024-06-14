@@ -3,9 +3,9 @@
 import { ProductsApi } from "@/shared/api";
 import { Notification } from "@/shared/ui.kit";
 import { LikeButton } from "@/shared/ui.kit/like.button/ui/like.button";
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { Store } from "react-notifications-component";
-import { useMutation, useQueryClient } from "react-query";
+import { useMutation, useQueryClient, useQuery } from 'react-query';
 
 interface AddToFavoriteButtonProps {
   id: string | number
@@ -15,8 +15,28 @@ interface AddToFavoriteButtonProps {
 const AddToFavoriteButton: FC<AddToFavoriteButtonProps> = ({id, isFavorite }) => {
 
   const queryClient = useQueryClient()
+  
+  const { data: favoritesData } = useQuery({
+
+    queryKey: ['favorites'],
+    queryFn: () => ProductsApi.getFavorites({})
+
+  })
+  
+
 
   const favoriteState = useState( isFavorite )
+
+  useEffect(() => {
+    const inFavoritesList = favoritesData?.data.results.find(product => {
+      return product.id === id
+    })
+    console.log(inFavoritesList);
+
+    if ( inFavoritesList ) favoriteState[1](true)
+
+  }, [favoritesData])
+
   const setFavoriteMutation = useMutation({
     mutationFn: () => ProductsApi.toggleFavorite({id}),
     onSuccess: (res) => {
@@ -38,6 +58,9 @@ const AddToFavoriteButton: FC<AddToFavoriteButtonProps> = ({id, isFavorite }) =>
       })
     }
   })
+
+
+
 
   return ( 
     
