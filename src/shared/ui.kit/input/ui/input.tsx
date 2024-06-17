@@ -54,7 +54,8 @@ export const Input: FC<InputProps> = ( props ) => {
             placeholder="Placeholder"
             onChange={ changeAction }
             { ...inputParams }
-            mask="+7 (999) 999 99 99" 
+            mask="+7 (999) 999 99 99"
+            maskChar={''}
           /> 
 
           : <input

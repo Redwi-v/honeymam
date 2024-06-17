@@ -2,7 +2,7 @@
 import { BreadCrumbs, H1, H2, ICrumbItem, P } from "@/shared/ui.kit"
 import { NextPage } from "next"
 import s from './contacts.module.scss'
-import { Map, YMaps } from '@pbe/react-yandex-maps';
+import { Map, Placemark, YMaps } from '@pbe/react-yandex-maps';
 
 interface ContactsPageProps {
 
@@ -26,7 +26,8 @@ const ContactsPage: NextPage<ContactsPageProps> = props => {
   return (
 
     <section className={ `${ s.contacts_page } container` }>
-<BreadCrumbs list={breadCrumbsList}/>
+      <BreadCrumbs list={breadCrumbsList}/>
+
       <H1 className={ s.title }>Контакты</H1>
 
       <div className={ s.main }>
@@ -34,7 +35,9 @@ const ContactsPage: NextPage<ContactsPageProps> = props => {
         <YMaps>
 
           <div className={ s.map }>
-            <Map width="100%" height="100%" defaultState={ { center: [ 55.75, 37.57 ], zoom: 9 } } />
+            <Map width="100%" height="100%" defaultState={ { center: [ 59.938675, 30.314447 ], zoom: 9 } } >
+              <Placemark geometry={[59.590727, 30.056336]} />
+            </Map>
           </div>
 
         </YMaps>
@@ -59,7 +62,9 @@ const ContactsPage: NextPage<ContactsPageProps> = props => {
 
           <div className={ s.block }>
             <H2>соц. сети:</H2>
-            <a className="p">VK, telegram, instagram</a>
+            <a className="p">VK, </a>
+            <a className="p">telegram, </a>
+            <a className="p">instagram</a>
           </div>
 
           <div className={ s.block }>
