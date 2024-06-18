@@ -29,13 +29,9 @@ html {
   cursor: default;
   min-width: 100%;
   min-height: 100%;
-  user-select: none;
   font-display: swap;
   overflow-x: hidden;
-  -o-user-select: none;
-  -ms-user-select: none;
-  -moz-user-select: none;
-  -webkit-user-select: none;
+
   scroll-behavior: smooth;
   text-rendering: optimizeSpeed;
 

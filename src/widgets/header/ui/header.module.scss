@@ -79,16 +79,17 @@
 
 .icon {
 
-  width: $apx-26;
-  height: $apx-26;
+  width: $apx-26 !important;
+  height: $apx-26 !important;
 
 }
-
+  
 .control_with_icon {
 
   gap: $apx-4;
   background: none;
   border: none;
+  padding: 0;
 
   p {
 
@@ -329,8 +330,8 @@
 
     .icon {
 
-      width: $apx-l-24;
-      height: $apx-l-24;
+      width: $apx-l-24 !important;
+      height: $apx-l-24 !important;
 
     }
 
@@ -489,8 +490,8 @@
 
     .icon {
 
-      width: $apx-m-22;
-      height: $apx-m-22;
+      width: $apx-m-22 !important;
+      height: $apx-m-22 !important;
 
     }
 

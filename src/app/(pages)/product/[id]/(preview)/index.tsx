@@ -13,6 +13,7 @@ import { FullScreenImage } from "@/app/_images/full.screen"
 import { PauseImage } from "@/app/_images/pause"
 import { ArrowImage } from "@/app/_images/arrow"
 import { CrossImage } from "@/app/_images/cross"
+import { cssIf } from "@/shared/scripts"
 
 interface IPreviewProps {
 
@@ -328,6 +329,7 @@ interface IFullImagePreview {
   setActiveItem: ( item: IActiveItem ) => void
   type: string
   showControls: boolean
+  className?: string;
 
 }
 
@@ -336,7 +338,8 @@ export const FullImagePreview:FC< IFullImagePreview > = (props) => {
   const { 
   
     fullPreviewOpen, setFullPreviewOpen, activeItem,
-    commonPreviews, setActiveItem, type, showControls
+    commonPreviews, setActiveItem, type, showControls,
+    className,
   
   } = props
 
@@ -344,7 +347,7 @@ export const FullImagePreview:FC< IFullImagePreview > = (props) => {
 
     <>
 
-      { fullPreviewOpen && <div className={ s.full_screen_preview }>
+      { fullPreviewOpen && <div className={`${ s.full_screen_preview  } ${ cssIf( className, className! ) }`}>
 
         <button onClick={ () => setFullPreviewOpen( false ) } className={ s.cross }>
 

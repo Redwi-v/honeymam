@@ -145,6 +145,7 @@ export const Header: FC<HeaderProps> = ( { breadCrumpsList } ) => {
                 adaptiveText
                 
                 text="Избранное"
+                
               />
 
             </Animate>

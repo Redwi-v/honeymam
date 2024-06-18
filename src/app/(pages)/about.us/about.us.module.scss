@@ -42,9 +42,6 @@
 
   }
 
-
-
-
   .advantages {
 
     display: flex;
@@ -82,6 +79,7 @@
     .advantages__item {
 
       background-image: url('/images/patern.jpg');
+      background-color: var(--color-beige);
       min-height: $apx-376;
       padding: $apx-24;
       padding-top: $apx-24;
@@ -124,6 +122,35 @@
 
   }
 
+  .requisites {
+
+    background-color: var(--color-beige);
+    width: $apx-800;
+    padding: $apx-64;
+    margin-top: $apx-24;
+
+    border-radius: $apx-24;
+
+    h3 {
+
+      font-size: $apx-24;
+
+    }
+
+    ul {
+
+      margin-top: $apx-16;
+
+      li {
+
+        line-height: $apx-28;
+        font-size: $apx-20;
+
+      }
+    }
+
+  }
+
   .gallery {
 
     display: grid;
@@ -133,7 +160,7 @@
     grid-row-gap: 0px;
 
     height: $apx-894;
-    margin-top: $apx-60;
+    margin-top: $apx-48;
     gap: $apx-40;
 
     .image_wrapper {
@@ -247,6 +274,34 @@
 
     }
 
+    .requisites {
+
+      width: 100%;
+      padding: $apx-l-42;
+      margin-top: $apx-l-24;
+  
+      border-radius: $apx-l-24;
+  
+      h3 {
+  
+        font-size: $apx-l-24;
+  
+      }
+  
+      ul {
+  
+        margin-top: $apx-l-16;
+  
+        li {
+  
+          line-height: $apx-l-25;
+          font-size: $apx-l-18;
+  
+        }
+      }
+  
+    }
+
     .gallery {
 
       height: $apx-l-528;
@@ -344,6 +399,33 @@
 
       }
 
+    }
+
+    .requisites {
+
+      padding: $apx-m-24;
+      margin-top: $apx-m-16;
+  
+      border-radius: $apx-m-24;
+  
+      h3 {
+  
+        font-size: $apx-m-24;
+  
+      }
+  
+      ul {
+  
+        margin-top: $apx-m-16;
+  
+        li {
+  
+          line-height: $apx-m-25;
+          font-size: $apx-m-18;
+  
+        }
+      }
+  
     }
 
     .gallery {

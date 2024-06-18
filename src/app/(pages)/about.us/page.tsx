@@ -101,7 +101,6 @@ const ContactsPage: NextPage<ContactsPageProps> = props => {
 
         </P>
 
-
         <ul className={ s.advantages }>
 
           <li className={ s.advantages__item }>
@@ -148,6 +147,22 @@ const ContactsPage: NextPage<ContactsPageProps> = props => {
           Наверное, нет никого, кто с теплом и любовью не вспоминал бы времена, когда по дому разлетался манящий аромат маминых орешков со сгущенкой.
 
         </P>
+
+        <div className = { s.requisites }>
+
+          <h3 className = {`h3`}>Реквизиты:</h3>
+          
+          <ul>
+            <li>ИП Овелян Зайира Сетраковна</li>
+            <li>ИНН 231702125543</li>
+            <li>ОГРНИП 324784700026216</li>
+            <li>Банковские реквизиты: р/с 4080 2810 5321 3000 7933</li>
+            <li>Банк «Санкт-Петербургский» филиал АО «Альфа-Банк</li>
+            <li>к/с 3010 1810 6000 0000 0786</li>
+            <li>БИК 044030786</li>
+          </ul>
+
+        </div>
 
         <FullImagePreview  
 
