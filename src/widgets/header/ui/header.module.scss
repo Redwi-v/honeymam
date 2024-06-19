@@ -448,9 +448,9 @@
 
 @media (max-width: $media-mobile) {
   
-    .mobile_hide {
-      display: none !important;
-    }
+  .mobile_hide {
+    display: none !important;
+  }
 
   .mobile_menu_button {
 
@@ -560,15 +560,15 @@
   
     .code_time {
   
-      font-size: $apx-l-14;
-      margin-top: $apx-l-16;
+      font-size: $apx-m-14;
+      margin-top: $apx-m-16;
   
     }
   
     .sign_in_code_send_button {
       
-      margin-top: $apx-l-32;
-      margin-bottom: $apx-l-10;
+      margin-top: $apx-m-16;
+      margin-bottom: $apx-m-10;
   
     }
   
@@ -588,11 +588,10 @@
     .sign_in_code {
   
       display: flex;
-      gap: $apx-16;
+      gap: $apx-m-8;
       width: fit-content;
       margin: 0 auto;
-      margin-top: $apx-8;
-      flex-wrap: wrap;
+      margin-top: $apx-m-8;
       justify-content: center;
   
       div {
@@ -603,7 +602,7 @@
   
       input {
   
-        width: $apx-91;
+        width: 100%;
         text-align: center;
   
       }
@@ -614,10 +613,10 @@
   
       font-family: var(--font-myweekend);
       font-weight: 400;
-      font-size: $apx-14;
+      font-size: $apx-m-14;
       line-height: 120%;
   
-      margin-top: $apx-32;
+      margin-top: $apx-m-32;
       text-align: left;
   
     }
@@ -626,7 +625,7 @@
   
       color: var(--color-red);
       font-family: var(--font-garamondCondensed);
-      margin-top: $apx-8;
+      margin-top: $apx-m-8;
   
     }
   

@@ -249,7 +249,7 @@ const MobileMenu = () => {
             <CartImage />
             Корзина
           </a>
-          <a className={ `h2` } href='/'>
+          <a className={ `h2` } href='/favorites'>
             <HeartImage />
             Избранное
           </a>
@@ -382,21 +382,17 @@ const SignInForm: FC<SignInFormProps> = ( { signInPopupIsActive, setSignInPopupI
 
   } )
 
+  const codeFocus = ( e: any, index: number ) => {
 
-  const values = [ watch('code1'), watch('code2'), watch('code3'), watch('code4') ]
+    const value = e.target.value as string
 
-  useEffect(() => {
+    //@ts-ignore
+    if ( value ) return setFocus(`code${ index + 1 }`)
 
-    const index = values.findIndex( str => {
-      if ( !str ) return true
-    })
+    //@ts-ignore
+    setFocus(`code${ index - 1 }`)
 
-    const name = `code${index + 1}` as "code1" | "code2" | "code3" | "code4"
-    setFocus(name)
-    
-
-  }, values )
-
+  }
 
   const steps = [
     <>
@@ -409,6 +405,7 @@ const SignInForm: FC<SignInFormProps> = ( { signInPopupIsActive, setSignInPopupI
         mask = {  /\b(?:\+?7|8)[ -]?\(?\d{3}\)?[ -]?\d{3}[ -]?\d{2}[ -]?\d{2}\b'/ }
 
         inputParams={ {
+
           type: 'tel',
           placeholder: "+7 999 999 99 99",
 
@@ -416,15 +413,12 @@ const SignInForm: FC<SignInFormProps> = ( { signInPopupIsActive, setSignInPopupI
 
             minLength: {
 
-              value: 2,
+              value: 18,
               message: 'Введен слишком короткий номер телефона'
 
             },
-            
 
           } ),
-
-
    
         } }
 
@@ -456,10 +450,18 @@ const SignInForm: FC<SignInFormProps> = ( { signInPopupIsActive, setSignInPopupI
 
       <div className={ s.sign_in_code } key={ 1 }>
 
-        <Input errorStyle = { !!errors.root?.message } inputParams={ { className: s.input_code , placeholder: '', max: 9, maxLength: 1, min: 0, type: 'text', ...register( 'code1', { max: 9 } ) } } />
-        <Input errorStyle = { !!errors.root?.message } inputParams={ { className: s.input_code , placeholder: '', max: 9, maxLength: 1, min: 0, type: 'text', ...register( 'code2', { max: 9 } ) } } />
-        <Input errorStyle = { !!errors.root?.message } inputParams={ { className: s.input_code , placeholder: '', max: 9, maxLength: 1, min: 0, type: 'text', ...register( 'code3', { max: 9 } ) } } />
-        <Input errorStyle = { !!errors.root?.message } inputParams={ { className: s.input_code , placeholder: '', max: 9, maxLength: 1, min: 0, type: 'text', ...register( 'code4', { max: 9 } ) } } />
+        <Input errorStyle = { !!errors.root?.message } inputParams={ { className: s.input_code , placeholder: '', max: 9, maxLength: 1, min: 0, type: 'text', ...register( 'code1', { max: 9 , onChange( event ) {
+          codeFocus( event, 1 )
+        },} ) } } />
+        <Input errorStyle = { !!errors.root?.message } inputParams={ { className: s.input_code , placeholder: '', max: 9, maxLength: 1, min: 0, type: 'text', ...register( 'code2', { max: 9 , onChange( event ) {
+          codeFocus( event, 2 )
+        },} ) } } />
+        <Input errorStyle = { !!errors.root?.message } inputParams={ { className: s.input_code , placeholder: '', max: 9, maxLength: 1, min: 0, type: 'text', ...register( 'code3', { max: 9 , onChange( event ) {
+          codeFocus( event, 3 )
+        },} ) } } />
+        <Input errorStyle = { !!errors.root?.message } inputParams={ { className: s.input_code , placeholder: '', max: 9, maxLength: 1, min: 0, type: 'text', ...register( 'code4', { max: 9 , onChange( event ) {
+          codeFocus( event, 4 )
+        },} ) } } />
 
       </div>
 

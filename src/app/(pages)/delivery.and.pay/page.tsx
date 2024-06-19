@@ -64,7 +64,7 @@ const ContactsPage: NextPage<ContactsPageProps> = props => {
 
       <YMaps >
         <div className={ `${ s.map } mt-24` }>
-          <Map width="100%" height="100%" defaultState={ { center: [ 55.685031, 37.537362 ], zoom: 15 } } >
+          <Map width="100%" height="100%" defaultState={ { center: [ 59.938675, 30.314447 ], zoom: 11 } } >
           </Map>
         </div>
       </YMaps>

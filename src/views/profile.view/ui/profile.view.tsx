@@ -408,6 +408,10 @@ const Addresses: FC<IAddressesData> = ( { } ) => {
 
     onError: ( err: AxiosError<any> ) => {
 
+      if ( Object.keys( err.response?.data )[ 0 ] === 'city' ) return setError( 'root', {
+        message: 'Адрес не найден в нашей базе'
+      } )
+
       setError( 'root', {
         message: Object.keys( err.response?.data )[ 0 ] + ' ' + Object.values( err.response?.data )[ 0 ]
       } )
@@ -781,19 +785,19 @@ const Reviews: FC<IReviewsData> = ( { } ) => {
 
           <div className={ s.images }>
 
-            <button onClick={ () => setActiveImageIndex( 0 ) } className={ `${ s.image_wrapper } ${ cssIf( activeImageIndex === 0, s.active ) }` }>
+            <button onClick={ () => setActiveImageIndex( 0 ) } className={ `${ s.image_wrapper }` }>
 
               <Image fill src={ '/images/aboutUs/gallery1.jpg' } alt="preview" />
 
             </button>
 
-            <button onClick={ () => setActiveImageIndex( 1 ) } className={ `${ s.image_wrapper } ${ cssIf( activeImageIndex === 1, s.active ) }` }>
+            <button onClick={ () => setActiveImageIndex( 1 ) } className={ `${ s.image_wrapper }` }>
 
               <Image fill src={ '/images/aboutUs/gallery1.jpg' } alt="preview" />
 
             </button>
 
-            <button onClick={ () => setActiveImageIndex( 2 ) } className={ `${ s.image_wrapper } ${ cssIf( activeImageIndex === 2, s.active ) }` }>
+            <button onClick={ () => setActiveImageIndex( 2 ) } className={ `${ s.image_wrapper }` }>
 
               <Image fill src={ '/images/aboutUs/gallery1.jpg' } alt="preview" />
 
