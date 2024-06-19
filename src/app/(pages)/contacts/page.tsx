@@ -35,8 +35,8 @@ const ContactsPage: NextPage<ContactsPageProps> = props => {
         <YMaps>
 
           <div className={ s.map }>
-            <Map width="100%" height="100%" defaultState={ { center: [ 59.938675, 30.314447 ], zoom: 9 } } >
-              <Placemark geometry={[59.590727, 30.056336]} />
+            <Map width="100%" height="100%" defaultState={ { center: [ 59.996245, 30.217278 ], zoom: 13 } } >
+              <Placemark geometry={[59.996245, 30.217278]} />
             </Map>
           </div>
 
@@ -46,7 +46,7 @@ const ContactsPage: NextPage<ContactsPageProps> = props => {
 
           <div className={ s.block }>
             <H2>адрес</H2>
-            <P>г. Санкт-Петербург, 3-я улица Строителей, 25</P>
+            <P>Г. Санкт-Петербург, ул.Мебельная д.19.кв 2</P>
           </div>
 
           <div className={ s.block }>

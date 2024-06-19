@@ -2,7 +2,7 @@
 import { BreadCrumbs, H1, H2, ICrumbItem, P } from "@/shared/ui.kit"
 import { NextPage } from "next"
 import s from './delivery.and.pay.module.scss'
-import { Map, YMaps } from '@pbe/react-yandex-maps';
+import { Map, Placemark, YMaps } from '@pbe/react-yandex-maps';
 import { useState } from "react";
 import { cssIf } from "@/shared/scripts";
 import { MapPointImage } from "@/app/_images/map.point";
@@ -53,7 +53,7 @@ const ContactsPage: NextPage<ContactsPageProps> = props => {
 
       <P className={ `${ s.address } flex gap-8 mt-16 mt-l-16 mt-m-16 items-center` }>
         <MapPointImage />
-        Москва, 3-я улица Строителей, 25
+        Г. Санкт-Петербург, ул.Мебельная д.19.кв 2
       </P>
 
       <P className={ `${ s.time } flex gap-8 mt-16 mt-l-16 mt-m-16 items-center` }>
@@ -64,7 +64,8 @@ const ContactsPage: NextPage<ContactsPageProps> = props => {
 
       <YMaps >
         <div className={ `${ s.map } mt-24` }>
-          <Map width="100%" height="100%" defaultState={ { center: [ 59.938675, 30.314447 ], zoom: 11 } } >
+          <Map width="100%" height="100%" defaultState={ { center: [ 59.996245, 30.217278 ], zoom: 13 } } >
+            <Placemark geometry={[ 59.996245, 30.217278 ]}/>
           </Map>
         </div>
       </YMaps>
