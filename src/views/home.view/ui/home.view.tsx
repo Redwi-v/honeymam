@@ -124,9 +124,7 @@ export const HomeView: FC<IHomeViewProps> = ( { productsList, tab } ) => {
 
           <div className={ s.text }>
             <span className={ s.name }>Адрес</span>
-            <P className={ s.address }>Москва, 3-я улица Строителей,  25 <br /> с 10:00 до 21:00</P>
-
-
+            <P className={ s.address }>Г. Санкт-Петербург, <br /> ул.Мебельная д.19.кв 2 <br /> с 10:00 до 21:00</P>
 
             <HoverAnimatedLink className={ s.link } animateClassName={ s.icon } href="/" frames={ [
 

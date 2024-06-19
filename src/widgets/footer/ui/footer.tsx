@@ -42,7 +42,7 @@ export const Footer: FC<FooterProps> = () => {
 
             <div className={ `${ s.info_right } flex flex-col gap-24 gap-l-20 gap-m-12` }>
 
-              <P className={ s.transparent }>Москва, 3-я улица <br /> Строителей, 25</P>
+              <P className={ s.transparent }>Г. Санкт-Петербург, <br /> ул.Мебельная д.19.кв 2</P>
               <P className={ s.transparent }>с 10:00 до 21:00</P>
               <div className="flex gap-3">
 
