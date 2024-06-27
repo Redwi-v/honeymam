@@ -6,7 +6,7 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        hostname: 'honeymam.store'
+        hostname: 'be.honeymam.ru'
       },
       {
         hostname: 'upload.wikimedia.org'

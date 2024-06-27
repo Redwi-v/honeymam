@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const instance = axios.create( {
 
-  baseURL: 'https://honeymam.store',
+  baseURL: 'https://be.honeymam.ru',
   timeout: 50000,
   headers: {
     "Http-App-ID": process.env.Http_App_ID,
